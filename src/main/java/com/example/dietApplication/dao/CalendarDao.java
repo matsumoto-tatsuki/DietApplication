@@ -1,2 +1,4 @@
-package com.example.dietApplication.dao;public class CalendarDao {
+package com.example.dietApplication.dao;
+
+public class CalendarDao {
 }

@@ -1,2 +1,4 @@
-package com.example.dietApplication.dao;public class DietDao {
+package com.example.dietApplication.dao;
+
+public class DietDao {
 }
