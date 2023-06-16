@@ -1,0 +1,14 @@
+h2 {
+    font-weight: bold;
+    color: purple;
+    text-align: center;
+}
+
+.box_a {
+    background-color: white;
+    border-radius: 2%;
+    margin: auto;
+    width: 500px;
+    height: 600px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
