@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class TopController {
     @GetMapping("/top")
     public String getTop(){
+
         return "top";
     }
 }
