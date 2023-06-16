@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Login</title>
 </head>
+
 <body>
-$END$
+    <h1>ログイン</h1>
+    <form action="/user-login" method="POST">
+        <div>
+            <input type="text" name = "userId" laceholder="ユーザーID">
+        </div>
+
+        <div>
+            <input type="password" name="password" placeholder="パスワード">
+        </div>
+
+        <input type="submit">
+    </form>
 </body>
+
 </html>
