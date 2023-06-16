@@ -2,17 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+    <meta charset="UTF-8" >
+    <title>新規登録画面</title>
 </head>
 
 <body>
-    <h1>ログイン画面</h1>
-    <div th:if="${idNotFoundError}" th:text="${idNotFoundError}"> </div>
-    <form action="/user-login" method="POST" th:object="${userLoginForm}">
+    
+    <h1>新規登録</h1>
+    <div th:if="${userInsertId}" th:text="${userInsertId}"> </div>
+    <form action="/insert-user" method="POST" th:object="${userInsertForm}">
         <div>
-            <input type="text" laceholder="ユーザーID" th:field="*{userId}">
-
+            <input type="text" placeholder="ユーザーID" th:field="*{userId}">
         </div>
         <div class="error" th:each="error: ${#fields.errors('userId')}">
             [[ ${error} ]]
@@ -25,7 +25,11 @@
             [[ ${error} ]]
         </div>
 
-        <input type="submit">
+        <div>
+            <input type="text" name="weight" placeholder="体重(任意)">
+        </div>
+
+        <button type="submit">登録</button>
     </form>
 </body>
 

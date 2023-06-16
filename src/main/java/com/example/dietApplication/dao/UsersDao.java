@@ -1,6 +1,7 @@
 package com.example.dietApplication.dao;
 
-<<<<<<< HEAD
+
+import com.example.dietApplication.controller.userLoginController.UserIdData;
 import com.example.dietApplication.controller.userLoginController.UserInsertForm;
 import com.example.dietApplication.controller.userLoginController.UserLoginData;
 import com.example.dietApplication.controller.userLoginController.UserLoginForm;
@@ -20,13 +21,11 @@ public class UsersDao {
 
     public int InsertUser(UserInsertForm userInsertForm) {
         var param = new MapSqlParameterSource();
-
         int weight = 0;
-//        if(userInsertForm.getWeight() != null) {
-//            weight = Integer.parseInt(userInsertForm.getWeight());
-//        }else{
-//            weight = 0;
-//        }
+        //体重が何も入力されていないときは0で初期化しておく。
+        if(!userInsertForm.getWeight().isEmpty()) {
+            weight = Integer.parseInt(userInsertForm.getWeight());
+        }
 
         param.addValue("userId", userInsertForm.getUserId());
         param.addValue("password", userInsertForm.getPassword());
@@ -36,9 +35,18 @@ public class UsersDao {
         return namedParameterJdbcTemplate.update(sql, param);
     }
 
+    public UserIdData UserIdCheck(UserInsertForm userInsertForm){
+        List<UserIdData> usersIdData = new ArrayList<>();
+        var param = new MapSqlParameterSource();
+        param.addValue("userId", userInsertForm.getUserId());
+        String sql = "SELECT user_id FROM users WHERE user_id = :userId";
+        usersIdData = namedParameterJdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserIdData.class));
+        return usersIdData.isEmpty() ? null : usersIdData.get(0);
+    }
+
     public UserLoginData loginCheck(UserLoginForm userLoginForm) {
         List<UserLoginData> usersData = new ArrayList<>();
-        var param = new MapSqlParameterSource("", userLoginForm.getUserId());
+        var param = new MapSqlParameterSource();
         param.addValue("userId", userLoginForm.getUserId());
         String sql = "SELECT user_id,password FROM users WHERE user_id = :userId";
         usersData = namedParameterJdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserLoginData.class));
