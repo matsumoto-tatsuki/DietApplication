@@ -1,5 +1,6 @@
 package com.example.dietApplication.dao;
 
+<<<<<<< HEAD
 import com.example.dietApplication.controller.userLoginController.UserInsertForm;
 import com.example.dietApplication.controller.userLoginController.UserLoginData;
 import com.example.dietApplication.controller.userLoginController.UserLoginForm;
@@ -16,7 +17,8 @@ import java.util.List;
 public class UsersDao {
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    public int InsertUser(UserInsertForm userInsertForm){
+
+    public int InsertUser(UserInsertForm userInsertForm) {
         var param = new MapSqlParameterSource();
 
         int weight = 0;
@@ -26,20 +28,20 @@ public class UsersDao {
 //            weight = 0;
 //        }
 
-        param.addValue("userId",userInsertForm.getUserId());
-        param.addValue("password",userInsertForm.getPassword());
-        param.addValue("weight",weight);
+        param.addValue("userId", userInsertForm.getUserId());
+        param.addValue("password", userInsertForm.getPassword());
+        param.addValue("weight", weight);
 
         String sql = "INSERT INTO users (user_id,password,weight) VALUES(:userId,:password,:weight)";
-        return namedParameterJdbcTemplate.update(sql,param);
+        return namedParameterJdbcTemplate.update(sql, param);
     }
 
-    public UserLoginData loginCheck(UserLoginForm userLoginForm){
+    public UserLoginData loginCheck(UserLoginForm userLoginForm) {
         List<UserLoginData> usersData = new ArrayList<>();
-        var param = new MapSqlParameterSource("",userLoginForm.getUserId());
-        param.addValue("userId",userLoginForm.getUserId());
+        var param = new MapSqlParameterSource("", userLoginForm.getUserId());
+        param.addValue("userId", userLoginForm.getUserId());
         String sql = "SELECT user_id,password FROM users WHERE user_id = :userId";
-        usersData = namedParameterJdbcTemplate.query(sql,param,new DataClassRowMapper<>(UserLoginData.class));
+        usersData = namedParameterJdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserLoginData.class));
         return usersData.isEmpty() ? null : usersData.get(0);
     }
 }
