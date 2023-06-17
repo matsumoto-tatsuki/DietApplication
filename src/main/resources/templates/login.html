@@ -4,29 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="/css/Login.css">
 </head>
 
 <body>
-    <h1>ログイン画面</h1>
-    <div th:if="${idNotFoundError}" th:text="${idNotFoundError}"> </div>
-    <form action="/user-login" method="POST" th:object="${userLoginForm}">
-        <div>
-            <input type="text" laceholder="ユーザーID" th:field="*{userId}">
+    <div class="form">
+        <h1>ログイン</h1>
+        <div class="error" th:if="${idNotFoundError}" th:text="${idNotFoundError}"> </div>
+        <img class="image" src="/images/character.png" alt="豆腐のキャラ画像">
+        <form action="/user-login" method="POST" th:object="${userLoginForm}">
+            <div>
+                <input type="text" placeholder="ユーザーID" th:field="*{userId}">
 
-        </div>
-        <div class="error" th:each="error: ${#fields.errors('userId')}">
-            [[ ${error} ]]
-        </div>
+            </div>
+            <div class="error" th:each="error: ${#fields.errors('userId')}">
+                [[ ${error} ]]
+            </div>
 
-        <div>
-            <input type="password"  placeholder="パスワード" th:field="*{password}">
-        </div>
-        <div class="error" th:each="error: ${#fields.errors('password')}">
-            [[ ${error} ]]
-        </div>
+            <div>
+                <input type="password" id="passwordInput" placeholder="パスワード" th:field="*{password}">
+                <span id="togglePassword"><img src="/images/display1.png" alt="閉じた目"></span>
+            </div>
+            <div class="error" th:each="error: ${#fields.errors('password')}">
+                [[ ${error} ]]
+            </div>
 
-        <input type="submit">
-    </form>
+            <div class="button">
+                <button type="submit">ログイン</button>
+                <button type="button" onclick="window.location.href='/insert-user'">新規登録</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById("passwordInput");
+        const togglePassword = document.getElementById("togglePassword");
+
+        const closedEye = "/images/hidden1.png";
+        const openEye = "/images/display1.png";
+
+        togglePassword.addEventListener("click", function () {
+            console.log("タイプ", passwordInput.type);
+
+            if (passwordInput.type === "password") {
+                console.log("テキストに変更");
+                passwordInput.type = "text";
+                togglePassword.innerHTML = `<img src="${closedEye}" alt="閉じた目">`;
+                
+            } else {
+                console.log("パスワードに変更");
+                passwordInput.type = "password";
+                togglePassword.innerHTML = `<img src="${openEye}" alt="開いた目">`;
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -5,11 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class UserLoginController {
@@ -26,6 +29,7 @@ public class UserLoginController {
         //バリデーション
         if(bindingResult.hasErrors()){
             System.out.println("error");
+            return "/login";
         }
 
         //IDが存在したら。
@@ -54,23 +58,25 @@ public class UserLoginController {
         var addUserData = usersDao.UserIdCheck(userInsertForm);
         //入力チェックエラーがないとき　かつ　ユーザーが登録されていない時
         if(bindingResult.hasErrors()){
-            System.out.println("error");
+            List<ObjectError> errors = bindingResult.getAllErrors();
+            for (ObjectError error : errors) {
+                System.out.println(error.getDefaultMessage());
+            }
+            System.out.println("新規登録error");
             return "/signup";
         }
-
 
         if(addUserData == null) {
             //データベースに登録
+            model.addAttribute("successPopup",true);
             usersDao.InsertUser(userInsertForm);
-            return "redirect:/user-login";
         }else{
-
+            System.out.println("登録されています");
             //IDは登録されています。
             model.addAttribute("userInsertId","IDは登録されています。");
-            return "/signup";
         }
 
-
+        return "/signup";
     }
 
     @GetMapping("/user-logout")

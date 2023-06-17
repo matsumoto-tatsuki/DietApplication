@@ -2,35 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8" >
+    <meta charset="UTF-8">
     <title>新規登録画面</title>
+    <link rel="stylesheet" href="/css/signup.css">
 </head>
 
 <body>
-    
-    <h1>新規登録</h1>
-    <div th:if="${userInsertId}" th:text="${userInsertId}"> </div>
-    <form action="/insert-user" method="POST" th:object="${userInsertForm}">
-        <div>
-            <input type="text" placeholder="ユーザーID" th:field="*{userId}">
-        </div>
-        <div class="error" th:each="error: ${#fields.errors('userId')}">
-            [[ ${error} ]]
-        </div>
+    <div class="popup" th:if="${successPopup}"> 
+        <p>登録が完了しました!</p>
+        <button type="button" onclick="window.location.href='/user-login'">ログインへ戻る</button>
+    </div>
 
-        <div>
-            <input type="password"  placeholder="パスワード" th:field="*{password}">
-        </div>
-        <div class="error" th:each="error: ${#fields.errors('password')}">
-            [[ ${error} ]]
-        </div>
+    <div class="form">
+        <h1>新規登録</h1>
+        <div class="error" th:if="${userInsertId}" th:text="${userInsertId}"> </div>
+        <form action="/insert-user" method="POST" th:object="${userInsertForm}">
+            <div>
+                <input type="text" placeholder="ユーザーID" th:field="*{userId}">
+            </div>
+            <div class="error" th:each="error: ${#fields.errors('userId')}">
+                [[ ${error} ]]
+            </div>
 
-        <div>
-            <input type="text" name="weight" placeholder="体重(任意)">
-        </div>
+            <div>
+                <input type="password" placeholder="パスワード" th:field="*{password}">
+            </div>
+            <div class="error" th:each="error: ${#fields.errors('password')}">
+                [[ ${error} ]]
+            </div>
 
-        <button type="submit">登録</button>
-    </form>
+            <div>
+                <input type="text" name="weight" placeholder="体重(任意)">
+            </div>
+
+            <div class="button">
+                <button type="submit">登録</button>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>
