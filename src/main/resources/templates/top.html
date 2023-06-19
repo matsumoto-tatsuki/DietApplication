@@ -5,7 +5,6 @@
     <title>TOP画面</title>
     <link href="/css/commons.css" rel="stylesheet">
     <link href="/css/top.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -13,8 +12,8 @@
    <div class="content flex">
         <div>
             <div class="user-info">
-                <h3>Lv.100</h3>
-                <p>++++++++++++</p>
+                <h3>Lv.100　なかやまきんに君</h3>
+                <progress value="50" max="100" class="level"></progress>
                 <div>
                     <h3>実施中ダイエット</h3>
                     <p>豆腐ダイエット：2023/06/16 ～ 2023/06/30</p>
@@ -40,10 +39,11 @@
         </div>
        <div>
            <div class="speak">
-               <p>ヤー！</p>
+               <p align="center">ヤー！</p>
            </div>
+           <img src="/images/top.png" id="main">
        </div>
-       <img src="/images/top.png" id="main">
+
    </div>
    <br>
    <th:block th:insert="/common/footer"></th:block>

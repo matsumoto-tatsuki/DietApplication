@@ -5,13 +5,13 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 @Data
-public class Calender {
-    private LocalDate calender;
+public class Calendar {
+    private LocalDate calendar;
     private String date;
 
-    public Calender(String date){
+    public Calendar(String date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.calender = LocalDate.parse(date, formatter);
+        this.calendar = LocalDate.parse(date, formatter);
         this.date = date;
     }
 }

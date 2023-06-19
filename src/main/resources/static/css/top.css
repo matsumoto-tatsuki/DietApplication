@@ -1,6 +1,7 @@
 .flex {
     display: flex;
     justify-content: space-between;
+    padding: 0 5%; /* 左右の余白を指定 */
 }
 
 #memo{
@@ -27,7 +28,19 @@
     border: 1px solid orange;
     background-color:darkorange;
     border-radius:10px;
-  }
+}
+
+progress{
+  width:70%;
+  -webkit-appearance:none;
+}
+::-webkit-progress-value {
+      background-color: green;
+}   
+    /* 要素なし部分の色 */
+::-webkit-progress-bar {
+  background-color: white;
+}
 
 
 

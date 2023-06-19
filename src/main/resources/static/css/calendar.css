@@ -1,0 +1,51 @@
+.form{
+    border:1px solid black;
+    margin:5% 20%;
+    text-align:center;
+    background-color:rgb(210, 130, 234,0.5);
+}
+
+.form h2{
+    text-align:left;
+    margin-left:10%;
+}
+
+.form input{
+    font-size:20px;
+}
+
+.form h2 input{
+    width:50px;
+    margin-right:10px;
+}
+.item{
+    padding:5% 0%;
+}
+
+textarea{
+    width:70%;
+    height:200px;
+}
+
+.set-result {
+    display: flex;
+    align-items: center;
+    margin-left:15%;
+}
+
+.set-result img {
+    width:40px;
+    height:40px;
+    margin-left: 10px;
+}
+
+form button{
+    text-align:center;
+    font-size:20px;
+    padding:10px 20px;
+    background-color:aqua;
+    border:1px solid;
+    border-radius:10px;
+
+    margin:0% 44%;
+}
