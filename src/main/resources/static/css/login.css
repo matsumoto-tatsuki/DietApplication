@@ -1,6 +1,6 @@
-* {
+/* * {
     margin: 0;
-}
+} */
 
 .error {
     color: red;
@@ -12,9 +12,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    background-color: #E6E6E6;
 }
+
 
 
 .form input {

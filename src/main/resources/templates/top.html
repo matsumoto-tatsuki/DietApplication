@@ -2,32 +2,52 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>css header</title>
+    <title>TOP画面</title>
     <link href="/css/commons.css" rel="stylesheet">
+    <link href="/css/top.css" rel="stylesheet">
 
 </head>
 
 <body>
    <th:block th:insert="/common/header"></th:block>
-   <div class="content">
+   <div class="content flex">
         <div>
-            <p>レベル1</p>
-            <p>++++++++++++</p>
-            <div>
-                <p>実施中ダイエット</p>
-                <p>豆腐ダイエット：2023/06/16 ～ 2023/06/30</p>
+            <div class="user-info">
+                <h3>Lv.100</h3>
+                <p>++++++++++++</p>
+                <div>
+                    <h3>実施中ダイエット</h3>
+                    <p>豆腐ダイエット：2023/06/16 ～ 2023/06/30</p>
+                </div>
             </div>
-        </div>
+            <br>
+           <div class="flex">
+               <div>
+                   <div>
+                       <h3>
+                           <a href="#" id="last-month"><b>&lt;</b></a>
+                           <a href="#" id="next-month"><b>&gt;</b></a>
+                           <span id="year"></span>年<span id="month"></span>月
+                       </h3>
+                   </div>
 
+                   <table id="cal" class="calendar">
+
+                   </table>
+               </div>
+               <a href="/memo"><img src="/images/memo.png" id="memo"></a>
+           </div>
+        </div>
        <div>
-           <p>calendar</p>
-           <img src="/images/memo.png">
+           <div class="speak">
+               <p>ヤー！</p>
+           </div>
        </div>
-       <div>
-           <img src="/images/top.png">
-       </div>
+<!--       <img src="/images/top.png" id="main">-->
    </div>
+   <br>
    <th:block th:insert="/common/footer"></th:block>
+<script src="/js/top.js"></script>
 </body>
 
 </html>
