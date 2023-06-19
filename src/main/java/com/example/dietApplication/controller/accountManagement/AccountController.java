@@ -1,4 +1,5 @@
-package com.example.dietApplication.controller.acountmanagement;
+package com.example.dietApplication.controller.accountManagement;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,12 +10,12 @@ public class AccountController {
 
     @GetMapping("/account-profile")
     public String getAccount(){
-        return "account-profile";
+        return "/account/account-profile";
     }
 
-    @GetMapping("//account-aicon")
+    @GetMapping("//account-edit")
     public String getAccount2(){
-        return "/account-aicon";
+        return "account/account-edit";
     }
 
     @PostMapping("//account-updata")

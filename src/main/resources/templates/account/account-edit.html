@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+
+<head>
+  <title>css header</title>
+  <link rel="stylesheet" href="/css/account.css">
+</head>
+
+
+<body>
+<th:block th:insert="/common/header"></th:block>
+
+<div class = "cen">user ID:00000001
+
+  <a id = "edit" href = "honyaaa.html"> 更新 </a>
+
+</div>
+
+<br>
+<img src = "/images/icon.png" alt="画像">
+<br>
+<div class="box_a">
+  <p> (ユーザー名) </p>
+</div>
+
+<br>
+
+<div class="box_a">
+  <!--  体重に応じて変更予定 <p th:text="${weight.name??}"> -->
+  <p>体重</p>
+</div>
+
+<br>
+
+<th:block th:insert="/common/footer"></th:block>
+
+
+</body>
+</html>
