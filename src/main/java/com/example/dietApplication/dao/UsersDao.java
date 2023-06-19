@@ -1,11 +1,21 @@
 package com.example.dietApplication.dao;
 
+import com.example.dietApplication.entity.User;
+import com.example.dietApplication.entity.UserInfo;
+import com.example.dietApplication.entity.UserLogin;
+import com.example.dietApplication.form.AdminIdForm;
+import com.example.dietApplication.form.AdminPassForm;
+import com.example.dietApplication.form.InsertUserForm;
+import com.example.dietApplication.form.UserForm;
+
+import java.util.List;
+
 public interface UsersDao {
     //ユーザログイン
-    UserLogin getUserLogin(UserFrom userFrom);
+    UserLogin getUserLogin(UserForm userFrom);
 
     //新規登録
-    int insertUser(InsertUserFrom insertUserFrom);
+    int insertUser(InsertUserForm insertUserFrom);
 
     //ユーザ情報
     UserInfo getUserInfo(String userId);
