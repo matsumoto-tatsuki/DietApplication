@@ -1,5 +1,9 @@
 package com.example.dietApplication.dao;
 
+import com.example.dietApplication.entity.UserInfo;
+import com.example.dietApplication.form.AdminIdForm;
+import com.example.dietApplication.form.AdminPassForm;
+
 public interface UsersDao {
     //ユーザログイン
     UserLogin getUserLogin(UserFrom userFrom);

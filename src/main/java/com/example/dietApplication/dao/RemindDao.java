@@ -1,5 +1,8 @@
 package com.example.dietApplication.dao;
 
+import com.example.dietApplication.entity.UserRemind;
+import com.example.dietApplication.form.UserRemindForm;
+
 public interface RemindDao {
     //remind設定
     UserRemind getUserRemind(String userId);
