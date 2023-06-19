@@ -24,7 +24,13 @@ not-allowed: 操作が許可されていないことを示します。通常は�
 
 header {
     background-color: rgb(210, 130, 234);
+    /* position: fixed;
+    z-index: 9999;*/
+    top: 0;
+    width: 100%;
+    
 }
+
 
 
 
@@ -111,7 +117,6 @@ header a{
   footer {
     background-color: #000000;
     padding: 20px;
-    position: fixed;
     bottom: 0;
     width: 100%;
   }
