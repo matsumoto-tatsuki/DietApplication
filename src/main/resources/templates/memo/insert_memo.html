@@ -14,13 +14,14 @@
           <form action="/memo/insert" method="POST">　<!--POST形式でデータ送信-->
               <p><span class="strong">メモ</span></p>
               <!-- 送信する際のメモ内容をinsert_memoとする -->
-              <textarea name="insert_memo" rows="10" placeholder="メモを書いてね！"></textarea>
+              <textarea name="insert_memo" rows="15" placeholder="メモを書いてね！"></textarea>
               <div>
-                  <button type="submit">登録</button>
+                  <button class="button" type="submit">登録</button>
               </div>
           </form>
       </div>
   </div>
+
 
   <!--  フッター-->
   <th:block th:insert="/common/footer"></th:block>
