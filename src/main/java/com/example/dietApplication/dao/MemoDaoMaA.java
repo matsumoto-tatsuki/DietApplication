@@ -1,7 +1,6 @@
 package com.example.dietApplication.dao;
 
 import com.example.dietApplication.entity.Calendar;
-import com.example.dietApplication.entity.DietResult;
 import com.example.dietApplication.entity.Memo;
 import com.example.dietApplication.form.MemoForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,18 +8,19 @@ import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RestController;
 
-
-public class MemoDaoMatsumoto implements MemoDao{
-
+@Repository
+public class MemoDaoMaA implements MemoDao{
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
     public int insertMemo(String user_id, MemoForm memoForm) {
-        return 0;
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("memoID",user_id);
+        param.addValue("memo",memoForm.getMemo());
+        return jdbcTemplate.update("INSERT INTO memo (user_id,memo,date) VALUES (:memoID,:memo,CURRENT_DATE)",param);
     }
 
     @Override
@@ -49,8 +49,8 @@ public class MemoDaoMatsumoto implements MemoDao{
         param.addValue("userId",userId);
 
         return jdbcTemplate.update("UPDATE memo\n" +
-                                        "SET memo = :memo\n" +
-                                        "WHERE date = :date\n" +
-                                        "AND user_id = :userId",param);
+                "SET memo = :memo\n" +
+                "WHERE date = :date\n" +
+                "AND user_id = :userId",param);
     }
 }

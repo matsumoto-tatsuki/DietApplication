@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>メモ</title>
+  <link rel="stylesheet" href="/css/commons.css">
+  <link rel="stylesheet" href="/css/memo.css">
+</head>
+<body>
+
+<div class="content">
+  <div class="position_c"> <!--ポジションを真ん中にしている-->
+    <form action="/move_top" method="POST">　<!--POST形式でデータ送信-->
+      <p><span class="bold">登録されました！</span></p>
+      <div>
+        <button class="button_memo" type="submit">Top画面へ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

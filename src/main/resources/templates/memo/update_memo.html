@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>メモ</title>
+  <link rel="stylesheet" href="/css/commons.css">
+  <link rel="stylesheet" href="/css/memo.css">
+</head>
+<body>
+<!--ヘッダー-->
+<th:block th:insert="/common/header"></th:block>
+<div class="content">
+  <div class="position_c"> <!--ポジションを真ん中にしている-->
+    <form action="/memo_update" method="POST">　<!--POST形式でデータ送信-->
+      <p><span class="bold">メモ</span></p>
+      <!-- 送信する際のメモ内容をinsert_memoとする -->
+      <textarea class="textarea_position" name="memo" th:text="${result.memo}"></textarea>
+      <div>
+        <button class="button_memo" type="submit">更新</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!--  フッター-->
+<th:block th:insert="/common/footer"></th:block>
+</body>
+</html>
