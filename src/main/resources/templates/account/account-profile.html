@@ -11,18 +11,20 @@
 <body>
 <th:block th:insert="/common/header"></th:block>
 
-  <div class = "cen">user ID:00000001
+<!-- ユーザーのidに応じて変更予定 <p th:text="${user.name?}">　-->
+
+    <p>ID: <span th:text="${accountProfile}"></span></p>
 
     <a id = "edit" href = "honyarara.html"> 編集 </a>
-
-  </div>
 
 <br>
   <img src = "/images/icon.png" alt="画像">
 <br>
+
   <div class="box_a">
 <!--  ユーザーに応じて変更予定 <p th:text="${user.name?}"> -->
-    <p> (ユーザー名) </p>
+      <p> ユーザー名 </p>
+    <p th:text="${accountProfile}">  </p>
   </div>
 
   <br>
