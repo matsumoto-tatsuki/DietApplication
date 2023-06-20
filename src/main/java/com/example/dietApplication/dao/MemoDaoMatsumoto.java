@@ -19,7 +19,7 @@ public class MemoDaoMatsumoto implements MemoDao{
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
-    public int insertMemo(MemoForm memoForm) {
+    public int insertMemo(Calendar calendar,MemoForm memoForm,String userId) {
         return 0;
     }
 
@@ -41,7 +41,16 @@ public class MemoDaoMatsumoto implements MemoDao{
     }
 
     @Override
-    public int updateMemo(MemoForm memoForm) {
-        return 0;
+    public int updateMemo(Calendar calendar,String memo,String userId) {
+        System.out.println("MemoDaoMatsumotoCheck(updateMemo)");
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("memo",memo);
+        param.addValue("date",calendar.getCalendar());
+        param.addValue("userId",userId);
+
+        return jdbcTemplate.update("UPDATE memo\n" +
+                                        "SET memo = :memo\n" +
+                                        "WHERE date = :date\n" +
+                                        "AND user_id = :userId",param);
     }
 }

@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface WeightDao {
     //体重を取得（複数日）
-    List<UserWeight> getUsersWeight(Calendar calendar);
+    List<UserWeight> getUsersWeight(Calendar calendar,String userId);
 
     //体重を取得（1日）
     UserWeight getUserWeight(Calendar calendar,String userId);
 
     //体重更新
-    int updateUserWeight(UserWeight userWeight);
+    int updateUserWeight(Calendar calendar,int userWeight,String userId);
 }

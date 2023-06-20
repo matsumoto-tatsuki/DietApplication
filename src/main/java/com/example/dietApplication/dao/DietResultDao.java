@@ -15,7 +15,7 @@ public interface DietResultDao {
     List<DietResult> getDietResult(Calendar calendar,String userId);
 
     //ダイエット成果更新
-    int updateDietResult(DietResult dietResult);
+    int updateDietResult(DietResult dietResult,String userId);
 
     //calendarに色をつける
     List<DietResultDate> getCalenderResult(int year,int month,String userId);

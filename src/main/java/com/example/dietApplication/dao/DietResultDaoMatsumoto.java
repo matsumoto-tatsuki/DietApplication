@@ -44,8 +44,23 @@ public class DietResultDaoMatsumoto implements DietResultDao{
     }
 
     @Override
-    public int updateDietResult(DietResult dietResult) {
-        return 0;
+    public int updateDietResult(DietResult dietResult,String userId) {
+        System.out.println("DietResultDaoMatsumotoCheck(updateDietResult)");
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("resultId",dietResult.getDietResultId());
+        param.addValue("selectAction",dietResult.getAction());
+        param.addValue("flag",dietResult.isResult());
+        param.addValue("userId",userId);
+        var num1 = jdbcTemplate.update("UPDATE diet_result\n" +
+                                            "SET result = :flag\n" +
+                                            "WHERE id = :resultId;",param);
+        var num2 = jdbcTemplate.update("UPDATE diet_selects\n" +
+                                            "SET action = :selectAction\n" +
+                                            "WHERE id = (SELECT user_select_id\n" +
+                                            "            FROM diet_result\n" +
+                                            "            WHERE id = :resultId)\n" +
+                                            "AND user_id = :userId",param);
+        return num1 + num2;
     }
 
     @Override

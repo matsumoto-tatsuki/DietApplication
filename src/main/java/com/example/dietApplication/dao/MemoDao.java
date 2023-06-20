@@ -6,11 +6,11 @@ import com.example.dietApplication.form.MemoForm;
 
 public interface MemoDao {
     //メモ登録
-    int insertMemo(MemoForm memoForm);
+    int insertMemo(Calendar calendar,MemoForm memoForm,String userId);
 
     //メモ取得
     Memo getMemo(Calendar calendar,String userId);
 
     //メモの更新
-    int updateMemo(MemoForm memoForm);
+    int updateMemo(Calendar calendar,String memo,String userId);
 }

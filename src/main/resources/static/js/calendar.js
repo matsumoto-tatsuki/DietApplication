@@ -1,8 +1,29 @@
-function changeImage() {
-    var image = document.getElementById("myImage");
-    if (image.src.endsWith("/images/failure.png")) {
-      image.src = "/images/success.png";
-    } else {
-      image.src = "/images/failure.png";
-    }
-}
+'use strict'
+
+// function changeImage(element, index) {
+// 	console.log(index);
+// 	let resultInput = document.getElementById('result-input-' + index);
+// 	let imagePath = element.getAttribute('src');
+// 	let isResult = (imagePath === '/images/success.png');
+// 	if (isResult) {
+// 		element.src = "/images/success.png";
+// 	} else {
+// 		element.src = "/images/failure.png";
+// 	}
+// 	resultInput.value = isResult;
+// }
+
+
+function changeImage(element, index) {
+	let resultInput = document.getElementById('result-input-' + index);
+	let imagePath = element.getAttribute('src');
+	let isResult = (imagePath === '/images/success.png');
+	
+	if (isResult) {
+	  element.src = "/images/failure.png";
+	} else {
+	  element.src = "/images/success.png";
+	}
+	
+	resultInput.value = !isResult;
+  }
