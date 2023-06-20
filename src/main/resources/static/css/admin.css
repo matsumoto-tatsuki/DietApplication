@@ -3,28 +3,25 @@
               justify-content: center;
 }
 
+  table {
+    border-collapse: collapse;
+  }
+
 th {
-  color: blue;
-  text-align: center;
-  margin-right: 10px;
-  border-collapse: collapse;
-  padding: 8px;
-  width:180px;
-  height:0px;
+    border: 1px solid black;
 }
 
-td {
-    padding-left: 10px;
-    padding-right: 20px;
-}
+   tr {
+    border: 1px solid black;
+    padding: 8px;
+  }
 
-table {
-    text-align: center;
-    margin-right: 59px;
-    margin-top: 20px;
-    margin-left: 54px;
+    td {
 
-}
+    border: 1px solid black;
+    padding: 8px;
+  }
+
 
 img {
     display: block;
@@ -83,7 +80,28 @@ img {
 }
 
 
+.tableclass table {
+    border-collapse: collapse;
+}
 
+.tableclass th {
+    border: 1px solid black;
+}
+
+   .tableclass tr {
+    border: 1px solid black;
+    padding: 8px;
+  }
+
+    .tableclass td {
+
+    border: 1px solid black;
+    padding: 8px;
+  }
+
+  text {
+    text-align: center;
+  }
 
 
 

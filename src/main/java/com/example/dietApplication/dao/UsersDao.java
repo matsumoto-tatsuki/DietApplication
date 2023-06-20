@@ -33,4 +33,7 @@ public interface UsersDao {
 
     //管理者パスワード変更
     int updateAdminPass(AdminPassForm adminPassForm);
+
+    //userID検索
+    List<User> userDateId(UserInfo userInfo);
 }

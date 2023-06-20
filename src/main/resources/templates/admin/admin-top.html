@@ -16,33 +16,48 @@
     <div class = "box">
         <img src="/css/img/teamProject.jpg" alt="画像">
 
+        <div class = "tableclass">
         <table border = "1">
             <tr>
-                <th align="center">ユーザー数：～</th>
-                <th align="left">○○○○</th>
+                <th align="center">ユーザー数</th>
+                <td th:text = "${adminCount}"></td>
             </tr>
-
             <tr>
-                <th align="center">ダイエット数：～</th>
+                <th align="center">ダイエット数</th>
                 <th align="left">○○○○</th>
             </tr>
-
         </table>
+        </div>
     </div>
 </div>
 
 
-<div class="center-text">検索</div>
-<div class="text-with-border">ID検索</div>
+    <div class ="text">
+    <input type="text" id="checkbox1">
 
+    <span>～</span>
+
+    <input type="text" id="checkbox2">
+    </div>
 <div class="pos2">
 <div class = "box_a">
 
-    <p> [[ ${diet.id} ]]</p>
-    <p>[[ ${diet.name} ]]</p>
-    <p>[[ ${diet.question} ]]</p>
-    <p>[[ ${diet.existence} ]]</p>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>登録日</th>
+            <th>お問い合わせ</th>
+            <th>有無</th>
+        </tr>
 
+        <tr th:each ="users : ${adminTop}">
+                <td th:text = "${users.userId}"></td>
+                <td th:text = "${users.userName}"></td>
+                <td th:text = "${users.insertDate}"></td>
+                <td><a href ="チャットへ"></a>チャットへ</td>
+            </tr>
+    </table>
 
 </div>
 </div>

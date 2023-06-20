@@ -1,6 +1,5 @@
 package com.example.dietApplication.dao;
 
-import com.example.dietApplication.dao.UsersDao;
 import com.example.dietApplication.entity.User;
 import com.example.dietApplication.entity.UserInfo;
 import com.example.dietApplication.entity.UserLogin;
@@ -17,10 +16,10 @@ import java.util.List;
 
 @Repository
 public  class UserDaokura implements UsersDao {
-
-    private String userId;
-
-    private String userName;
+//
+//    private String userId;
+//
+//    private String userName;
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -42,14 +41,22 @@ public  class UserDaokura implements UsersDao {
 
     @Override
     public int getAllUserNum() {
-        return 0;
+        List<User> dataList = getAllUser();
+        return dataList.size();
     }
 
     @Override
     public List<User> getAllUser() {
-        return jdbcTemplate.query("SELECT id ,name FROM diet ORDER BY id", new DataClassRowMapper<>(User.class));
+        return jdbcTemplate.query("SELECT * FROM users  ORDER BY id", new DataClassRowMapper<>(User.class));
 
     }
+
+    @Override
+    public List<User> userDateId(UserInfo userInfo) {
+        return jdbcTemplate.query("select * from users where insert_date between '2023/6/1' and '2023/7/10';\n",new DataClassRowMapper<>(User.class));
+
+    }
+
 
     @Override
     public int updateAdminId(AdminIdForm adminIdFrom) {
