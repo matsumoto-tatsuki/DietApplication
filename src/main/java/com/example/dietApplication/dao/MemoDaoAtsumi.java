@@ -4,6 +4,7 @@ import com.example.dietApplication.entity.Calender;
 import com.example.dietApplication.entity.Memo;
 import com.example.dietApplication.form.MemoForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -25,12 +26,16 @@ public class MemoDaoAtsumi implements MemoDao {
 
     @Override
     public Memo getMemo(Calender calender) {
-        return null;
+        var list = jdbcTemplate.query("SELECT memo FROM memo WHERE date = CURRENT_DATE",
+                new DataClassRowMapper<Memo>(Memo.class));
+        return list.isEmpty() ? null : list.get(0);
     }
 
     @Override
     public int updateMemo(MemoForm memoForm) {
-        return 0;
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("memo",memoForm.getMemo());
+        return jdbcTemplate.update("UPDATE memo SET memo = :memo WHERE date = CURRENT_DATE",param);
     }
 
 }
