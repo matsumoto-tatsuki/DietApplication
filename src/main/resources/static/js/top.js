@@ -84,7 +84,8 @@
             
             console.log(date);
             console.log(`/calendar/${year}-${month}-${date}`);
-            if(date !== ''){
+            const dayStyle = day.style.backgroundColor;
+            if(date !== '' && (dayStyle === 'red' || dayStyle === 'green')){
                 const month2 = month.padStart(2, '0');
                 const date2 = date.padStart(2, '0');
                 location.href = `/calendar/${year}-${month2}-${date2}`;
@@ -130,4 +131,4 @@
             } catch (error) {
               console.log('エラーが発生しました', error);
             }
-          }
+        }

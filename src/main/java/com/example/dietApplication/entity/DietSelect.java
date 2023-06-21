@@ -6,4 +6,5 @@ import lombok.Data;
 public class DietSelect {
     private String dietName;
     private String action;
+    private String date;
 }

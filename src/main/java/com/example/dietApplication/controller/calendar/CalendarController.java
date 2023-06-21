@@ -105,11 +105,10 @@ public class CalendarController {
 //        String date = "2023-06-19";
         model.addAttribute("date",date);
 
+        var resultSelect = dietResultService.getDietSelect(userId);
         var result = dietResultService.getDietResult(new Calendar(date),userId);
 
-
-        if(result == null){
-            var resultSelect = dietResultService.getDietSelect(userId);
+        if(result.size() != resultSelect.size()){
             List<DietResult> dietResultList = new ArrayList<>();
             for(var i = 0;i < resultSelect.size();i++){
                 dietResultList.add(new DietResult(0,resultSelect.get(i).getDietName(),resultSelect.get(i).getAction(),false));
