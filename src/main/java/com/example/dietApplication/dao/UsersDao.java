@@ -7,7 +7,6 @@ import com.example.dietApplication.form.AdminIdForm;
 import com.example.dietApplication.form.AdminPassForm;
 import com.example.dietApplication.form.InsertUserForm;
 import com.example.dietApplication.form.UserForm;
-
 import java.util.List;
 
 public interface UsersDao {

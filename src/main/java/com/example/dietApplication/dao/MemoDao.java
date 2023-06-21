@@ -6,11 +6,7 @@ import com.example.dietApplication.form.MemoForm;
 
 public interface MemoDao {
     //メモ登録
-<<<<<<< HEAD
     int insertMemo(String user_id, MemoForm insert_memo);
-=======
-    int insertMemo(MemoForm memoForm);
->>>>>>> 92457e1b029ce863211736364ccf1efbf3297be1
 
     //メモ取得
     Memo getMemo(Calender calender);
