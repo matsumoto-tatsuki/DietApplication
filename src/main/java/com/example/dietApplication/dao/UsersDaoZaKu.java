@@ -1,6 +1,5 @@
 package com.example.dietApplication.dao;
 
-
 import com.example.dietApplication.entity.User;
 import com.example.dietApplication.entity.UserInfo;
 import com.example.dietApplication.entity.UserLogin;
@@ -14,11 +13,11 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersDaoZAHA implements UsersDao {
+@Repository
+public class UsersDaoZaKu implements UsersDao{
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -78,7 +77,7 @@ public class UsersDaoZAHA implements UsersDao {
 
     //全ユーザ情報取得
     public List<User> getAllUser() {
-        return null;
+        return namedParameterJdbcTemplate.query("SELECT id ,name FROM diet ORDER BY id", new DataClassRowMapper<>(User.class));
     }
 
     //管理者ID変更
@@ -90,39 +89,4 @@ public class UsersDaoZAHA implements UsersDao {
     public int updateAdminPass(AdminPassForm adminPassForm){
         return 0;
     }
-
 }
-
-//    public int InsertUser(UserInsertForm userInsertForm) {
-//        var param = new MapSqlParameterSource();
-//        int weight = 0;
-//        //体重が何も入力されていないときは0で初期化しておく。
-//        if (!userInsertForm.getWeight().isEmpty()) {
-//            weight = Integer.parseInt(userInsertForm.getWeight());
-//        }
-//
-//        param.addValue("userId", userInsertForm.getUserId());
-//        param.addValue("password", userInsertForm.getPassword());
-//        param.addValue("weight", weight);
-//
-//        String sql = "INSERT INTO users (user_id,password,weight) VALUES(:userId,:password,:weight)";
-//        return namedParameterJdbcTemplate.update(sql, param);
-//    }
-//
-//    public UserIdData UserIdCheck(UserInsertForm userInsertForm) {
-//        List<UserIdData> usersIdData = new ArrayList<>();
-//        var param = new MapSqlParameterSource();
-//        param.addValue("userId", userInsertForm.getUserId());
-//        String sql = "SELECT user_id FROM users WHERE user_id = :userId";
-//        usersIdData = namedParameterJdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserIdData.class));
-//        return usersIdData.isEmpty() ? null : usersIdData.get(0);
-//    }
-//
-//    public UserLoginData loginCheck(UserLoginForm userLoginForm) {
-//        List<UserLoginData> usersData = new ArrayList<>();
-//        var param = new MapSqlParameterSource();
-//        param.addValue("userId", userLoginForm.getUserId());
-//        String sql = "SELECT user_id,password FROM users WHERE user_id = :userId";
-//        usersData = namedParameterJdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserLoginData.class));
-//        return usersData.isEmpty() ? null : usersData.get(0);
-//    }

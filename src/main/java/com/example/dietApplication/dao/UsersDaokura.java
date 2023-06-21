@@ -1,6 +1,5 @@
 package com.example.dietApplication.dao;
 
-import com.example.dietApplication.dao.UsersDao;
 import com.example.dietApplication.entity.User;
 import com.example.dietApplication.entity.UserInfo;
 import com.example.dietApplication.entity.UserLogin;
@@ -11,12 +10,10 @@ import com.example.dietApplication.form.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public class UserDaokura implements UsersDao {
+public class UsersDaokura implements UsersDao {
 
     private String userId;
 
@@ -53,7 +50,6 @@ public class UserDaokura implements UsersDao {
     @Override
     public List<User> getAllUser() {
         return jdbcTemplate.query("SELECT id ,name FROM diet ORDER BY id", new DataClassRowMapper<>(User.class));
-
     }
 
     @Override
