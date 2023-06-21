@@ -47,7 +47,7 @@ public class UsersDaoZAHA implements UsersDao {
         param.addValue("weight", weight);
         param.addValue("userName", insertUserFrom.getUserId());
 
-        String sql = "INSERT INTO users (user_id,password,weight,user_name) VALUES(:userId,:password,:weight,:userName)";
+        String sql = "INSERT INTO users (user_id,password,weight,user_name,insert_date,permission) VALUES(:userId,:password,:weight,:userName,CURRENT_DATE,2)";
         return namedParameterJdbcTemplate.update(sql, param);
     }
 
