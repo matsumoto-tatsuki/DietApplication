@@ -18,8 +18,27 @@ public class DietResultDaoMatsumoto implements DietResultDao{
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
     @Override
-    public int insertResult(ResultForm resultForm) {
-        return 0;
+    public int insertResult(DietResult dietResult,String userId) {
+        System.out.println("DietResultDaoMatsumotoCheck(insertResult)");
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("dietName",dietResult.getDietName());
+        param.addValue("action",dietResult.getAction());
+        param.addValue("userId",userId);
+        param.addValue("flag",dietResult.isResult());
+
+        return jdbcTemplate.update("INSERT INTO diet_result(user_select_id,result,date)\n" +
+                                        "VALUES\n" +
+                                        "((SELECT s.id\n" +
+                                        " FROM diet_selects s\n" +
+                                        " JOIN diet_info i\n" +
+                                        " ON i.id = s.diet_id\n" +
+                                        " WHERE CURRENT_DATE\n" +
+                                        " BETWEEN start_date\n" +
+                                        " AND end_date\n" +
+                                        " AND i.diet_name = :dietName\n" +
+                                        " AND s.action = :action\n" +
+                                        " AND user_id = :userId)\n" +
+                                        " ,:flag,CURRENT_DATE)",param);
     }
 
     @Override

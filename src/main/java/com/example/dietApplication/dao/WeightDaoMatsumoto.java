@@ -38,8 +38,20 @@ public class WeightDaoMatsumoto implements WeightDao{
     }
 
     @Override
+    public int insertUserWeight(int userWeight, String userId) {
+        System.out.println("WeightDaoMatsumotoCheck(insertUserWeight)");
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("weight",userWeight);
+        param.addValue("userId",userId);
+
+        return jdbcTemplate.update("INSERT INTO weight(user_id,weight,date)\n" +
+                                        "VALUES\n" +
+                                        "(:userId,:weight,CURRENT_DATE)",param);
+    }
+
+    @Override
     public int updateUserWeight(Calendar calendar,int userWeight,String userId) {
-        System.out.println("MemoDaoMatsumotoCheck(updateMemo)");
+        System.out.println("WeightDaoMatsumotoCheck(updateUserWeight)");
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("weight",userWeight);
         param.addValue("date",calendar.getCalendar());

@@ -1,6 +1,7 @@
 package com.example.dietApplication.controller.calendar;
 
 import com.example.dietApplication.entity.Calendar;
+import com.example.dietApplication.entity.DietResult;
 import com.example.dietApplication.entity.Memo;
 import com.example.dietApplication.form.MemoForm;
 import com.example.dietApplication.form.ResultForm;
@@ -15,7 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -95,7 +97,7 @@ public class CalendarController {
     }
 
     @GetMapping("/dietResultInsert")
-    public String resultInsert(@ModelAttribute("dietResultForm")ResultForm resultForm,Model model){
+    public String resultInsertIndex(@ModelAttribute("dietResultForm")ResultForm resultForm,Model model){
         String userId = "testuser";
 
         LocalDate currentDate = LocalDate.now();
@@ -104,26 +106,61 @@ public class CalendarController {
         model.addAttribute("date",date);
 
         var result = dietResultService.getDietResult(new Calendar(date),userId);
-        System.out.println(result);
-        model.addAttribute("dietResult",result);
-        for(var i = 0;i < result.size();i++){
-            result.get(i).setResult(false);
+
+
+        if(result == null){
+            var resultSelect = dietResultService.getDietSelect(userId);
+            List<DietResult> dietResultList = new ArrayList<>();
+            for(var i = 0;i < resultSelect.size();i++){
+                dietResultList.add(new DietResult(0,resultSelect.get(i).getDietName(),resultSelect.get(i).getAction(),false));
+            }
+            var num = dietResultService.insertDietResult(userId,dietResultList);
+            result = dietResultService.getDietResult(new Calendar(date),userId);
         }
+        System.out.println(result);
+
+//        var resultSelect = dietResultService.getDietSelect(userId);
+//        List<DietResult> dietResultList = new ArrayList<>();
+//        for(var i = 0;i < resultSelect.size();i++){
+//            dietResultList.add(new DietResult(0,resultSelect.get(i).getDietName(),resultSelect.get(i).getAction(),false));
+//        }
         resultForm.setDietResults(result);
 
 
         var memo = dietResultService.getMemo(new Calendar(date),userId);
-        var memoText = memo == null ? "" : memo.getMemo();
-        model.addAttribute("memo",memoText);
-        resultForm.setMemo(memoText);
+        if(memo == null){
+            var num = dietResultService.insertMemo(userId,new MemoForm("初期値だよ"));
+            memo = dietResultService.getMemo(new Calendar(date),userId);
+        }
+        resultForm.setMemo(memo.getMemo());
+
 
         var weight = dietResultService.getWeight(new Calendar(date),userId);
-        var weightText = weight == null ? 0 : weight.getWeight();
-        model.addAttribute("weight",weightText);
-        resultForm.setWeight(weightText);
-
-
+        if(weight == null){
+            var num = dietResultService.insertUserWeight(0,userId);
+            weight = dietResultService.getWeight(new Calendar(date),userId);
+        }
+        resultForm.setWeight(weight.getWeight());
 
         return "/calendar/result-insert";
+    }
+
+    @PostMapping("/dietResultInsert")
+    public String resultInsert(@ModelAttribute("dietResultForm")ResultForm resultForm,Model model){
+        String userId = "testuser";
+
+        LocalDate currentDate = LocalDate.now();
+        String date = String.valueOf(currentDate);
+
+        String strId = String.valueOf(resultForm.getDietResults().get(0).getDietResultId());
+        for(var i = 1;i < resultForm.getDietResults().size();i++){
+            strId += "-" + resultForm.getDietResults().get(i).getDietResultId();
+        }
+
+        System.out.println("Insert:" + resultForm);
+
+        dietResultService.updateDietResult(new Calendar(date),userId,resultForm,strId);
+
+        return "redirect:/top";
     }
 }

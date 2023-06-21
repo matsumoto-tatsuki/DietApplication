@@ -1,7 +1,6 @@
 package com.example.dietApplication.dao;
 
 import com.example.dietApplication.entity.Calendar;
-import com.example.dietApplication.entity.Calender;
 import com.example.dietApplication.entity.Memo;
 import com.example.dietApplication.form.MemoForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class MemoDaoAtsumi implements MemoDao {
     @Override
     public int updateMemo(Calendar calendar, String memo, String userId) {
         MapSqlParameterSource param = new MapSqlParameterSource();
-        param.addValue("memo",memoForm.getMemo());
+        param.addValue("memo",memo);
         return jdbcTemplate.update("UPDATE memo SET memo = :memo WHERE date = CURRENT_DATE",param);
     }
 

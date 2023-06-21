@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface DietResultDao {
     //ダイエット成果,メモ、体重入力
-    int insertResult(ResultForm resultForm);
+    int insertResult(DietResult dietResult,String userId);
 
     //ダイエット成果取得
     List<DietResult> getDietResult(Calendar calendar,String userId);

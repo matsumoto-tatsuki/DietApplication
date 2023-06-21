@@ -12,6 +12,9 @@ public interface WeightDao {
     //体重を取得（1日）
     UserWeight getUserWeight(Calendar calendar,String userId);
 
+    //体重登録
+    int insertUserWeight(int userWeight,String userId);
+
     //体重更新
     int updateUserWeight(Calendar calendar,int userWeight,String userId);
 }

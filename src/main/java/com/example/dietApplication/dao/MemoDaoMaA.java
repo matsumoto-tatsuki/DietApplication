@@ -18,9 +18,9 @@ public class MemoDaoMaA implements MemoDao{
     @Override
     public int insertMemo(String user_id, MemoForm memoForm) {
         MapSqlParameterSource param = new MapSqlParameterSource();
-        param.addValue("memoID",user_id);
+        param.addValue("userId",user_id);
         param.addValue("memo",memoForm.getMemo());
-        return jdbcTemplate.update("INSERT INTO memo (user_id,memo,date) VALUES (:memoID,:memo,CURRENT_DATE)",param);
+        return jdbcTemplate.update("INSERT INTO memo (user_id,memo,date) VALUES (:userId,:memo,CURRENT_DATE)",param);
     }
 
     @Override
