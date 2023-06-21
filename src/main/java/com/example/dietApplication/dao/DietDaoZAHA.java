@@ -25,47 +25,6 @@ public class DietDaoZAHA implements DietDao{
 //    private String categoryName;  カテゴリ
 //    private String difficultName; 難易度名
     public List<DietInfo> getDietList(){
-//        var sql_test =
-//                "SELECT " +
-//                        "diet_info.diet_name AS dietName, " +
-//                        "diet_selects.start_date || '～' || diet_selects.end_date AS period, " +
-//                        "category_tags.type AS categoryName, " +
-//                        "diet_info.difficulty AS difficultName, " +
-//                        "diet_channel.channel_name AS communityName, " +
-//                        "CASE " +
-//                        "   WHEN subquery.diet_id IS NOT NULL THEN true " +
-//                        "   ELSE false " +
-//                        "END AS favorite " +
-//                        "FROM " +
-//                        "diet_selects " +
-//                        "JOIN " +
-//                        "diet_info ON diet_selects.diet_id = diet_info.id " +
-//                        "JOIN " +
-//                        "category_tags ON diet_info.category_id = category_tags.category_id " +
-//                        "JOIN " +
-//                        "diet_channel ON diet_channel.diet_id = diet_selects.diet_id " +
-//                        "LEFT JOIN " +
-//                        "(SELECT favorite_diet.diet_id " +
-//                        "   FROM diet_selects selects " +
-//                        "   LEFT JOIN users_favorite_diet favorite_diet " +
-//                        "   ON favorite_diet.diet_id = selects.diet_id) AS subquery " +
-//                        "ON subquery.diet_id = diet_selects.diet_id;";
-//        var sql =
-//        "SELECT " +
-//        "diet_info.diet_name AS dietName, " +
-//                "diet_selects.start_date || '～' || diet_selects.end_date AS period, "+
-//        "category_tags.type AS categoryName, "+
-//                "diet_info.difficulty AS difficultName, "+
-//        "diet_channel.channel_name AS communityName "+
-//                "FROM "+
-//        "diet_selects "+
-//                "JOIN "+
-//        "diet_info ON diet_selects.diet_id = diet_info.id "+
-//        "JOIN "+
-//        "category_tags ON diet_info.category_id = category_tags.category_id "+
-//        "JOIN "+
-//        "diet_channel ON diet_channel.diet_id = diet_selects.diet_id;";
-
         String query = "SELECT " +
                 "diet_selects.user_id, " +
                 "CASE " +
@@ -101,26 +60,6 @@ public class DietDaoZAHA implements DietDao{
                 ") AS subquery " +
                 "   ON subquery.diet_id = diet_selects.diet_id " +
                 "ORDER BY diet_selects.diet_id ASC;";
-
-//        String sqlQuery = "SELECT " +
-//                "CASE " +
-//                "WHEN subquery.diet_id IS NOT NULL THEN true " +
-//                "ELSE false " +
-//                "END AS favorite, " +
-//                "diet_info.diet_name AS dietName, " +
-//                "diet_selects.start_date || '～' || diet_selects.end_date AS period, " +
-//                "category_tags.type AS categoryName, " +
-//                "diet_info.difficulty AS difficultName, " +
-//                "diet_channel.channel_name AS communityName " +
-//                "FROM diet_selects " +
-//                "LEFT JOIN diet_info ON diet_selects.diet_id = diet_info.id " +
-//                "LEFT JOIN category_tags ON diet_info.category_id = category_tags.category_id " +
-//                "LEFT JOIN diet_channel ON diet_channel.diet_id = diet_selects.diet_id " +
-//                "LEFT JOIN ( " +
-//                "SELECT favorite_diet.diet_id " +
-//                "FROM diet_selects selects " +
-//                "LEFT JOIN users_favorite_diet favorite_diet ON favorite_diet.diet_id = selects.diet_id " +
-//                ") AS subquery ON subquery.diet_id = diet_selects.diet_id;";
 
         return jdbcTemplate.query(query,
                 new DataClassRowMapper<>(DietInfo.class));

@@ -1,54 +1,163 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>ダイエット一覧</title>
     <link rel="stylesheet" href="/css/dietList.css">
 </head>
+
 <body>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>お気に入り</th>
-                <th>実施</th>
-                <th>項目</th>
-                <th>期間</th>
-                <th>コミュニティ</th>
-                <th>カテゴリ</th>
-                <th>難易度</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="dietList : ${dietLists}">
-                <td class="star-img"> 
-                    <img th:if="${dietList.favorite}" src="/images/star_on.png">
-                    <img th:unless="${dietList.favorite}" src="/images/star_off.png">
-                </td>
-                <td>
-                    <img th:if="${dietList.select}" src="/images/update.png">
-                    <img th:unless="${dietList.select}" src="/images/add.png">
-                </td>
-                <td th:text="${dietList.dietName}"></td>
-                <td th:text="${dietList.period}"></td>
-                <td th:text="${dietList.communityName}"></td>
-                <td th:text="${dietList.categoryName}"></td>
-                <td th:text="${dietList.difficultName}"></td>
-            </tr>
-        </tbody>
-    </table>
-    
+    <th:block th:insert="/common/header.html"></th:block>
+
+    <div class="center">
+        <div class="title">
+            <h1>ダイエット選択　一覧</h1>
+        </div>
+        <div class="diet-search">
+            <div class="search-favo">
+                <img src="/images/star_on.png">
+                <img src="/images/update.png">
+            </div>
+            <div class="search-category">
+                <select>
+                    <option>運動</option>
+                    <option>食事</option>
+                    <option>その他</option>
+                </select>
+                <select>
+                    <option>easy</option>
+                    <option>normal</option>
+                    <option>hard</option>
+                </select>
+            </div>
+
+            <form class="form">
+                <input type="text" placeholder="🔍">
+            </form>
+
+        </div>
+
+        <div class="background">
+            <table>
+                <thead>
+                    <tr>
+                        <th>お気に入り</th>
+                        <th>実施</th>
+                        <th>項目</th>
+                        <th>期間</th>
+                        <th>コミュニティ</th>
+                        <th>カテゴリ</th>
+                        <th>難易度</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="dietList : ${dietLists}">
+                        <td class="star-img">
+                            <img th:if="${dietList.favorite}" src="/images/star_on.png" alt="お気に入り画像on">
+                            <img th:unless="${dietList.favorite}" src="/images/star_off.png" alt="お気に入り画像off">
+                        </td>
+                        <td>
+                            <img th:if="${dietList.select}" src="/images/update.png">
+                            <img th:unless="${dietList.select}" src="/images/add.png">
+                        </td>
+                        <td th:text="${dietList.dietName}"></td>
+                        <td th:text="${dietList.period}"></td>
+                        <td th:text="${dietList.communityName}"></td>
+                        <td th:text="${dietList.categoryName}"></td>
+                        <td th:text="${dietList.difficultName}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <th:block th:insert="/common/footer.html"></th:block>
     <script>
-        var imagePaths = ["/images/star_off.png", "/images/star_on.png"]; // 切り替える画像のパスを配列で用意
+        // コードをここに記述する
+
+        var imagePaths = ["http://localhost:8080/images/star_off.png", "http://localhost:8080/images/star_on.png"]; // 切り替える画像のパスを配列で用意
         var starImages = document.getElementsByClassName('star-img');
 
-        Array.from(starImages).forEach(function(starImage){
-            var currentIndex = 0;
-            starImage.addEventListener('click',function(){
+        Array.from(starImages).forEach(function (starImage) { //クリックされたら
+            //表示されている画像によって初期化を変える
+            console.log('starImage',starImage);
+            var currentImagePath = starImage.children[0].src;//画像要素を取得
+            console.log('currentImagePath',currentImagePath);
+            var currentIndex = imagePaths.indexOf(currentImagePath);
+            console.log('currentIndex',currentIndex);
+            starImage.addEventListener('click', function () {
+                var row = starImage.closest('tr');
+
+                // 行内の各セル（td要素）からダイエット情報を取得
+                var dietName = row.querySelector('td:nth-child(3)').textContent;
+
+                currentIndex === 0 ? addToFavorites(dietName) : removeFromFavorites(dietName);//実行を切り替える
+
                 currentIndex = (currentIndex + 1) % imagePaths.length; // 次の画像のインデックスを計算
                 starImage.getElementsByTagName('img')[0].src = imagePaths[currentIndex]; // 画像を切り替える
-                console.log("image",starImage.getElementsByTagName('img')[0].src);
+
             });
+        });
+
+
+        function addToFavorites(dietName) {
+            const url = '/api-diet-favorite'; // RESTコントローラーのエンドポイントURL
+
+            const requestData = {
+                dietName: dietName
+            };
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('お気に入りが追加されました');
+                    } else {
+                        console.error('お気に入りの追加に失敗しました');
+                    }
+                })
+                .catch(error => {
+                    console.error('エラー:', error);
+                });
+        }
+
+        function removeFromFavorites(dietName) {
+            const url = '/api-diet-favorite'; // RESTコントローラーのエンドポイントURL
+
+            const requestData = {
+                dietName: dietName
+            };
+
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('お気に入りが削除されました');
+                    } else {
+                        console.error('お気に入りの削除に失敗しました');
+                    }
+                })
+                .catch(error => {
+                    console.error('エラー:', error);
+                });
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            // コードをここに記述する
         });
     </script>
 </body>
+
 </html>

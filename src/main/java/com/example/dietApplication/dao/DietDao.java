@@ -18,8 +18,6 @@ public interface DietDao {
     //絞り込み
     List<DietInfo> getSearchDiet(DietSearchForm dietSearchForm);
 
-
-
     /* 管理人 */
     //全ダイエット数
     int getAllDietNum();

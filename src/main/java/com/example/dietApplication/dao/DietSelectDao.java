@@ -7,6 +7,8 @@ public interface DietSelectDao {
     //お気に入り登録
     int insertDietFavorite(UserFavoriteForm userFavoriteForm);
 
+    int deleteDietFavorite(UserFavoriteForm userFavoriteForm);
+
     //実施ダイエットの登録
     int insertDiet(UserDietForm userDietForm);
 
