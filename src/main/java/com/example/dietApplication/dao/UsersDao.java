@@ -10,7 +10,6 @@ import com.example.dietApplication.form.AdminIdForm;
 import com.example.dietApplication.form.AdminPassForm;
 import com.example.dietApplication.form.InsertUserForm;
 import com.example.dietApplication.form.UserForm;
-
 import java.util.List;
 
 public interface UsersDao {
@@ -18,7 +17,9 @@ public interface UsersDao {
     UserLogin getUserLogin(UserForm userFrom);
 
     //新規登録
-    int insertUser(InsertUserForm insertUserFrom);
+    int insertUser(InsertUserForm insertUserFrom) ;
+
+    UserLogin getUserIdCheck(InsertUserForm insertUserForm);
 
     //ユーザ情報
     UserInfo getUserInfo(String userId);
