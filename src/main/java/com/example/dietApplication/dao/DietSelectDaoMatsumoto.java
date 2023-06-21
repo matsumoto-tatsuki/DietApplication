@@ -29,6 +29,7 @@ public class DietSelectDaoMatsumoto implements  DietSelectDao{
         param.addValue("userId",userId);
         return jdbcTemplate.query("SELECT i.diet_name as dietName\n" +
                         "       ,s.action    as action\n" +
+                        " ,start_date || '～' || end_date as date\n" +
                         " FROM diet_selects s\n" +
                         " JOIN diet_info i\n" +
                         " ON i.id = s.diet_id\n" +

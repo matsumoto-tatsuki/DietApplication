@@ -1,6 +1,7 @@
 .flex {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0 5%; /* 左右の余白を指定 */
 }
 
@@ -42,6 +43,13 @@ progress{
   background-color: white;
 }
 
+.selectDiet{
+  margin:10px 0px;
+}
+
+.userInfo{
+  margin:10px 0px;
+}
 
 
 

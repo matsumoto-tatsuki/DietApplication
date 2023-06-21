@@ -13,11 +13,15 @@
    <div class="content flex">
         <div>
             <div class="user-info">
-                <h3>Lv.100　なかやまきんに君</h3>
-                <progress value="50" max="100" class="level"></progress>
-                <div>
+                <div class="userInfo">
+                    <h3>Lv.100　なかやまきんに君</h3>
+                    <progress value="50" max="100" class="level"></progress>
+                </div>
+                <div class="selectDiet">
                     <h3>実施中ダイエット</h3>
-                    <p>豆腐ダイエット：2023/06/16 ～ 2023/06/30</p>
+                    <div th:each="diet : ${selectDiet}">
+                        <p th:text="${diet.action} + ':' + ${diet.date}"></p>
+                    </div>
                 </div>
             </div>
             <br>
