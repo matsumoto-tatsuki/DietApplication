@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ダイエット一覧</title>
+    <link rel="stylesheet" href="/css/dietList.css">
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>お気に入り</th>
+                <th>実施</th>
+                <th>項目</th>
+                <th>期間</th>
+                <th>コミュニティ</th>
+                <th>カテゴリ</th>
+                <th>難易度</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="dietList : ${dietLists}">
+                <td class="star-img"> 
+                    <img th:if="${dietList.favorite}" src="/images/star_on.png">
+                    <img th:unless="${dietList.favorite}" src="/images/star_off.png">
+                </td>
+                <td>
+                    <img th:if="${dietList.select}" src="/images/update.png">
+                    <img th:unless="${dietList.select}" src="/images/add.png">
+                </td>
+                <td th:text="${dietList.dietName}"></td>
+                <td th:text="${dietList.period}"></td>
+                <td th:text="${dietList.communityName}"></td>
+                <td th:text="${dietList.categoryName}"></td>
+                <td th:text="${dietList.difficultName}"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <script>
+        var imagePaths = ["/images/star_off.png", "/images/star_on.png"]; // 切り替える画像のパスを配列で用意
+        var starImages = document.getElementsByClassName('star-img');
+
+        Array.from(starImages).forEach(function(starImage){
+            var currentIndex = 0;
+            starImage.addEventListener('click',function(){
+                currentIndex = (currentIndex + 1) % imagePaths.length; // 次の画像のインデックスを計算
+                starImage.getElementsByTagName('img')[0].src = imagePaths[currentIndex]; // 画像を切り替える
+                console.log("image",starImage.getElementsByTagName('img')[0].src);
+            });
+        });
+    </script>
+</body>
+</html>

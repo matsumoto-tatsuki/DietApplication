@@ -1,6 +1,5 @@
 package com.example.dietApplication.dao;
 
-
 import com.example.dietApplication.controller.userLoginController.UserIdData;
 import com.example.dietApplication.controller.userLoginController.UserInsertForm;
 import com.example.dietApplication.controller.userLoginController.UserLoginData;
@@ -23,7 +22,7 @@ public class UsersDao {
         var param = new MapSqlParameterSource();
         int weight = 0;
         //体重が何も入力されていないときは0で初期化しておく。
-        if(!userInsertForm.getWeight().isEmpty()) {
+        if (!userInsertForm.getWeight().isEmpty()) {
             weight = Integer.parseInt(userInsertForm.getWeight());
         }
 
@@ -35,7 +34,7 @@ public class UsersDao {
         return namedParameterJdbcTemplate.update(sql, param);
     }
 
-    public UserIdData UserIdCheck(UserInsertForm userInsertForm){
+    public UserIdData UserIdCheck(UserInsertForm userInsertForm) {
         List<UserIdData> usersIdData = new ArrayList<>();
         var param = new MapSqlParameterSource();
         param.addValue("userId", userInsertForm.getUserId());
@@ -53,3 +52,39 @@ public class UsersDao {
         return usersData.isEmpty() ? null : usersData.get(0);
     }
 }
+//=======
+//import com.example.dietApplication.entity.User;
+//import com.example.dietApplication.entity.UserInfo;
+//import com.example.dietApplication.entity.UserLogin;
+//import com.example.dietApplication.form.AdminIdForm;
+//import com.example.dietApplication.form.AdminPassForm;
+//import com.example.dietApplication.form.InsertUserForm;
+//import com.example.dietApplication.form.UserForm;
+//
+//import java.util.List;
+//
+//public interface UsersDao {
+//    //ユーザログイン
+//    UserLogin getUserLogin(UserForm userFrom);
+//
+//    //新規登録
+//    int insertUser(InsertUserForm insertUserFrom);
+//
+//    //ユーザ情報
+//    UserInfo getUserInfo(String userId);
+//
+//
+//    /* 管理者 */
+//    //全ユーザ数取得
+//    int getAllUserNum();
+//
+//    //全ユーザ情報取得
+//    List<User> getAllUser();
+//
+//    //管理者ID変更
+//    int updateAdminId(AdminIdForm adminIdFrom);
+//
+//    //管理者パスワード変更
+//    int updateAdminPass(AdminPassForm adminPassForm);
+//>>>>>>> 785cf70ceb216fd620f0660aa76a7f0c4984c048
+//}

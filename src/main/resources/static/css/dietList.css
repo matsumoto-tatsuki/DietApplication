@@ -2,3 +2,13 @@ img{
 width:32px;
 height:32px;
 }
+
+table{
+    border-collapse: collapse;
+}
+
+td{
+border: 1px solid #000000;
+text-align: center;
+padding: 20px;
+}

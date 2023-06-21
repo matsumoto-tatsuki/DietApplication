@@ -24,10 +24,11 @@ not-allowed: 操作が許可されていないことを示します。通常は�
 
 header {
     background-color: rgb(210, 130, 234);
-    position: fixed;
+    /* position: fixed;
+    z-index: 9999;*/
     top: 0;
     width: 100%;
-    z-index: 9999;
+    
 }
 
 
