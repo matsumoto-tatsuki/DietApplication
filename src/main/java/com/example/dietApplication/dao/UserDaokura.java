@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public  class UserDaokura implements UsersDao {
+public class UserDaokura implements UsersDao {
 
     private String userId;
 
@@ -33,6 +33,11 @@ public  class UserDaokura implements UsersDao {
     @Override
     public int insertUser(InsertUserForm insertUserFrom) {
         return 0;
+    }
+
+    @Override
+    public UserLogin getUserIdCheck(InsertUserForm insertUserForm) {
+        return null;
     }
 
     @Override

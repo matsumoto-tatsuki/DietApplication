@@ -14,6 +14,5 @@ public class InsertUserForm {
     private String password;
 
     @Pattern(regexp = "^[0-9]*$",message = "数字で入力してください。")
-
     private String weight;
 }
