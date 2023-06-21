@@ -8,7 +8,14 @@ import com.example.dietApplication.form.AdminPassForm;
 import com.example.dietApplication.form.InsertUserForm;
 import com.example.dietApplication.form.UserForm;
 
+<<<<<<< HEAD
 import java.sql.SQLException;
+=======
+<<<<<<< HEAD
+=======
+import java.sql.SQLException;
+>>>>>>> 92457e1b029ce863211736364ccf1efbf3297be1
+>>>>>>> master
 import java.util.List;
 
 public interface UsersDao {
@@ -19,7 +26,6 @@ public interface UsersDao {
     int insertUser(InsertUserForm insertUserFrom) ;
 
     UserLogin getUserIdCheck(InsertUserForm insertUserForm);
-
 
     //ユーザ情報
     UserInfo getUserInfo(String userId);
