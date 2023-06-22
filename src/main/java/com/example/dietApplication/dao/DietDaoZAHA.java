@@ -61,8 +61,7 @@ public class DietDaoZAHA implements DietDao{
                 "   ON subquery.diet_id = diet_selects.diet_id " +
                 "ORDER BY diet_selects.diet_id ASC;";
 
-        return jdbcTemplate.query(query,
-                new DataClassRowMapper<>(DietInfo.class));
+        return jdbcTemplate.query(query, new DataClassRowMapper<>(DietInfo.class));
     }
 
     //ダイエットの詳細確認

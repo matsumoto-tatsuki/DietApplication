@@ -16,7 +16,7 @@
         </div>
         <div class="diet-search">
             <div class="search-favo">
-                <img src="/images/star_on.png">
+                <img id="search-favo-id" src="/images/star_on.png">
                 <img src="/images/update.png">
             </div>
             <div class="search-category">
@@ -76,17 +76,25 @@
     <th:block th:insert="/common/footer.html"></th:block>
     <script>
         // コードをここに記述する
+        favo();
+        function favo() {
+            var sarchfavo = document.getElementById("search-favo-id");
+            console.log(sarchfavo);
+            sarchfavo.addEventListener('click', function () {
+                console.log('お気に入り並び替えがクリックされました。');
+            });
+        }
 
-        var imagePaths = ["http://localhost:8080/images/star_off.png", "http://localhost:8080/images/star_on.png"]; // 切り替える画像のパスを配列で用意
+
+        var imagePaths = ["/images/star_off.png", "/images/star_on.png"]; // 切り替える画像のパスを配列で用意
         var starImages = document.getElementsByClassName('star-img');
 
         Array.from(starImages).forEach(function (starImage) { //クリックされたら
             //表示されている画像によって初期化を変える
-            console.log('starImage',starImage);
             var currentImagePath = starImage.children[0].src;//画像要素を取得
-            console.log('currentImagePath',currentImagePath);
-            var currentIndex = imagePaths.indexOf(currentImagePath);
-            console.log('currentIndex',currentIndex);
+            var relativeImagePath = currentImagePath.replace("http://localhost:8080", "");
+            var currentIndex = imagePaths.indexOf(relativeImagePath);
+
             starImage.addEventListener('click', function () {
                 var row = starImage.closest('tr');
 
@@ -153,10 +161,6 @@
                     console.error('エラー:', error);
                 });
         }
-
-        window.addEventListener('DOMContentLoaded', function () {
-            // コードをここに記述する
-        });
     </script>
 </body>
 
