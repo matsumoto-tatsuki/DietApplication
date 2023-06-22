@@ -7,8 +7,11 @@
 </head>
 
 <body>
-    <header>
-        <h1><a href="/header">Do-It-Diet</a></h1>
+    <header class="header">
+        <div class="item1">
+            <h1><a href="/header">Do-It-Diet</a></h1>
+            <img src="/images/signout.png" alt="キャー、観られちゃった///" onclick="logout()">
+        </div>
         <p>ようこそ！〇〇さん！</p>
         <div class="nav">
             <div class="dropdown">
@@ -41,6 +44,13 @@
             </div>
         </div>
     </header>
+    <script>
+        function logout() {
+            // ログアウトの処理を実行するコードをここに追加する
+            console.log("ログアウトしました");
+            window.location.href = "/user-login";
+        }
+    </script>
 </body>
 
 </html>
