@@ -1,6 +1,5 @@
 package com.example.dietApplication.dao;
 
-import com.example.dietApplication.dao.UsersDao;
 import com.example.dietApplication.entity.User;
 import com.example.dietApplication.entity.UserInfo;
 import com.example.dietApplication.entity.UserLogin;
@@ -9,20 +8,17 @@ import com.example.dietApplication.form.AdminPassForm;
 import com.example.dietApplication.form.InsertUserForm;
 import com.example.dietApplication.form.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.DataClassRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public  class UserDaokura implements UsersDao {
+@Repository
+public class UsersDaoAtsumi implements UsersDao {
 
-    private String userId;
-
-    private String userName;
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
-
 
     @Override
     public UserLogin getUserLogin(UserForm userFrom) {
@@ -46,19 +42,23 @@ public  class UserDaokura implements UsersDao {
 
     @Override
     public List<User> getAllUser() {
-        return jdbcTemplate.query("SELECT id ,name FROM diet ORDER BY id", new DataClassRowMapper<>(User.class));
-
+        return null;
     }
 
+    //管理者ID変更
     @Override
     public int updateAdminId(AdminIdForm adminIdFrom) {
-        return 0;
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("user_id",adminIdFrom.getAdminId());
+        return jdbcTemplate.update("UPDATE users SET user_id = :user_id WHERE permission = 1",param);
     }
 
+    //管理者パスワード変更
     @Override
     public int updateAdminPass(AdminPassForm adminPassForm) {
-        return 0;
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("password",adminPassForm.getAdminPassword());
+        return jdbcTemplate.update("UPDATE users SET password = :password WHERE permission = 1",param);
     }
-
 
 }

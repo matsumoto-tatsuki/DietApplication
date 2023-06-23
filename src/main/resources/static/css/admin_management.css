@@ -1,0 +1,89 @@
+
+.position_c {
+    text-align: center;
+}
+
+.background_color{
+    background-color: rgb(255 208 102);
+}
+
+.adminManagement_button {
+    background-color:#85d8ff;
+    font-size: 20px;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 15px;
+    margin-top: 30px;
+        margin-right: 30%;
+        margin-bottom: 40px;
+        margin-left: 30%;
+}
+
+.adminManagement_button:hover {
+  background-color: #d0fdff;
+}
+
+
+.change_inline {
+    display: inline;
+    width:100px;
+}
+
+.update_button {
+    background-color: aqua;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 30px;
+}
+
+.update_button:hover {
+    background-color: #00ff45;
+}
+
+.changeAdminPassword_Text {
+    font-weight: bold;
+    background-color:#85d8ff;
+    padding:5px;
+    border: 2px solid;
+    width: 40%;
+    margin-top: 30px;
+      margin-right: 30%;
+      margin-left: 30%;
+}
+
+.password_Text {
+    font-weight: bold;
+    background-color: rgb(230, 180, 255);
+    border: 2px solid;
+    width: 40%;
+    padding: 5px;
+    margin-top: 0px;
+      margin-right: 30%;
+      margin-bottom: 0px;
+      margin-left: 30%;
+}
+
+.error {
+    color: red;
+}
+
+.insert_data {
+    width: 40%;
+    padding: 5px;
+    margin-top: 0px;
+        margin-right: 30%;
+        margin-bottom: 0px;
+        margin-left: 30%;
+}
+
+.update_noticeMessage {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.erase_bottomSpace {
+    margin-bottom: 0px;
+}

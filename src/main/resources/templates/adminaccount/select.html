@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>選択</title>
+<!--    <link rel="stylesheet" href="/css/commons.css">-->
+    <link rel="stylesheet" href="/css/admin_management.css">
+</head>
+<body class="background_color">
+<!--ヘッダー-->
+<th:block th:insert="/admin/admin_header"></th:block>
+
+<div class="position_c"> <!--ポジションを真ん中にしている-->
+    <form action="/password_change" method="POST">　<!--POST形式でデータ送信-->
+        <div>
+            <button class="adminManagement_button" type="submit">管理者パスワード変更</button>
+        </div>
+    </form>
+    <form action="/id_change" method="POST">　<!--POST形式でデータ送信-->
+        <div>
+            <button class="adminManagement_button" type="submit">管理者ID変更</button>
+        </div>
+    </form>
+</div>
+
+<!--  フッター-->
+<th:block th:insert="/admin/admin_footer"></th:block>
+</body>
+</html>
