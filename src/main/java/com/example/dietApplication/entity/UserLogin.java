@@ -8,5 +8,5 @@ public class UserLogin {
 
     private String password;
 
-    private int permission;
+    private Integer permission;
 }

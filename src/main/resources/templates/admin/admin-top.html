@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理者TOP</title>
+    <link rel="stylesheet" href="/css/admin.css">
+
+</head>
+<body>
+
+<th:block th:insert="/admin/admin_header"></th:block>
+
+<div class = "scroll">
+
+<div class="pos">
+    <div class = "box">
+        <img src="/css/img/teamProject.jpg" alt="画像">
+
+        <table border = "1">
+            <tr>
+                <th align="center">ユーザー数：～</th>
+                <th align="left">○○○○</th>
+            </tr>
+
+            <tr>
+                <th align="center">ダイエット数：～</th>
+                <th align="left">○○○○</th>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+
+<div class="center-text">検索</div>
+<div class="text-with-border">ID検索</div>
+
+<div class="pos2">
+<div class = "box_a">
+
+    <p> [[ ${diet.id} ]]</p>
+    <p>[[ ${diet.name} ]]</p>
+    <p>[[ ${diet.question} ]]</p>
+    <p>[[ ${diet.existence} ]]</p>
+
+
+</div>
+</div>
+
+    <th:block th:insert="/admin/admin_footer"></th:block>
+</div>
+
+</body>
+</html>

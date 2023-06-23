@@ -60,6 +60,7 @@
             year = month === 1 ? year - 1 : year;
             month = month === 1 ? 12 : month - 1;
             createCalendar(year, month - 1);
+            getDay();
         });
 
         document.getElementById('next-month').addEventListener('click', e => {
@@ -69,15 +70,68 @@
             year = month === 12 ? year + 1 : year;
             month = month === 12 ? 1 : month + 1;
             createCalendar(year, month - 1);
+            getDay();
         });
 
         const today = new Date(); // 現在の日時
         createCalendar(today.getFullYear(), today.getMonth());
+        getDay();
 
         function openDate(day){
             const year = document.getElementById('year').textContent;
             const month = document.getElementById('month').textContent;
             const date = day.textContent;
+            
+            console.log(date);
             console.log(`/calendar/${year}-${month}-${date}`);
-            // location.href = `/calendar/${year}-${month}-${date}`;
+            const dayStyle = day.style.backgroundColor;
+            if(date !== '' && (dayStyle === 'red' || dayStyle === 'green')){
+                const month2 = month.padStart(2, '0');
+                const date2 = date.padStart(2, '0');
+                location.href = `/calendar/${year}-${month2}-${date2}`;
+            }
+        }
+
+        async function getDay() {
+            try {
+                const year = document.getElementById('year').textContent;
+                const month = document.getElementById('month').textContent;
+
+              const res = await fetch(`/api/calenderResult/${year}/${month}`);
+              if (res.status === 400) {
+                console.log('error');
+              } else {
+                const data = await res.json();
+                const trueDates = [];
+                const falseDates = [];
+                console.log(data);
+                for(let i=0;i<data.length;i++){
+                    const dateString = data[i].date.split('-');
+                    console.log(data[i].date);
+                    if(data[i].result === true){
+                        trueDates.push(Number(dateString[2]).toString());
+                    }else{
+                        falseDates.push(Number(dateString[2]).toString());
+                    }
+                }
+
+                console.log(trueDates);
+                console.log(falseDates);
+                const cells = document.getElementsByTagName('td');
+                for (let i = 0; i < cells.length; i++) {
+                    const cellDate = cells[i].textContent;
+                    if (trueDates.includes(cellDate)) {
+                        cells[i].style.backgroundColor = 'green';
+                        cells[i].classList.add('pointer');
+                    }
+                    if(falseDates.includes(cellDate)){
+                        cells[i].style.backgroundColor = 'red';
+                        cells[i].classList.add('pointer');
+                    }
+                    
+                }
+              }
+            } catch (error) {
+              console.log('エラーが発生しました', error);
+            }
         }

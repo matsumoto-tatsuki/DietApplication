@@ -1,6 +1,9 @@
 package com.example.dietApplication.controller.userLoginController;
 
-import com.example.dietApplication.dao.UsersDao;
+
+import com.example.dietApplication.form.InsertUserForm;
+import com.example.dietApplication.form.UserForm;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,68 +15,80 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import java.util.List;
 
 @Controller
 public class UserLoginController {
-    @Autowired UsersDao usersDao;
+    @Autowired
+    private HttpSession session;
+    @Autowired
+    UserLoginService userLoginService;
     @GetMapping("/user-login")
-    public String getLogin(@ModelAttribute UserLoginForm userLoginForm){
+    public String getLogin(@ModelAttribute UserForm userForm){
         return "/login";
     }
 
     @PostMapping("/user-login")
-    public String postLogin(@Validated @ModelAttribute UserLoginForm userLoginForm, BindingResult bindingResult,Model model){
-        var userData = usersDao.loginCheck(userLoginForm);
-
+    public String postLogin(@Validated @ModelAttribute UserForm userForm, BindingResult bindingResult,Model model){
         //バリデーション
         if(bindingResult.hasErrors()){
             System.out.println("error");
             return "/login";
-        }
-
-        //IDが存在したら。
-        if(userData != null) {
-            //比較を行う。
-            if (userData.getUserId().equals(userLoginForm.getUserId()) && userData.getPassword().equals(userLoginForm.getPassword())) {
-                return "redirect:/top";
-            }else{
-                model.addAttribute("idNotFoundError","パスワードが間違えています。");
-            }
         }else{
-            model.addAttribute("idNotFoundError","IDが存在しません。");
+            //IDが存在するか確認。
+            System.out.println("取得");
+            var userData = userLoginService.getUserLogin(userForm);
+            System.out.println("取得error");
+            //IDが存在したら。
+            if(userData != null) {
+                //比較を行う。
+                if (userData.getUserId().equals(userForm.getUserId()) && userData.getPassword().equals(userForm.getPassword())) {
+                    //ユーザー情報取得
+                    //ユーザー情報をセッションとして持つ
+                    var loginUser =  userLoginService.getUserLogin(userForm);
+                    //var loginUser = userLoginService.getUserInfo(userData.getUserId());
+                    session.setAttribute("user", loginUser);
+                    session.setAttribute("userId",loginUser.getUserId());
+                    if(loginUser.getPermission() == 1){
+                        return "redirect:/管理者top";
+                    }
+                    return "redirect:/top";
+                }else{
+                    model.addAttribute("idNotFoundError","パスワードが間違えています。");
+                }
+            }else{
+                model.addAttribute("idNotFoundError","IDが存在しません。");
+            }
         }
-
+        System.out.println("ログイン画面返す");
         return "/login";
     }
 
     @GetMapping("/insert-user")
-    public String getSignup(@ModelAttribute UserInsertForm userInsertForm){
+    public String getSignup(@ModelAttribute InsertUserForm insertUserForm){
         return "/Signup";
     }
 
     @PostMapping("/insert-user")
-    public String postSignup(@Validated @ModelAttribute UserInsertForm userInsertForm ,BindingResult bindingResult,Model model){
+    public String postSignup(@Validated @ModelAttribute InsertUserForm insertUserForm ,BindingResult bindingResult,Model model){
 
-        var addUserData = usersDao.UserIdCheck(userInsertForm);
+        //iDチェック用のやつ
+        //登録した時に
         //入力チェックエラーがないとき　かつ　ユーザーが登録されていない時
         if(bindingResult.hasErrors()){
-            List<ObjectError> errors = bindingResult.getAllErrors();
-            for (ObjectError error : errors) {
-                System.out.println(error.getDefaultMessage());
-            }
-            System.out.println("新規登録error");
             return "/signup";
-        }
-
-        if(addUserData == null) {
-            //データベースに登録
-            model.addAttribute("successPopup",true);
-            usersDao.InsertUser(userInsertForm);
         }else{
-            System.out.println("登録されています");
-            //IDは登録されています。
-            model.addAttribute("userInsertId","IDは登録されています。");
+            //IDが重複するか確認
+            var userData =  userLoginService.getUserIdCheck(insertUserForm);
+            if(userData == null){
+                //登録
+                userLoginService.insertUser(insertUserForm);
+                model.addAttribute("successPopup",true);
+            }else{
+                //IDは登録されています。
+                model.addAttribute("userInsertId","IDは登録されています。");
+            }
         }
 
         return "/signup";

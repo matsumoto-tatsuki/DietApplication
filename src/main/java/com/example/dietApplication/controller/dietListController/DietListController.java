@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DietListController {
-//    @Autowired
-    @GetMapping("/diet-list")
+    @GetMapping("/dietList")
     public String getDietList(){
-        return "/diet/diet_list";
+        return "/diet_list";
     }
 }

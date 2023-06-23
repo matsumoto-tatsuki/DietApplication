@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja"  xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>css header</title>
@@ -7,15 +7,18 @@
 </head>
 
 <body>
-    <header>
-        <h1><a href="/header">Do-It-Diet</a></h1>
-        <p>ようこそ！〇〇さん！</p>
+    <header class="header">
+        <div class="item1">
+            <h1><a href="/top">Do-It-Diet</a></h1>
+            <img src="/images/signout.png" alt="キャー、観られちゃった///" style="cursor:pointer" onclick="openModalLogout()">
+        </div>
+        <h2 class="userId">ようこそ！<span th:text="${session['userId']}" id="getUserId"></span>さん！</h2>
         <div class="nav">
             <div class="dropdown">
                 <button class="dropbtn">ダイエット</button>
                 <div class="dropdown-content">
                     <a href="https://sites.google.com/new">一覧</a>
-                    <a href="https://sites.google.com/new">成果入力</a>
+                    <a href="/dietResultInsert">成果入力</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -41,6 +44,14 @@
             </div>
         </div>
     </header>
+    <th:block th:insert="/popup/logout-popup"></th:block>
+    <script>
+        function logout() {
+            // ログアウトの処理を実行するコードをここに追加する
+            console.log("ログアウトしました");
+            window.location.href = "/user-login";
+        }
+    </script>
 </body>
 
 </html>

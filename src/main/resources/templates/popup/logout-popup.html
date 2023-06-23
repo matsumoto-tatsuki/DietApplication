@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <link rel="stylesheet" href="/css/popup.css">
+</head>
+<body>
+  <div id="logout-popup">
+    <form>
+      <h2>ログアウトしますか？</h2>
+      <div class="popup-button">
+        <button type="button" id="logoutBtn" onclick="logout()">ログアウト</button>
+        <button type="button" onclick="closeModalLogout()">戻る</button>
+      </div>
+    </form>
+  </div>
+  <div id="fadeLayer"></div>
+  <script src="/js/logout-popup.js"></script>
+  <script>
+    function logout(){
+      window.location.href = "/user-login";
+    }
+  </script>
+
+</body>
+</html>

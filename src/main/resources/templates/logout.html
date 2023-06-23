@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- <meta http-equiv="Refresh" content="2;URL=user-login"> -->
+<link rel="stylesheet" href="/css/logout.css">
+
 <head>
     <meta charset="UTF-8">
     <title>Logout</title>
 </head>
+
 <body>
-<p>ログアウト</p>
+    <div class="popup">
+        <p>
+            ログアウトしますか？<br>
+        <div class="button">
+            <button onclick="moveToanotherPage()">YES</button>
+            <button>NO</button>
+        </div>
+        </p>
+        <script>
+            function moveToanotherPage(){
+                window.location.href = "/user-login";
+            }
+        </script>
+    </div>
 </body>
 </html>

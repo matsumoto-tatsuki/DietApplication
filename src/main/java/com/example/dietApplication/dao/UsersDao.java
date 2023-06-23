@@ -1,16 +1,16 @@
 package com.example.dietApplication.dao;
 
-import com.example.dietApplication.controller.userLoginController.UserIdData;
-import com.example.dietApplication.controller.userLoginController.UserInsertForm;
-import com.example.dietApplication.controller.userLoginController.UserLoginData;
-import com.example.dietApplication.controller.userLoginController.UserLoginForm;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.DataClassRowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
+import com.example.dietApplication.entity.UserInfo;
+import com.example.dietApplication.form.AdminIdForm;
+import com.example.dietApplication.form.AdminPassForm;
+import com.example.dietApplication.entity.User;
+import com.example.dietApplication.entity.UserInfo;
+import com.example.dietApplication.entity.UserLogin;
+import com.example.dietApplication.form.AdminIdForm;
+import com.example.dietApplication.form.AdminPassForm;
+import com.example.dietApplication.form.InsertUserForm;
+import com.example.dietApplication.form.UserForm;
 import java.util.List;
 
 @Repository
@@ -18,13 +18,10 @@ public class UsersDao {
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public int InsertUser(UserInsertForm userInsertForm) {
-        var param = new MapSqlParameterSource();
-        int weight = 0;
-        //体重が何も入力されていないときは0で初期化しておく。
-        if (!userInsertForm.getWeight().isEmpty()) {
-            weight = Integer.parseInt(userInsertForm.getWeight());
-        }
+    //新規登録
+    int insertUser(InsertUserForm insertUserFrom) ;
+
+    UserLogin getUserIdCheck(InsertUserForm insertUserForm);
 
         param.addValue("userId", userInsertForm.getUserId());
         param.addValue("password", userInsertForm.getPassword());

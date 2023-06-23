@@ -12,6 +12,29 @@ not-allowed: 操作が許可されていないことを示します。通常は�
     padding: 0;
 }
 
+.header{
+  display: flex;
+  flex-direction: column;
+}
+.item1{
+  display: flex;
+  justify-content: space-between;
+}
+
+.item1 img{
+  background-color: white;
+  border: 2px solid;
+  border-radius: 5px;
+  margin-right: 50px;
+  margin-top: 10px;
+  padding : 10px;
+}
+
+.userId{
+  margin-left:5%
+}
+
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -116,7 +139,8 @@ header a{
   
   footer {
     background-color: #000000;
-    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     bottom: 0;
     width: 100%;
   }
