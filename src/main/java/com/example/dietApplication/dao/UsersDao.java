@@ -1,5 +1,8 @@
 package com.example.dietApplication.dao;
 
+import com.example.dietApplication.entity.UserInfo;
+import com.example.dietApplication.form.AdminIdForm;
+import com.example.dietApplication.form.AdminPassForm;
 import com.example.dietApplication.entity.User;
 import com.example.dietApplication.entity.UserInfo;
 import com.example.dietApplication.entity.UserLogin;
@@ -7,8 +10,6 @@ import com.example.dietApplication.form.AdminIdForm;
 import com.example.dietApplication.form.AdminPassForm;
 import com.example.dietApplication.form.InsertUserForm;
 import com.example.dietApplication.form.UserForm;
-
-import java.sql.SQLException;
 import java.util.List;
 
 public interface UsersDao {

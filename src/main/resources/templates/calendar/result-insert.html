@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>成果入力</title>
+    <link href="/css/commons.css" rel="stylesheet">
+    <link href="/css/calendar.css" rel="stylesheet">
+</head>
+<body>
+
+<th:block th:insert="/common/header"></th:block>
+
+<div class="flex-head">
+    <h2>成果入力</h2>
+    <img src="/images/help.png" alt="help">
+</div>
+<div class="content">
+    <form th:action="@{/dietResultInsert}" method="POST" th:object="${dietResultForm}" id="insertForm">
+        <div class="form">
+            <div class="item">
+                <h2 th:text="${date}"></h2>
+            </div>
+            <div th:each="result, iterStat : *{dietResults}">
+                <div class="item">
+                    <h2 th:text="*{dietResults[__${iterStat.index}__].dietName}"></h2>
+                    <input type="hidden" th:field="*{dietResults[__${iterStat.index}__].dietResultId}" />
+                    <input type="hidden" th:field="*{dietResults[__${iterStat.index}__].dietName}" />
+                    <div class="set-result">
+                        <input type="text" th:field="*{dietResults[__${iterStat.index}__].action}">
+                        <img th:src="${result.result ? '/images/success.png' : '/images/failure.png'}" th:onclick="'changeImage(this, ' + ${iterStat.index} + ')'"  class="pointer" />
+                        <input type="hidden" th:field="*{dietResults[__${iterStat.index}__].result}" th:id="'result-input-' + ${iterStat.index}" />
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <h2>メモ</h2>
+                <textarea th:field="*{memo}"></textarea>
+            </div>
+            <div class="item">
+                <h2>体重（任意）：<input type="text" th:field="*{weight}">kg</h2>
+            </div>
+        </div>
+        <button type="button" class="button" onclick="openModal()">登録</button>
+    </form>
+</div>
+<th:block th:insert="/popup/insert-popup"></th:block>
+<th:block th:insert="/common/footer"></th:block>
+
+<script src="/js/calendar.js"></script>
+</body>
+</html>

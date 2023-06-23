@@ -1,0 +1,33 @@
+.position_c {   /*位置調整(中央)*/
+    text-align: center;
+}
+
+.bold {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.textarea_position {
+    padding: 5px;
+    font-size: 20px;
+    width: 50%;
+    height: 200px;
+}
+
+.button_memo {
+    background-color: #00ffff;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+        margin: 10px;
+        padding: 20px;
+}
+
+
+/*
+    border-radius: 3px;
+    box-shadow: 1px 1px 2px #c0c0c0;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px;
+*/

@@ -5,19 +5,21 @@
     <title>TOP画面</title>
     <link href="/css/commons.css" rel="stylesheet">
     <link href="/css/top.css" rel="stylesheet">
-
 </head>
-
 <body>
    <th:block th:insert="/common/header"></th:block>
    <div class="content flex">
         <div>
             <div class="user-info">
-                <h3>Lv.100</h3>
-                <p>++++++++++++</p>
-                <div>
+                <div class="userInfo">
+                    <h3>Lv.100　なかやまきんに君</h3>
+                    <progress value="50" max="100" class="level"></progress>
+                </div>
+                <div class="selectDiet">
                     <h3>実施中ダイエット</h3>
-                    <p>豆腐ダイエット：2023/06/16 ～ 2023/06/30</p>
+                    <div th:each="diet : ${selectDiet}">
+                        <p th:text="${diet.action} + ':' + ${diet.date}"></p>
+                    </div>
                 </div>
             </div>
             <br>
@@ -35,15 +37,16 @@
 
                    </table>
                </div>
-               <a href="/memo"><img src="/images/memo.png" id="memo"></a>
+               <a href="/memo/select"><img src="/images/memo.png" id="memo"></a>
            </div>
         </div>
        <div>
            <div class="speak">
-               <p>ヤー！</p>
+               <p align="center">ヤー！</p>
            </div>
+           <img src="/images/top.png" id="main">
        </div>
-<!--       <img src="/images/top.png" id="main">-->
+
    </div>
    <br>
    <th:block th:insert="/common/footer"></th:block>

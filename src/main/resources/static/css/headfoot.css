@@ -135,7 +135,8 @@ header a{
   
   footer {
     background-color: #000000;
-    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     bottom: 0;
     width: 100%;
   }
