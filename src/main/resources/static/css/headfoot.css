@@ -16,7 +16,6 @@ not-allowed: 操作が許可されていないことを示します。通常は�
   display: flex;
   flex-direction: column;
 }
-
 .item1{
   display: flex;
   justify-content: space-between;
@@ -30,6 +29,11 @@ not-allowed: 操作が許可されていないことを示します。通常は�
   margin-top: 10px;
   padding : 10px;
 }
+
+.userId{
+  margin-left:5%
+}
+
 
 .dropdown {
     position: relative;

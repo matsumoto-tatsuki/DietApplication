@@ -41,7 +41,7 @@ public class AdminManagementController {
         }
         if (adminPassForm.getAdminPassword().equals(adminPassForm.getAdminPassword2())) {
             adminManagementService.updateAdminPass(adminPassForm);
-            return "/adminaccount/update_notice";
+            return "/popup/admin-update-confirmation";
         } else {
             model.addAttribute("errorMessage","パスワードが一致していません");
             return "/adminaccount/changePasswordInsert";
@@ -72,7 +72,7 @@ public class AdminManagementController {
             return "/adminaccount/changeIdInsert";
         }
         adminManagementService.updateAdminId(adminIdForm);
-        return "/adminaccount/update_Idnotice";
+        return "/popup/admin-update-confirmation";
     }
 
 

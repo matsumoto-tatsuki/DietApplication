@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UsersDaoZaKu implements UsersDao{
+public class UsersDaoZaKuA implements UsersDao{
     @Autowired
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    NamedParameterJdbcTemplate jdbcTemplate;
 
     //ユーザログイン
     public UserLogin getUserLogin(UserForm userform){
@@ -27,7 +27,7 @@ public class UsersDaoZaKu implements UsersDao{
         var param = new MapSqlParameterSource();
         param.addValue("userId", userform.getUserId());
         String sql = "SELECT user_id,password,permission FROM users WHERE user_id = :userId";
-        usersData = namedParameterJdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserLogin.class));
+        usersData = jdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserLogin.class));
         return usersData.isEmpty() ? null : usersData.get(0);
     }
 
@@ -46,7 +46,7 @@ public class UsersDaoZaKu implements UsersDao{
         param.addValue("userName", insertUserFrom.getUserId());
 
         String sql = "INSERT INTO users (user_id,password,weight,user_name,insert_date,permission) VALUES(:userId,:password,:weight,:userName,CURRENT_DATE,2)";
-        return namedParameterJdbcTemplate.update(sql, param);
+        return jdbcTemplate.update(sql, param);
     }
 
 
@@ -56,7 +56,7 @@ public class UsersDaoZaKu implements UsersDao{
         var param = new MapSqlParameterSource();
         param.addValue("userId", userId);
         String sql = "SELECT id,user_id,user_symbol,user_name,weight FROM users WHERE user_id = :userId";
-        usersData = namedParameterJdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserInfo.class));
+        usersData = jdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserInfo.class));
         return usersData.isEmpty() ? null : usersData.get(0);
     }
 
@@ -65,7 +65,7 @@ public class UsersDaoZaKu implements UsersDao{
         var param = new MapSqlParameterSource();
         param.addValue("userId", insertUserForm.getUserId());
         String sql = "SELECT user_id,password,permission FROM users WHERE user_id = :userId";
-        usersData = namedParameterJdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserLogin.class));
+        usersData = jdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserLogin.class));
         return usersData.isEmpty() ? null : usersData.get(0);
     }
 
@@ -77,16 +77,22 @@ public class UsersDaoZaKu implements UsersDao{
 
     //全ユーザ情報取得
     public List<User> getAllUser() {
-        return namedParameterJdbcTemplate.query("SELECT id ,name FROM diet ORDER BY id", new DataClassRowMapper<>(User.class));
+        return jdbcTemplate.query("SELECT id ,name FROM diet ORDER BY id", new DataClassRowMapper<>(User.class));
     }
 
     //管理者ID変更
-    public int updateAdminId(AdminIdForm adminIdFrom){
-        return 0;
+    @Override
+    public int updateAdminId(AdminIdForm adminIdFrom) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("user_id",adminIdFrom.getAdminId());
+        return jdbcTemplate.update("UPDATE users SET user_id = :user_id WHERE permission = 1",param);
     }
 
     //管理者パスワード変更
-    public int updateAdminPass(AdminPassForm adminPassForm){
-        return 0;
+    @Override
+    public int updateAdminPass(AdminPassForm adminPassForm) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("password",adminPassForm.getAdminPassword());
+        return jdbcTemplate.update("UPDATE users SET password = :password WHERE permission = 1",param);
     }
 }

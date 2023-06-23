@@ -46,6 +46,10 @@ public class UserLoginController {
                     var loginUser =  userLoginService.getUserLogin(userForm);
                     //var loginUser = userLoginService.getUserInfo(userData.getUserId());
                     session.setAttribute("user", loginUser);
+                    session.setAttribute("userId",loginUser.getUserId());
+                    if(loginUser.getPermission() == 1){
+                        return "redirect:/管理者top";
+                    }
                     return "redirect:/top";
                 }else{
                     model.addAttribute("idNotFoundError","パスワードが間違えています。");

@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>登録</title>
-  <link rel="stylesheet" href="/css/commons.css">
+  <link rel="stylesheet" href="/css/admin-commons.css">
   <link rel="stylesheet" href="/css/memo.css">
 </head>
 <body>
-<th:block th:insert="/common/header"></th:block>
+<th:block th:insert="/admin/admin_header"></th:block>
 <div class="content">
   <div class="position_c" style="margin:200px 0px;"> <!--ポジションを真ん中にしている-->
-    <form action="/top">　<!--POST形式でデータ送信-->
+    <form action="/#">　<!--POST形式でデータ送信-->
       <p><span class="bold">登録しました！</span></p>
       <div>
         <button class="button_memo  button" type="submit">Top画面へ</button>
@@ -18,6 +18,6 @@
     </form>
   </div>
 </div>
-<th:block th:insert="/common/footer"></th:block>
+<th:block th:insert="/admin/admin_footer"></th:block>
 </body>
 </html>
