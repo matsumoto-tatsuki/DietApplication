@@ -185,6 +185,7 @@
                 var favoImage = document.createElement("img");
                 data[i].favorite;
                 favo.classList.add("star-img");
+                console.log(data[i].favorite);
                 if (data[i].favorite) {
                     favoImage.setAttribute("src", "/images/star_on.png");
                 } else {
@@ -266,11 +267,9 @@
         function getStarImages() {
             var starImages = document.getElementsByClassName('star-img');
             console.log('starImages', starImages);
-
             Array.from(starImages).forEach(function (starImage) { //クリックされたら
                 //表示されている画像によって初期化を変える
                 var currentImagePath = starImage.children[0].src;//画像要素を取得
-                console.log("starImage", starImage);
                 var relativeImagePath = currentImagePath.replace("http://localhost:8080", "");
                 var currentIndex = imagePaths.indexOf(relativeImagePath);
 

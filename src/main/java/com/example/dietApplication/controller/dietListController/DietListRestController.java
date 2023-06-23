@@ -17,11 +17,13 @@ public class DietListRestController {
     @PostMapping("/api-diet-favorite")
     public void postDietFavorite(@RequestBody UserFavoriteForm userFavoriteForm){
         //登録
+        System.out.println(userFavoriteForm.getDietName());
         dietListService.insertDietFavorite(userFavoriteForm);
     }
 
     @DeleteMapping("/api-diet-favorite")
     public void deleteDietFavorite(@RequestBody UserFavoriteForm userFavoriteForm){
+        System.out.println(userFavoriteForm.getDietName());
         dietListService.deleteDietFavorite(userFavoriteForm);
     }
 
