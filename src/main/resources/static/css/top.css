@@ -10,6 +10,11 @@
     width:100px;
     height:100px;
 }
+#memo:hover{
+    content: url(/images/memo2.png);
+}
+
+
 
 #main{
     max-width:100%;

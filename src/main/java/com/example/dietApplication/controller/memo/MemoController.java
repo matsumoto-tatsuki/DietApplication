@@ -51,7 +51,7 @@ public class MemoController {
         // メモを挿入
         memoService.insertMemo(user_id,insert_memo);
 
-        return "/memo/memo_register";
+        return "redirect:/register-conf";
     }
 
     // メモ内容が既に登録されていた場合このメソッドが働く
@@ -89,12 +89,6 @@ public class MemoController {
 
         memoService.updateMemo(new Calendar(date),update_memo,userId);
 
-        return "/memo/memo_update";
+        return "redirect:/update-conf";
     }
-
-    @PostMapping("/move_top")
-    public String logout() {
-        return "redirect:/top";
-    }
-
 }

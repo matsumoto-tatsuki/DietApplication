@@ -121,11 +121,14 @@
                 for (let i = 0; i < cells.length; i++) {
                     const cellDate = cells[i].textContent;
                     if (trueDates.includes(cellDate)) {
-                        cells[i].style.backgroundColor='green';
+                        cells[i].style.backgroundColor = 'green';
+                        cells[i].classList.add('pointer');
                     }
                     if(falseDates.includes(cellDate)){
-                        cells[i].style.backgroundColor='red';
+                        cells[i].style.backgroundColor = 'red';
+                        cells[i].classList.add('pointer');
                     }
+                    
                 }
               }
             } catch (error) {

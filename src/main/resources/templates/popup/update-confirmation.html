@@ -7,17 +7,17 @@
   <link rel="stylesheet" href="/css/memo.css">
 </head>
 <body>
-
+<th:block th:insert="/common/header"></th:block>
 <div class="content">
-  <div class="position_c"> <!--ポジションを真ん中にしている-->
-    <form action="/move_top" method="POST">　<!--POST形式でデータ送信-->
+  <div class="position_c" style="margin:200px 0px;"> <!--ポジションを真ん中にしている-->
+    <form action="/top">　<!--POST形式でデータ送信-->
       <p><span class="bold">更新しました！</span></p>
       <div>
-        <button class="button_memo" type="submit">Top画面へ</button>
+        <button class="button_memo button" type="submit">Top画面へ</button>
       </div>
     </form>
   </div>
 </div>
-
+<th:block th:insert="/common/footer"></th:block>
 </body>
 </html>

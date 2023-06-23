@@ -17,4 +17,13 @@ public class TopController {
         model.addAttribute("selectDiet",list);
         return "/top";
     }
+
+    @GetMapping("/register-conf")
+    public String register(){
+        return "/popup/register-confirmation";
+    }
+    @GetMapping("/update-conf")
+    public String edit(){
+        return "/popup/update-confirmation";
+    }
 }
