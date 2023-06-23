@@ -2,7 +2,9 @@ package com.example.dietApplication.controller.dietListController;
 
 import com.example.dietApplication.dao.DietDao;
 import com.example.dietApplication.dao.DietSelectDao;
+import com.example.dietApplication.entity.DietDetail;
 import com.example.dietApplication.entity.DietInfo;
+import com.example.dietApplication.form.DietSearchForm;
 import com.example.dietApplication.form.UserFavoriteForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.DataClassRowMapper;
@@ -29,5 +31,13 @@ public class DietListService {
 
     public int deleteDietFavorite(UserFavoriteForm userFavoriteForm){
         return dietSelectDao.deleteDietFavorite(userFavoriteForm);
+    }
+
+    public DietDetail getDietDetail(String dietName){
+        return dietDao.getDietDetail(dietName);
+    }
+
+    public List<DietInfo> getSearchDiet(DietSearchForm dietSearchForm){
+        return dietDao.getSearchDiet(dietSearchForm);
     }
 }

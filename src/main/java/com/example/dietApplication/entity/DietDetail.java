@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class DietDetail {
-    private int DietId;
-    private String DietDetail;
+    private int id;
+    private String detail;
+    private String img;
 }

@@ -7,13 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DietListController {
-    @Autowired
-    DietListService dietListService;
+//    @Autowired
     @GetMapping("/diet-list")
-    public String getDietList(Model model){
-        var dietLists = dietListService.getDietList();
-        System.out.println("リストのサイズ" + dietLists.size());
-        model.addAttribute("dietLists",dietLists);
+    public String getDietList(){
         return "/diet/diet_list";
     }
 }
