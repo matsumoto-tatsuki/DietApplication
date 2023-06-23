@@ -45,12 +45,10 @@ public class DietDaoZAHA implements DietDao{
                 "INNER JOIN category_tags " +
                 "ON diet_info.category_id = category_tags.category_id " +
                 "LEFT JOIN ( " +
-                "SELECT " +
-                "favorite_diet.diet_id " +
-                "FROM " +
-                "diet_selects selects " +
-                "LEFT JOIN users_favorite_diet favorite_diet " +
-                "ON favorite_diet.diet_id = selects.diet_id " +
+                "SELECT "+
+                "users_favorite_diet.diet_id "+
+                "FROM "+
+                "users_favorite_diet "+
                 ") AS subquery " +
                 "ON subquery.diet_id = diet_info.id " +
                 "ORDER BY diet_info.id ASC;";
@@ -124,12 +122,10 @@ public class DietDaoZAHA implements DietDao{
                 "INNER JOIN category_tags " +
                 "ON diet_info.category_id = category_tags.category_id " +
                 "LEFT JOIN ( " +
-                "SELECT " +
-                "favorite_diet.diet_id " +
-                "FROM " +
-                "diet_selects selects " +
-                "LEFT JOIN users_favorite_diet favorite_diet " +
-                "ON favorite_diet.diet_id = selects.diet_id " +
+                "SELECT "+
+                "users_favorite_diet.diet_id "+
+                "FROM "+
+                "users_favorite_diet "+
                 ") AS subquery " +
                 "ON subquery.diet_id = diet_info.id ";
 
