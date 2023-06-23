@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>選択</title>
+  <!--    <link rel="stylesheet" href="/css/commons.css">-->
+  <link rel="stylesheet" href="/css/admin_management.css">
+</head>
+<body>
+
+<div class="background_color">
+  <div class="position_c"> <!--ポジションを真ん中にしている-->
+    <p>更新しますか？？</p>
+    <form class="change_inline" action="/id_notice" method="POST" th:object="${AdminIdForm}">　<!--POST形式でデータ送信-->
+      <button type="submit">YES</button>
+      <input type="hidden" th:field="*{adminId}">
+    </form>
+    <form class="change_inline" action="/id_change" method="POST">　<!--POST形式でデータ送信-->
+      <button type="submit">NO</button>
+    </form>
+  </div>
+</div>
+
+</body>
