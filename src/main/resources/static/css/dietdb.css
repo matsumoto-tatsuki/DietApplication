@@ -1,0 +1,129 @@
+.errorText{
+  color:red;
+}
+
+#modal h1{
+    text-align:center;
+  }
+
+  #modal form h2{
+    text-align:center;
+  }
+  #modal form input{
+    font-size:20px;
+    width:50%;
+  }
+  #modal .dateText{
+    text-align:center;
+    font-size:20px;
+    width:150px;
+    margin-bottom:20%;
+  }
+
+  #modal .button button{
+    border:1px solid black;
+    background-color:aqua;
+    font-size:20px;
+    padding:10px 50px;
+    margin:0px 20px;
+    border-radius:10px;
+  }
+
+   #modal2 h1 {
+    text-align: center;
+  }
+
+  #modal2 form h2 {
+    text-align: center;
+  }
+
+   #modal2 form input {
+    font-size: 20px;
+    width: 50%;
+  }
+
+   #modal2 .dateText {
+    text-align: center;
+    font-size: 20px;
+    width: 150px;
+    margin-bottom: 20%;
+  }
+
+  #modal2 .button button {
+    border: 1px solid black;
+    background-color: aqua;
+    font-size: 20px;
+    padding: 10px 40px;
+    margin: 0px 10px;
+    border-radius: 10px;
+  }
+
+   .between {
+    font-size: 20px;
+  }
+
+
+
+
+  #modal{
+      width: 500px;
+      height: 500px;
+      border: solid 1px;
+      border-radius: 20px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      background-color:rgb(230,180,255);
+    }
+
+    #modal.is-show {
+      opacity: 1;
+      visibility: visible;
+      z-index: 10;
+    }
+
+
+    #fadeLayer {
+      position:fixed;
+      top:0px;
+      left:0px;
+
+      width:100%;
+      height:100%;
+
+      background-color:#000000;
+      opacity:0.5;
+      visibility:hidden;
+      z-index:1;
+    }
+
+   #modal2 {
+    width: 500px;
+    height: 500px;
+    border: solid 1px;
+    border-radius: 20px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: rgb(230,180,255);
+    }
+
+    #modal2.is-show {
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+    }

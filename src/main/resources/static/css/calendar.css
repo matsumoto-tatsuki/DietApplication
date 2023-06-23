@@ -40,20 +40,16 @@ textarea{
     margin-left: 10px;
 }
 
-form button{
-    text-align:center;
-    font-size:20px;
-    padding:10px 20px;
-    background-color:aqua;
-    border:1px solid;
-    border-radius:10px;
-
-    margin:0% 44%;
-}
+form button.button {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
 
 .confirm{
-    background-color: gray;
+    background-color: #DDDDDD;
 }
+
 
 .edit{
     background-color: white;

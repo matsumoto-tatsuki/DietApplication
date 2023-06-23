@@ -93,7 +93,7 @@ public class CalendarController {
         var diet = dietResultService.updateDietResult(new Calendar(date),userId,resultForm,id);
         System.out.println(diet);
 
-        return "redirect:/top";
+        return "redirect:/update-conf";
     }
 
     @GetMapping("/dietResultInsert")
@@ -160,6 +160,6 @@ public class CalendarController {
 
         dietResultService.updateDietResult(new Calendar(date),userId,resultForm,strId);
 
-        return "redirect:/top";
+        return "redirect:/register-conf";
     }
 }
