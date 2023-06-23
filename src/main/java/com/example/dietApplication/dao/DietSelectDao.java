@@ -14,12 +14,16 @@ public interface DietSelectDao {
     //お気に入り登録
     int insertDietFavorite(UserFavoriteForm userFavoriteForm);
 
+
+    int deleteDietFavorite(UserFavoriteForm userFavoriteForm);
+
     //実施しているダイエットの情報取得
     DietSelect getDietSelect(UserSelectForm userSelectForm);
     DietSelect getDietSelect(int id);
 
     //今日の実施ダイエットの取得
     List<DietSelect> getDietSelect(String userId);
+
 
     //実施ダイエットの登録
     int insertDiet(UserDietForm userDietForm,String userId);

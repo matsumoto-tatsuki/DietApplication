@@ -4,6 +4,7 @@ import com.example.dietApplication.entity.DietDetail;
 import com.example.dietApplication.entity.DietInfo;
 import com.example.dietApplication.form.DietForm;
 import com.example.dietApplication.form.DietSearchForm;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -12,12 +13,10 @@ public interface DietDao {
     List<DietInfo> getDietList();
 
     //ダイエットの詳細確認
-    DietDetail getDietDetail(int id);
+    DietDetail getDietDetail(String dietName);
 
     //絞り込み
     List<DietInfo> getSearchDiet(DietSearchForm dietSearchForm);
-
-
 
     /* 管理人 */
     //全ダイエット数
