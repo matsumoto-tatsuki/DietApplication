@@ -10,4 +10,5 @@ public class DietSearchForm {
     private String categoryName;
     private String difficultName;
     private String keywordSearch;
+
 }
