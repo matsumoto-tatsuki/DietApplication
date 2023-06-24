@@ -6,4 +6,5 @@ import lombok.Data;
 public class DietDetail {
     private int DietId;
     private String DietDetail;
+    private String img;
 }

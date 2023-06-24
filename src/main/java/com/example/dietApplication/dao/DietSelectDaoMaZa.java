@@ -1,7 +1,6 @@
 package com.example.dietApplication.dao;
 
 import com.example.dietApplication.entity.Calendar;
-import com.example.dietApplication.entity.DietResult;
 import com.example.dietApplication.entity.DietSelect;
 import com.example.dietApplication.form.UserDietForm;
 import com.example.dietApplication.form.UserEditDietForm;
@@ -14,18 +13,35 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-public class DietSelectDaoMatsumoto implements  DietSelectDao{
+
+@Repository
+public class DietSelectDaoMaZa implements DietSelectDao{
+
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
-
     @Override
-    public int insertDietFavorite(UserFavoriteForm userFavoriteForm) {
-        return 0;
+    public int insertDietFavorite(UserFavoriteForm userFavoriteForm){
+        var param = new MapSqlParameterSource();
+        param.addValue("dietName", userFavoriteForm.getDietName());
+        //名前からidを取得する
+        String addDietFavoriteSql = "INSERT " +
+                "INTO users_favorite_diet (user_id,diet_id) " +
+                "VALUES (" +
+                "(SELECT users.user_id FROM users WHERE users.user_id = 'testuser')," +
+                "(SELECT diet_info.id FROM diet_info WHERE diet_info.diet_name = :dietName));";
+        var dietInfoData = jdbcTemplate.update(addDietFavoriteSql, param);
+        return dietInfoData;
     }
 
     @Override
-    public int deleteDietFavorite(UserFavoriteForm userFavoriteForm) {
-        return 0;
+    public int deleteDietFavorite(UserFavoriteForm userFavoriteForm){
+        var param = new MapSqlParameterSource();
+        param.addValue("dietName", userFavoriteForm.getDietName());
+        //名前からidを取得する
+        String deleteDietFavoriteSql = "DELETE FROM users_favorite_diet WHERE diet_id = (SELECT diet_info.id FROM diet_info WHERE diet_info.diet_name = :dietName)";
+
+        var dietInfoData = jdbcTemplate.update(deleteDietFavoriteSql, param);
+        return dietInfoData;
     }
 
     @Override
@@ -116,10 +132,10 @@ public class DietSelectDaoMatsumoto implements  DietSelectDao{
         param.addValue("finishDate",finishDate.getCalendar());
 
         return jdbcTemplate.update("UPDATE diet_selects\n" +
-                                        "SET action = :action\n" +
-                                        "    ,start_date = :startDate\n" +
-                                        "    ,end_date = :finishDate\n" +
-                                        "WHERE id = :id",param);
+                "SET action = :action\n" +
+                "    ,start_date = :startDate\n" +
+                "    ,end_date = :finishDate\n" +
+                "WHERE id = :id",param);
     }
 
     @Override
