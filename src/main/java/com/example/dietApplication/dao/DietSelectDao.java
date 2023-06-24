@@ -14,6 +14,8 @@ public interface DietSelectDao {
     //お気に入り登録
     int insertDietFavorite(UserFavoriteForm userFavoriteForm);
 
+    int deleteDietFavorite(UserFavoriteForm userFavoriteForm);
+
     //実施しているダイエットの情報取得
     DietSelect getDietSelect(UserSelectForm userSelectForm);
     DietSelect getDietSelect(int id);
