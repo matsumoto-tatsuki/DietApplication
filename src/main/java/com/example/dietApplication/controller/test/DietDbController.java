@@ -13,38 +13,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class DietDbController {
 
-    @Autowired
-    private DietDbService dietDbService;
-
-    @GetMapping("/test")
-    public String dietTable(@ModelAttribute("dietDb")UserDietForm userDietForm,@ModelAttribute("editDietDb")UserEditDietForm userEditDietForm){
-
-
-        return "/dietdb/dietdb";
-    }
-
-    @PostMapping("/db-register")
-    public String dbRegister(@ModelAttribute("dietDb")UserDietForm userDietForm){
-        String userId = "testuser";
-        System.out.println("登録：" + userDietForm);
-        var num = dietDbService.insertUserSelect(userDietForm,userId);
-        return "redirect:/test";
-    }
-    @PostMapping("/db-edit")
-    public String dbEdit(@ModelAttribute("editDietDb") UserEditDietForm userEditDietForm){
-
-        System.out.println("編集：" + userEditDietForm);
-        var num = dietDbService.updateUserSelect(userEditDietForm);
-
-        return "redirect:/test";
-    }
-
-    @PostMapping("/db-delete/{id}")
-    public String dbDelete(@PathVariable("id") int id){
-
-        System.out.println("削除：" + id);
-        var num = dietDbService.deleteUserSelect(id);
-
-        return "redirect:/test";
-    }
+//    @Autowired
+//    private DietDbService dietDbService;
+//
+//    @GetMapping("/test")
+//    public String dietTable(@ModelAttribute("dietDb")UserDietForm userDietForm,@ModelAttribute("editDietDb")UserEditDietForm userEditDietForm){
+//
+//
+//        return "/dietdb/dietdb";
+//    }
+//
+//    @PostMapping("/db-register")
+//    public String dbRegister(@ModelAttribute("dietDb")UserDietForm userDietForm){
+//        String userId = "testuser";
+//        System.out.println("登録：" + userDietForm);
+//        var num = dietDbService.insertUserSelect(userDietForm,userId);
+//        return "redirect:/test";
+//    }
+//    @PostMapping("/db-edit")
+//    public String dbEdit(@ModelAttribute("editDietDb") UserEditDietForm userEditDietForm){
+//
+//        System.out.println("編集：" + userEditDietForm);
+//        var num = dietDbService.updateUserSelect(userEditDietForm);
+//
+//        return "redirect:/test";
+//    }
+//
+//    @PostMapping("/db-delete/{id}")
+//    public String dbDelete(@PathVariable("id") int id){
+//
+//        System.out.println("削除：" + id);
+//        var num = dietDbService.deleteUserSelect(id);
+//
+//        return "redirect:/test";
+//    }
 }
