@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<div id="edit-modal">
+  <form action="/db-edit" method="Post" th:object="${editDietDb}" id="editForm">
+    <input type="hidden" th:field="*{id}" id="primaryId">
+    <h1 id="editDietName"></h1>
+    <input type="hidden" th:field="*{dietName}" id="editDietName-input">
+    <p class="errorText" id="editErrorText"></p>
+    <h2>やること</h2>
+    <input type="text" placeholder="(例)腕立て伏せ10000回" th:field="*{action}" id="editAction">
+
+    <h2>期間</h2>
+    <input type="text" class="dateText" id="editStartDate" th:field="*{startDate}"><span class="between">～</span><input type="text" class="dateText"  id="editFinishDate" th:field="*{finishDate}">
+    <br>
+    <div class="button">
+      <button type="button" id="editBtn">更新</button>
+      <button type="button" id="deleteBtn">削除</button>
+      <button type="button" onclick="editCloseModal()">戻る</button>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

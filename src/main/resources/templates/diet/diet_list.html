@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>ダイエット一覧</title>
+    <link rel="stylesheet" href="/css/commons.css">
     <link rel="stylesheet" href="/css/dietList.css">
+    <link href="/css/dietdb.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>
@@ -86,13 +89,16 @@
                 </div>
             </div>
         </div>
-
+        <th:block th:insert="/dietdb/insert-diet-select.html"></th:block>
+        <th:block th:insert="/dietdb/edit-diet-select.html"></th:block>
         <div id="fadeLayer"></div>
 
     </div>
 
 
     <th:block th:insert="/common/footer.html"></th:block>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/js/dietdb.js"></script>
     <script>
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         getDietList();
@@ -104,12 +110,14 @@
                 .then(data => {
                     // レスポンスデータを処理する
                     dietTable(data);
+                    console.log(data);
                 })
                 .catch(error => {
                     // エラーハンドリング
                     console.error('Error:', error);
                 });
         }
+
 
         filterSelectedKeywords();
         //キーワード絞り込み
@@ -201,8 +209,10 @@
 
                 if (data[i].select !== null) {
                     selectImage.setAttribute("src", "/images/update.png");
+                    selectImage.setAttribute('onclick', 'editOpenModal(this)');       //編集Modal
                 } else {
                     selectImage.setAttribute("src", "/images/add.png");
+                    selectImage.setAttribute('onclick', 'insertOpenModal(this)');       //登録Modal
                 }
                 select.appendChild(selectImage);
                 select.appendChild(selectinput);

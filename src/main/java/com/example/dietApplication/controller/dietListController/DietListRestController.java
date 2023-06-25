@@ -51,6 +51,7 @@ public class DietListRestController {
     @GetMapping("/get-diet-list")
     List<DietInfo> getDietList(){
         var dietLists = dietListService.getDietList();
+        System.out.println(dietLists);
         return dietLists;
     }
 }
