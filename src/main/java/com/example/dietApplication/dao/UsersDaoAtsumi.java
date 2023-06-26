@@ -38,6 +38,21 @@ public class UsersDaoAtsumi implements UsersDao {
     }
 
     @Override
+    public int update(String userName, String userId) {
+        return 0;
+    }
+
+    @Override
+    public int upIcon(String Icon, String userId) {
+        return 0;
+    }
+
+    @Override
+    public int deleteInfo(String userid) {
+        return 0;
+    }
+
+    @Override
     public int getAllUserNum() {
         return 0;
     }

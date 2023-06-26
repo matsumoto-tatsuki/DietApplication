@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UsersDaoZaKuA implements UsersDao{
+public class UsersDaoZaKuAKi implements UsersDao{
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -56,6 +56,34 @@ public class UsersDaoZaKuA implements UsersDao{
         String sql = "SELECT id,user_id,user_symbol,user_name,weight FROM users WHERE user_id = :userId";
         usersData = jdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserInfo.class));
         return usersData.isEmpty() ? null : usersData.get(0);
+    }
+
+    @Override
+    public int deleteInfo (String userId){
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("user_id",userId);
+        String sql = "DELETE FROM users WHERE user_id = :userId";
+        return jdbcTemplate.update(sql,param);
+    }
+
+
+
+    @Override
+    public int update(String userName ,String userId){
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("user_id",userId);
+        param.addValue("user_name",userName);
+        String sql = "UPDATE users SET user_name = :user_name WHERE user_id = :user_id";
+        return  jdbcTemplate.update(sql,param);
+    }
+
+    @Override
+    public int upIcon(String Icon, String userId){
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("user_id",userId);
+        param.addValue("user_symbol",Icon);
+        String sql = "UPDATE users SET user_symbol = :user_symbol WHERE user_id = :user_id";
+        return  jdbcTemplate.update(sql,param);
     }
 
     public UserLogin getUserIdCheck(InsertUserForm insertUserForm){
