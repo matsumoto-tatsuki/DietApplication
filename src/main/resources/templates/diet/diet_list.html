@@ -13,11 +13,12 @@
 <body>
     <th:block th:insert="/common/header.html"></th:block>
 
-    <div class="center">
-        <div class="title">
-            <h1>ダイエット選択</h1>
-        </div>
+    <div class="flex-head">
+        <h2>ダイエット選択</h2>
+        <img src="/images/help.png" alt="help">
+    </div>
 
+    <div class="center content">
 
         <div class="form">
             <div class="form-item1">
@@ -90,10 +91,9 @@
                 <button id="detail-button" type="button" onclick="closeModal()" class="cancel-btn">閉じる</button>
             </div>
         </div>
-        <th:block th:insert="/dietdb/insert-diet-select.html"></th:block>
-        <th:block th:insert="/dietdb/edit-diet-select.html"></th:block>
-        <div id="fadeLayer"></div>
     </div>
+    <th:block th:insert="/dietdb/insert-diet-select.html"></th:block>
+    <th:block th:insert="/dietdb/edit-diet-select.html"></th:block>
 
     <th:block th:insert="/common/footer.html"></th:block>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -312,6 +312,7 @@
                     selectImage.setAttribute("src", "/images/add.png");
                     selectImage.setAttribute('onclick', 'insertOpenModal(this)');       //登録Modal
                 }
+                selectImage.setAttribute("class", "pointer");
                 select.appendChild(selectImage);
                 select.appendChild(selectinput);
 

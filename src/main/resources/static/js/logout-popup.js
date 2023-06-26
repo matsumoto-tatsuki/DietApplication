@@ -1,7 +1,7 @@
     function openModalLogout() {
         let gray_out = document.getElementById("fadeLayer");
         gray_out.style.visibility = "visible";
-        setTimeout(addClass, 200);
+        setTimeout(addClassLogout, 200);
     }
 
     function closeModalLogout() {
@@ -11,7 +11,7 @@
         gray_out.style.visibility ="hidden";
     }
 
-    function addClass() {
+    function addClassLogout() {
         let modal = document.getElementById('logout-popup');
         modal.classList.add('is-show');
     }

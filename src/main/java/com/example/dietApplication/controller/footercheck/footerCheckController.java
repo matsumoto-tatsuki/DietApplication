@@ -8,12 +8,12 @@ public class footerCheckController {
 
     @GetMapping("/利用規約確認")
     public String checkterm() {
-        return "footerContents/termsOfService";
+        return "/footerContents/termsOfService";
     }
 
     @GetMapping("/プライバシーポリシー確認")
     public String checkpolicy() {
-        return "footerContents/privacyPolicy";
+        return "/footerContents/privacyPolicy";
     }
 
 }

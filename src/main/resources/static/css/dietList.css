@@ -1,6 +1,6 @@
-body {
+/* body {
     background-color: cornsilk;
-}
+} */
 
 
 
@@ -30,10 +30,6 @@ img {
     width: 1200px;
     background-color: rgb(189, 139, 239);
     padding: 15px;
-
-    background-image: url('images/walking/walking.gif');
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .form {
@@ -263,6 +259,9 @@ TableCss
 .search-button {
     width: 233.52px;
     height: 53.2px;
+}
+.search-button button:hover {
+    background-color:#00FF45;
 }
 
 /*検索入力*/
