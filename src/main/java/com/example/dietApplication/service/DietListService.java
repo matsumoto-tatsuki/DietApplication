@@ -31,8 +31,8 @@ public class DietListService {
         return dietSelectDao.deleteDietFavorite(userFavoriteForm);
     }
 
-    public DietDetail getDietDetail(String dietName){
-        return null;
+    public List<DietDetail> getDietDetail(String dietName){
+        return dietDao.getDietDetail(dietName);
     }
 
     public List<DietInfo> getSearchDiet(DietSearchForm dietSearchForm){

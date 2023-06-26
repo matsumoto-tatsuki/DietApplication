@@ -12,8 +12,7 @@ public interface DietDao {
     List<DietInfo> getDietList();
 
     //ダイエットの詳細確認
-    DietDetail getDietDetail(int id);
-    DietDetail getDietDetail(String dietName);
+    List<DietDetail> getDietDetail(String dietName);
 
     //絞り込み
     List<DietInfo> getSearchDiet(DietSearchForm dietSearchForm);
