@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class UsersDaoKinjo implements UsersDao{
@@ -34,10 +35,18 @@ public class UsersDaoKinjo implements UsersDao{
 
     @Override
     public UserInfo getUserInfo(String userId) {
-        var list = jdbcTemplate.query("SELECT * FROM account WHERE user_id = :userId",
+        var list = jdbcTemplate.query("SELECT id,user_id as userId ,user_symbol as userSymbol,user_name as userName,weight FROM users WHERE user_id = :userId",
                 new MapSqlParameterSource("userId",userId),
                 new DataClassRowMapper<>(UserInfo.class));
         return list.isEmpty()? null: list.get(0);
+    }
+
+    @Override
+    public int deleteInfo (String userId){
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("user_id",userId);
+        String sql = "DELETE FROM users WHERE user_id = :userId";
+        return jdbcTemplate.update(sql,param);
     }
 
 
@@ -46,10 +55,9 @@ public class UsersDaoKinjo implements UsersDao{
     public int update(String userName ,String userId){
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("user_id",userId);
-        param.addValue("userName",userName);
-        String sql = "UPDATE account SET user_name = :userName WHERE user_id = :user_id";
+        param.addValue("user_name",userName);
+        String sql = "UPDATE users SET user_name = :user_name WHERE user_id = :user_id";
         return  jdbcTemplate.update(sql,param);
-//      return jdbcTemplate.update("INSERT INTO account VALUES(:userName) WHERE id = userId",param);
     }
 
     @Override
@@ -57,7 +65,7 @@ public class UsersDaoKinjo implements UsersDao{
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("user_id",userId);
         param.addValue("user_symbol",Icon);
-        String sql = "UPDATE account SET user_symbol = :user_symbol WHERE user_id = :user_id";
+        String sql = "UPDATE users SET user_symbol = :user_symbol WHERE user_id = :user_id";
         return  jdbcTemplate.update(sql,param);
     }
 

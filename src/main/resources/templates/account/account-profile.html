@@ -11,30 +11,26 @@
     <body>
         <th:block th:insert="/common/header"></th:block>
 
-        <!-- ユーザーのidに応じて変更予定　-->
+        <!-- ユーザーのidに応じて変更　-->
         <div class="cen">userID:
 
             <span th:text="${account1}"> </span>
             <a id = "edit" href = http://localhost:8080/account-edit# class="button"> 編集 </a>
 
         </div>
- <br>
-        <!-- アイコンに応じて変更予定　-->
+        <br>
+        <!-- シンボルに応じて変更　-->
         <a href ="account-icon">
             <img th:src ="${imagePath}" alt="画像が設定されていません；；">
         </a>
- <br>
-
-<!--        <br> <img src ="${account4}" alt="画像"> <br>-->
-<!--        <span th:src ="${account4}"> </span>-->
+        <br>
 
         <div class="box_a">
             <p> ユーザー名 &nbsp</p>
-        <!--  ユーザーに応じて変更予定 <p th:text="${user.name?}"> -->
-
+        <!--  ユーザー名に応じて変更  -->
             <span th:text="${account2}"> </span>
         </div>
- <br>
+        <br>
 
         <div class="box_a">
         <!--  体重に応じて変更予定  -->
@@ -44,8 +40,9 @@
 
             <p> &nbsp kg </p>
         </div>
- <br>
+        <br>
 
         <th:block th:insert="/common/footer"></th:block>
+
     </body>
 </html>

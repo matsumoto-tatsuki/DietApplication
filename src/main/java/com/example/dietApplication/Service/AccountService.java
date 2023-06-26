@@ -22,4 +22,9 @@ public class AccountService {
     public int iconUp(String Icon, String userId){
         return usersDao.upIcon(Icon,userId);
     }
+
+    public int deleteUserInfo(String userId){
+        return usersDao.deleteInfo(userId);
+    }
+
 }

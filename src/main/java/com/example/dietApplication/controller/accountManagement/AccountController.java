@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-//バリデーションここ。後はhtmlで少々
 @Controller
 public class AccountController {
 
@@ -23,8 +23,8 @@ public class AccountController {
     //プロフィル画面表示
     @GetMapping("/account-profile")
     public String getAccount(Model model) {
-        var userList = accountService.getUserInfo("okinawa620");
-        model.addAttribute("account1",// -は使えない thで使
+        var userList = accountService.getUserInfo("masaratown621");
+        model.addAttribute("account1",
                 userList.getUserId());
         model.addAttribute("account2",
                 userList.getUserName());
@@ -44,11 +44,13 @@ public class AccountController {
 
     //更新画面遷移
     @PostMapping("/account-update")
-    public String postAccount(@ModelAttribute("userName") String username) {
-        System.out.println(username);
-        accountService.userUp(username,"okinawa620");//更新実行。user_name指定し新しい名前を登録
+    public String postAccount(@ModelAttribute("userName") String username ,RedirectAttributes redirectAttributes) {
+        if (username.length() == 0 || username.length() > 50) {
+            redirectAttributes.addFlashAttribute("errorMessage", "ユーザー名は1文字以上50文字以下で入力してください。");
+            return "redirect:account-edit";
+        }
+        accountService.userUp(username,"masaratown621");
         return "/account/account-update";
-        //tdn画面
     }
 
 
@@ -59,10 +61,20 @@ public class AccountController {
     }
 
     @PostMapping("/icon-update")
-    public String postIcon(@ModelAttribute("icon") String icon){
-        System.out.println(icon);
-        accountService.iconUp(icon,"okinawa620");
+    public String postIcon(@ModelAttribute("icon") String icon , RedirectAttributes redirectAttributes){
+        if (icon == null || icon.isEmpty()){
+            redirectAttributes.addFlashAttribute("errorMessage","アイコンを選択してください");
+            return "redirect:account-icon";
+        }
+        accountService.iconUp(icon,"masaratown621");
         return "/account/account-update";
+    }
+
+    @PostMapping("/account-delete")
+    public String deleteAccount(){
+    String userId = "masaratoen621";
+            accountService.deleteUserInfo(userId);
+        return "top";
     }
 
 }

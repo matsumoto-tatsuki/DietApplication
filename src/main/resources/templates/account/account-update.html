@@ -13,19 +13,13 @@
 <div class="cen">
 
     <p th:text="${userName}"></p>
-    <p>更新されたんじゃないかな</p>
+    <p>更新されました</p>
 
     <a href="top"> topへ</a>
     &nbsp
     <a href="account-profile"> 確認 </a>
     <br><br><br><br>
 </div>
-
-<!--    　<form action="/account-update" method="post" th:object="${userName}">-->
-<!--        <p> テスト </p>-->
-<!--        <p><input type="text" th:field ="*{userName}"></p>-->
-<!--        <p><button type="submit">更新</button></p>-->
-<!--    　</form>-->
 
 <th:block th:insert="/common/footer"></th:block>
 

@@ -5,39 +5,44 @@
     <title>icon edit display</title>
     <link rel="stylesheet" href="/css/account.css">
 </head>
-<body>
-<th:block th:insert="/common/header"></th:block>
+    <body>
 
-<div class="background">
-    <form action="/icon-update" method="POST">
-        <div class="image-list">
-            <label>
-                <img src="/images/きつねさん.png" alt="画像">
-                <input type="radio" name="icon" value="/きつねさん.png">
-            </label>
-            <label>
-                <img src="/images/ゴリラのイラスト03.png" alt="画像">
-                <input type="radio" name="icon" value="/ゴリラのイラスト03.png">
-            </label>
-        </div>
-        <div class="image-list">
-            <label>
-                <img src="/images/お料理ねこさん.png" alt="画像">
-                <input type="radio" name="icon" value="/お料理ねこさん.png">
-            </label>
-            <label>
-                <img src="/images/鴨さんとネギ.png" alt="画像">
-                <input type="radio" name="icon" value="/鴨さんとネギ.png">
-            </label>
-        </div>
-        <br>
-        <button type="submit">変更する</button>
-    </form>
-</div> <br>
+    <th:block th:insert="/common/header"></th:block>
 
+    <div class="background">
+        <form action="/icon-update" method="POST">
+            <div class="image-list">
+                <label>
+                    <img src="/images/きつねさん.png" alt="画像">
+                    <input type="radio" name="icon" value="/きつねさん.png">
+                </label>
+                <label>
+                    <img src="/images/ゴリラのイラスト03.png" alt="画像">
+                    <input type="radio" name="icon" value="/ゴリラのイラスト03.png">
+                </label>
+            </div>
 
+            <div class="image-list">
+                <label>
+                    <img src="/images/お料理ねこさん.png" alt="画像">
+                    <input type="radio" name="icon" value="/お料理ねこさん.png">
+                </label>
+                <label>
+                    <img src="/images/鴨さんとネギ.png" alt="画像">
+                    <input type="radio" name="icon" value="/鴨さんとネギ.png">
+                </label>
+            </div>
+            <br>
 
-<th:block th:insert="/common/footer"></th:block>
+            <div th:if="${errorMessage}" ></div>
+            <p class="error-message" th:text="${errorMessage}"></p>
 
-</body>
+            <button type="submit">変更する</button>
+        </form>
+
+    </div> <br>
+
+    <th:block th:insert="/common/footer"></th:block>
+
+    </body>
 </html>

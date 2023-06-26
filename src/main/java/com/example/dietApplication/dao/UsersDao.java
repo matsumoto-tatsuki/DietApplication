@@ -24,6 +24,8 @@ public interface UsersDao {
 
     int upIcon (String Icon, String userId);
 
+    int deleteInfo (String userid);
+
     /* 管理者 */
     //全ユーザ数取得
     int getAllUserNum();
