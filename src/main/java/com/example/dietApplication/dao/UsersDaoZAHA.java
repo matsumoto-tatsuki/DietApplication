@@ -59,6 +59,21 @@ public class UsersDaoZAHA implements UsersDao {
         return usersData.isEmpty() ? null : usersData.get(0);
     }
 
+    @Override
+    public int update(String userName, String userId) {
+        return 0;
+    }
+
+    @Override
+    public int upIcon(String Icon, String userId) {
+        return 0;
+    }
+
+    @Override
+    public int deleteInfo(String userid) {
+        return 0;
+    }
+
     public UserLogin getUserIdCheck(InsertUserForm insertUserForm){
         List<UserLogin> usersData = new ArrayList<>();
         var param = new MapSqlParameterSource();
@@ -101,11 +116,6 @@ public class UsersDaoZAHA implements UsersDao {
 
     @Override
     public List<User> userDate(AdminDateSearch adminDateSearch) {
-        return null;
-    }
-
-    @Override
-    public List<User> userDateResult() {
         return null;
     }
 

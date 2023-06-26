@@ -1,8 +1,6 @@
 package com.example.dietApplication.dao;
 
-import com.example.dietApplication.entity.User;
-import com.example.dietApplication.entity.UserInfo;
-import com.example.dietApplication.entity.UserLogin;
+import com.example.dietApplication.entity.*;
 import com.example.dietApplication.form.AdminIdForm;
 import com.example.dietApplication.form.AdminPassForm;
 import com.example.dietApplication.form.InsertUserForm;
@@ -16,7 +14,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Map;
 
-@Repository
 public class UsersDaoKinjo implements UsersDao{
 //DBと連携するところ
     @Autowired
@@ -30,6 +27,11 @@ public class UsersDaoKinjo implements UsersDao{
     @Override
     public int insertUser(InsertUserForm insertUserFrom) {
         return 0;
+    }
+
+    @Override
+    public UserLogin getUserIdCheck(InsertUserForm insertUserForm) {
+        return null;
     }
 
 
@@ -81,6 +83,16 @@ public class UsersDaoKinjo implements UsersDao{
     }
 
     @Override
+    public List<AdminDietInfo> getAllDiet() {
+        return null;
+    }
+
+    @Override
+    public int getAllDietNum() {
+        return 0;
+    }
+
+    @Override
     public int updateAdminId(AdminIdForm adminIdFrom) {
         return 0;
     }
@@ -88,6 +100,11 @@ public class UsersDaoKinjo implements UsersDao{
     @Override
     public int updateAdminPass(AdminPassForm adminPassForm) {
         return 0;
+    }
+
+    @Override
+    public List<User> userDate(AdminDateSearch adminDateSearch) {
+        return null;
     }
 
 }
