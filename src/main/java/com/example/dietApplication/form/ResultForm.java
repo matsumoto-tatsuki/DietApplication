@@ -1,13 +1,13 @@
 package com.example.dietApplication.form;
 
+import com.example.dietApplication.entity.DietResult;
 import lombok.Data;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @Data
 public class ResultForm {
-    private Map<String, String> fields = new HashMap<>();
+    private List<DietResult> dietResults;
     private String memo;
     private int weight;
 }

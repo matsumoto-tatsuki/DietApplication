@@ -1,0 +1,25 @@
+.margin {
+    margin:50px;
+}
+
+.background_color{
+    background-color: #dbd9d9;
+}
+
+.margin_left {
+    margin-left:20px;
+}
+
+.container {
+  overflow: hidden;
+}
+
+.number {
+  float: left;
+  margin-right: 10px; /* 適宜調整してください */
+}
+
+.text {
+  overflow: hidden;
+}
+

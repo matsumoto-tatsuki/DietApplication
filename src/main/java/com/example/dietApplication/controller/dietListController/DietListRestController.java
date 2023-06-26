@@ -5,6 +5,7 @@ import com.example.dietApplication.entity.DietInfo;
 import com.example.dietApplication.form.DietForm;
 import com.example.dietApplication.form.DietSearchForm;
 import com.example.dietApplication.form.UserFavoriteForm;
+import com.example.dietApplication.service.DietListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 public class DietListRestController {
     @Autowired
-    DietListService dietListService;
+    private DietListService dietListService;
     @PostMapping("/api-diet-favorite")
     public void postDietFavorite(@RequestBody UserFavoriteForm userFavoriteForm){
         //登録
@@ -56,6 +57,7 @@ public class DietListRestController {
     @GetMapping("/get-diet-list")
     List<DietInfo> getDietList(){
         var dietLists = dietListService.getDietList();
+        System.out.println(dietLists);
         return dietLists;
     }
 }

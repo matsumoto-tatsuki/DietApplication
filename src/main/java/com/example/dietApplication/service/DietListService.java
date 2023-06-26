@@ -1,4 +1,4 @@
-package com.example.dietApplication.controller.dietListController;
+package com.example.dietApplication.service;
 
 import com.example.dietApplication.dao.DietDao;
 import com.example.dietApplication.dao.DietSelectDao;
@@ -7,8 +7,6 @@ import com.example.dietApplication.entity.DietInfo;
 import com.example.dietApplication.form.DietSearchForm;
 import com.example.dietApplication.form.UserFavoriteForm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.DataClassRowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

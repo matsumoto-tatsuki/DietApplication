@@ -16,7 +16,7 @@
     <div class="form">
         <h1>新規登録</h1>
         <div class="error" th:if="${userInsertId}" th:text="${userInsertId}"> </div>
-        <form action="/insert-user" method="POST" th:object="${userInsertForm}">
+        <form action="/insert-user" method="POST" th:object="${insertUserForm}">
             <div>
                 <input type="text" placeholder="ユーザーID" th:field="*{userId}">
             </div>
@@ -25,7 +25,8 @@
             </div>
 
             <div>
-                <input type="password" placeholder="パスワード" th:field="*{password}">
+                <input type="password" id="passwordInput" placeholder="パスワード" th:field="*{password}">
+                <span id="togglePassword"><img src="/images/display1.png" alt="閉じた目"></span>
             </div>
             <div class="error" th:each="error: ${#fields.errors('password')}">
                 [[ ${error} ]]
@@ -36,9 +37,32 @@
             </div>
 
             <div class="button">
+                <button type="button" onclick="window.location.href = '/user-login'">戻る</button>
                 <button type="submit">登録</button>
             </div>
         </form>
+        <script>
+            const passwordInput = document.getElementById("passwordInput");
+        const togglePassword = document.getElementById("togglePassword");
+
+        const closedEye = "/images/hidden1.png";
+        const openEye = "/images/display1.png";
+
+        togglePassword.addEventListener("click", function () {
+            console.log("タイプ", passwordInput.type);
+
+            if (passwordInput.type === "password") {
+                console.log("テキストに変更");
+                passwordInput.type = "text";
+                togglePassword.innerHTML = `<img src="${closedEye}" alt="閉じた目">`;
+                
+            } else {
+                console.log("パスワードに変更");
+                passwordInput.type = "password";
+                togglePassword.innerHTML = `<img src="${openEye}" alt="開いた目">`;
+            }
+        });
+        </script>
     </div>
 </body>
 

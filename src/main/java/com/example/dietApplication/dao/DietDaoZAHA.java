@@ -92,7 +92,9 @@ public class DietDaoZAHA implements DietDao{
         return jdbcTemplate.query(query, new DataClassRowMapper<>(DietInfo.class));
     }
 
+
     //ダイエットの詳細確認
+    @Override
     public List<DietDetail> getDietDetail(String dietName){
         var param = new MapSqlParameterSource();
         param.addValue("dietName",dietName);
