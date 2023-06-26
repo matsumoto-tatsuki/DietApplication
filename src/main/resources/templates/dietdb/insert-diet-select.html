@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div id="insert-modal">
+  <form action="/db-register" method="Post" th:object="${dietDb}" id="registerForm">
+    <h1 id="insertDietName"></h1>
+    <input type="hidden" th:field="*{dietName}" id="insertDietName-input">
+    <p class="errorText" id="registerErrorText"></p>
+    <h2>やること</h2>
+    <input type="text" placeholder="(例)腕立て伏せ100回" th:field="*{action}" id="registerAction">
+
+    <h2>期間</h2>
+    <input type="text" class="dateText" th:field="*{startDate}" id="registerStartDate"><span class="between">～</span><input type="text" class="dateText" th:field="*{finishDate}" id="registerFinishDate">
+    <br>
+    <div class="button">
+      <button type="button" id="registerBtn">登録</button>
+      <button type="button" onclick="insertCloseModal()">戻る</button>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

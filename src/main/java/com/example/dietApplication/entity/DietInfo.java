@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class DietInfo {
     private boolean favorite;
-    private boolean select;
+    private Integer select;
     private String dietName;
     private String period;
     private String communityName;

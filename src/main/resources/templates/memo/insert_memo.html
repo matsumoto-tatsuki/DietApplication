@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>メモ</title>
+    <link rel="stylesheet" href="/css/commons.css">
+    <link rel="stylesheet" href="/css/memo.css">
+</head>
+<body>
+
+  <!--ヘッダー-->
+  <th:block th:insert="/common/header"></th:block>
+  <div class="flex-head">
+      <h2>今日のメモ登録</h2>
+      <img src="/images/help.png" alt="help">
+  </div>
+  <div class="content">
+      <div class="position_c"> <!--ポジションを真ん中にしている-->
+          <form action="/memo_register" method="POST" id="insertForm">　<!--POST形式でデータ送信-->
+              <p><span class="bold">メモ</span></p>
+              <!-- 送信する際のメモ内容をinsert_memoとする -->
+              <textarea class="textarea_position" name="memo" placeholder="メモを書いてね！"></textarea>
+              <div>
+<!--                  <button class="button_memo" type="submit">登録</button>-->
+                  <button type="button" class="button" onclick="openModal()">登録</button>
+              </div>
+          </form>
+      </div>
+  </div>
+  <th:block th:insert="/popup/insert-popup"></th:block>
+
+  <!--  フッター-->
+  <th:block th:insert="/common/footer"></th:block>
+
+</body>
+</html>
