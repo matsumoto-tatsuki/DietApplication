@@ -3,37 +3,50 @@
 <meta charset="UTF-8">
 
 <head>
-  <title>css header</title>
+  <title>account edit display</title>
   <link rel="stylesheet" href="/css/account.css">
 </head>
-
 <body>
-<th:block th:insert="/common/header"></th:block>
+  <th:block th:insert="/common/header"></th:block>
 
-<div class = "cen">user ID:00000001
+  <!-- ユーザーのidに応じて変更予定　-->
+  <div class="cen">
+    <p>現在：</p>
 
-  <a id = "edit" href = "honyaaa.html"> 更新 </a>
+    <span th:text="${account2}"> </span>
 
-</div>
+  <!-- userNameに入力した内容をAcCon.account-updateに送る -->
+    <form action="account-update" method="POST">
+      <p>新しい名前を入力して下さい</p>
+      <input type="text" name="userName">
+      <button type="submit">　 更　新 　</button>
+    </form> <br>
+  </div>
 
-<br>
-<img src = "/images/icon.png" alt="画像">
-<br>
-<div class="box_a">
-  <p> (ユーザー名) </p>
-</div>
+  <!--<div class="box_a">-->
 
-<br>
+  <!--  <p> ユーザー名 &nbsp</p>-->
+  <!--  &lt;!&ndash;  ユーザーに応じて変更予定 <p th:text="${user.name?}"> &ndash;&gt;-->
 
-<div class="box_a">
-  <!--  体重に応じて変更予定 <p th:text="${weight.name??}"> -->
-  <p>体重</p>
-</div>
+  <!--  <p th:text="${account2}"> </p>-->
+  <!--  <form action="output" method="POST">-->
+  <!--    名前を入力して下さい。<br/>-->
+  <!--    <input type="text" name="userName"/>-->
+  <!--    <button type="submit">送信</button>-->
+  <!--  </form>-->
+  <!--</div> <br>-->
 
-<br>
+  <!--<div class="box_a">-->
+  <!--  &lt;!&ndash;  体重に応じて変更予定  &ndash;&gt;-->
+  <!--  <p>体重 &nbsp </p>-->
 
-<th:block th:insert="/common/footer"></th:block>
+  <!--  <p th:text="${account3}"> </p>-->
 
+  <!--  <p> &nbsp kg </p>-->
+
+  <!--</div> <br>-->
+
+  <th:block th:insert="/common/footer"></th:block>
 
 </body>
 </html>

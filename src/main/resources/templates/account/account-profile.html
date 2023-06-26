@@ -3,41 +3,49 @@
 <meta charset="UTF-8">
 
 <head>
-  <title>css header</title>
+  <title>account profile display</title>
   <link rel="stylesheet" href="/css/account.css">
 </head>
 
 
-<body>
-<th:block th:insert="/common/header"></th:block>
+    <body>
+        <th:block th:insert="/common/header"></th:block>
 
-<!-- ユーザーのidに応じて変更予定 <p th:text="${user.name?}">　-->
+        <!-- ユーザーのidに応じて変更予定　-->
+        <div class="cen">userID:
 
-    <p>ID: <span th:text="${accountProfile}"></span></p>
+            <span th:text="${account1}"> </span>
+            <a id = "edit" href = http://localhost:8080/account-edit# class="button"> 編集 </a>
 
-    <a id = "edit" href = "honyarara.html"> 編集 </a>
+        </div>
+ <br>
+        <!-- アイコンに応じて変更予定　-->
+        <a href ="account-icon">
+            <img th:src ="${imagePath}" alt="画像が設定されていません；；">
+        </a>
+ <br>
 
-<br>
-  <img src = "/images/icon.png" alt="画像">
-<br>
+<!--        <br> <img src ="${account4}" alt="画像"> <br>-->
+<!--        <span th:src ="${account4}"> </span>-->
 
-  <div class="box_a">
-<!--  ユーザーに応じて変更予定 <p th:text="${user.name?}"> -->
-      <p> ユーザー名 </p>
-    <p th:text="${accountProfile}">  </p>
-  </div>
+        <div class="box_a">
+            <p> ユーザー名 &nbsp</p>
+        <!--  ユーザーに応じて変更予定 <p th:text="${user.name?}"> -->
 
-  <br>
+            <span th:text="${account2}"> </span>
+        </div>
+ <br>
 
-  <div class="box_a">
-<!--  体重に応じて変更予定 <p th:text="${weight.name??}"> -->
-    <p>体重</p>
-  </div>
+        <div class="box_a">
+        <!--  体重に応じて変更予定  -->
+            <p>体重 &nbsp </p>
 
-  <br>
+            <p th:text="${account3}"> </p>
 
-<th:block th:insert="/common/footer"></th:block>
+            <p> &nbsp kg </p>
+        </div>
+ <br>
 
-
-</body>
+        <th:block th:insert="/common/footer"></th:block>
+    </body>
 </html>

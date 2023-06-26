@@ -1,7 +1,5 @@
 package com.example.dietApplication.Service;
 
-//import com.example.dietApplication.Record.ProductRecord;
-
 import com.example.dietApplication.entity.UserInfo;
 import com.example.dietApplication.dao.UsersDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,4 +15,11 @@ public class AccountService {
         return usersDao.getUserInfo (userId);
     }
 
+    public int userUp(String userName,String userId){
+        return usersDao.update(userName,userId);
+    }
+
+    public int iconUp(String Icon, String userId){
+        return usersDao.upIcon(Icon,userId);
+    }
 }

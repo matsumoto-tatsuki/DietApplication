@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+
+<head>
+    <title>rename display</title>
+    <link rel="stylesheet" href="/css/account.css">
+</head>
+
+<body>
+
+<th:block th:insert="/common/header"></th:block>
+<div class="cen">
+
+    <p th:text="${userName}"></p>
+    <p>更新されたんじゃないかな</p>
+
+    <a href="top"> topへ</a>
+    &nbsp
+    <a href="account-profile"> 確認 </a>
+    <br><br><br><br>
+</div>
+
+<!--    　<form action="/account-update" method="post" th:object="${userName}">-->
+<!--        <p> テスト </p>-->
+<!--        <p><input type="text" th:field ="*{userName}"></p>-->
+<!--        <p><button type="submit">更新</button></p>-->
+<!--    　</form>-->
+
+<th:block th:insert="/common/footer"></th:block>
+
+</body>
+</html>

@@ -20,6 +20,9 @@ public interface UsersDao {
     //ユーザ情報
     UserInfo getUserInfo(String userId);
 
+    int update (String userName,String userId);
+
+    int upIcon (String Icon, String userId);
 
     /* 管理者 */
     //全ユーザ数取得
@@ -33,4 +36,6 @@ public interface UsersDao {
 
     //管理者パスワード変更
     int updateAdminPass(AdminPassForm adminPassForm);
+
+
 }
