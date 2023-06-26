@@ -1,0 +1,47 @@
+body{
+    background-color: rgb(255 208 102);
+}
+
+.content {
+    margin-top: 50px; 
+    margin-bottom: 50px; 
+}
+.pointer{
+    cursor:pointer;
+}
+.flex-head img{
+    width:20px;
+    height:20px;
+}
+
+.flex-head{
+    margin:10px;
+    display:flex;
+    justify-content: space-between;
+}
+
+button.button{
+    border:1px solid black;
+    background-color:aqua;
+    font-size:20px;
+    padding:10px 50px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+button.button:hover{
+    background-color:#00FF45;
+}  
+
+
+
+.flex-head img{
+    width:20px;
+    height:20px;
+  }
+  
+  .flex-head{
+    margin:10px;
+    display:flex;
+    justify-content: space-between;
+  }

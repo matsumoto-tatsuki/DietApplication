@@ -1,0 +1,73 @@
+
+.position_c {
+    text-align: center;
+}
+
+.adminManagement_button {
+    background-color:#85d8ff;
+    font-size: 20px;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 15px;
+    margin-top: 30px;
+        margin-bottom: 40px;
+}
+
+.adminManagement_button:hover {
+  background-color: #d0fdff;
+}
+
+
+.change_inline {
+    display: inline;
+    width:100px;
+}
+
+.update_button:hover {
+    background-color: #00ff45;
+}
+
+.changeAdminPassword_Text {
+    font-weight: bold;
+    background-color:#85d8ff;
+    padding:5px;
+    border: 1px solid;
+    width: 40%;
+    
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.password_Text {
+    font-weight: bold;
+    background-color: rgb(230, 180, 255);
+    border: 1px solid;
+    width: 40%;
+    padding: 5px;
+
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.error {
+    color: red;
+}
+
+.insert_data {
+    width: 40%;
+    padding: 5px;
+    margin-top: 0px;
+        margin-bottom: 0px;
+}
+
+.update_noticeMessage {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.erase_bottomSpace {
+    margin-bottom: 0px;
+}

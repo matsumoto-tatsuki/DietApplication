@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ダイエット一覧</title>
+    <link rel="stylesheet" href="/css/commons.css">
+    <link rel="stylesheet" href="/css/dietList.css">
+    <link href="/css/dietdb.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body>
+    <th:block th:insert="/common/header.html"></th:block>
+
+    <div class="flex-head">
+        <h2>ダイエット選択</h2>
+        <img src="/images/help.png" alt="help">
+    </div>
+
+    <div class="center content">
+
+        <div class="form">
+            <div class="form-item1">
+                <div class="search-favo">
+                    <div class="favo-item">
+                        <img id="search-favo-image" src="/images/star_on.png">
+                        <input id="search-favo-checkbox" type="checkbox">
+                    </div>
+                    <div class="select-item">
+                        <img id="search-select-image" src="/images/update.png">
+                        <input id="search-select-checkbox" type="checkbox">
+                    </div>
+                </div>
+                <div class="search-category">
+                    <select name="category">
+                        <option selected>カテゴリ</option>
+                        <option value="運動">運動</option>
+                        <option value="食事">食事</option>
+                    </select>
+                    <select name="difficulty">
+                        <option selected>難易度</option>
+                        <option value="easy">easy</option>
+                        <option value="normal">normal</option>
+                        <option value="hard">hard</option>
+                    </select>
+                </div>
+                <div class="search-keyword">
+                    <div class="search-input">
+                        <input type="text" placeholder="🔍 ※項目名がヒットします。">
+                    </div>
+                    <div class="search-button">
+                        <button type="button" onclick="filterForm()">絞り込み検索</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="background">
+            <table>
+                <thead>
+                    <tr>
+                        <th>お気に入り</th>
+                        <th>実施</th>
+                        <th>項目</th>
+                        <th>期間</th>
+                        <!-- <th>コミュニティ</th> -->
+                        <th>カテゴリ</th>
+                        <th>難易度</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <!---------------------------------------------------------------------------------------- モーダル-->
+        <div id="modal">
+            <div class="detail-center">
+                <div class="page-button">
+                    <div class="page-switch left">&blacktriangleleft;</div>
+                    <div class="page-switch right">&blacktriangleright;</div>
+                </div>
+                <h1 id="detail-title"></h1>
+                <div id="detail-text">
+                </div>
+                <img id="detail-img" src="">
+                <button id="detail-button" type="button" onclick="closeModal()" class="cancel-btn">閉じる</button>
+            </div>
+        </div>
+    </div>
+    <th:block th:insert="/dietdb/insert-diet-select.html"></th:block>
+    <th:block th:insert="/dietdb/edit-diet-select.html"></th:block>
+
+    <th:block th:insert="/common/footer.html"></th:block>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/js/dietdb.js"></script>
+    <script>
+        var currentIndex = 0; // 現在表示しているデータのインデックス
+        var data = []; // データを格納する配列
+
+        var previousBtn = document.getElementsByClassName("page-switch")[0];
+        var nextBtn = document.getElementsByClassName("page-switch")[1];
+
+        previousBtn.addEventListener("click", function () {
+            // 前のページに切り替える処理
+            // ここに実装を追加
+            console.log('前のページに切り替え');
+            currentIndex--;
+            createDetail(data);
+        });
+
+        nextBtn.addEventListener("click", function () {
+            // 次のページに切り替える処理
+            // ここに実装を追加
+            console.log('次のページに切り替え');
+            currentIndex++;
+            createDetail(data);
+        });
+
+
+        function createDetail(data) {
+            // 詳細データを表示する要素を取得
+            var titleElement = document.getElementById("detail-title");
+            var textElement = document.getElementById("detail-text");
+            var imgElement = document.getElementById("detail-img");
+            console.log('現在の番号', currentIndex);
+            // データを要素に設定
+            // データを要素に設定
+            if (data.length > 0 && currentIndex >= 0 && currentIndex < data.length) {
+                titleElement.textContent = data[currentIndex].detailTitle;
+                textElement.textContent = data[currentIndex].detail;
+                imgElement.src = data[currentIndex].img;
+            }
+
+            pageChenge();
+        }
+
+        function setData(receivedData) {
+            data = receivedData; // 受け取ったデータをセット
+            console.log('setData', data);
+        }
+
+        function pageChenge() {
+
+
+            if (currentIndex === 0) {
+                previousBtn.style.visibility = "hidden"; // 最初の要素の場合、前のボタンを非表示にする
+            } else {
+                previousBtn.style.visibility = "visible"; // 前のボタンを表示する
+            }
+
+            if (currentIndex === data.length - 1) {
+                nextBtn.style.visibility = "hidden"; // 最後の要素の場合、次のボタンを非表示にする
+            } else {
+                nextBtn.style.visibility = "visible"; // 次のボタンを表示する
+            }
+
+
+        }
+
+
+
+
+        //詳細取得///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        function dietDetail(dietName) {
+            var modal = document.getElementById("modal");
+            const url = '/api-diet-detail'; // RESTコントローラーのエンドポイントURL
+
+            const requestData = {
+                dietName: dietName
+            };
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        response.json().then(data => {
+                            console.log(data);
+                            openModal();
+                            setData(data); // データをセット
+                            createDetail(data);
+                        })
+                        console.log('詳細取得成功');
+                    } else {
+                        console.error('詳細取得失敗');
+                    }
+                })
+                .catch(error => {
+                    console.error('エラー:', error);
+                });
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        getDietList();
+        function getDietList() {
+            fetch('/get-diet-list', {
+                method: 'GET'// リクエストメソッドを指定 (POST)
+            })
+                .then(response => response.json()) // レスポンスをJSON形式で取得
+                .then(data => {
+                    // レスポンスデータを処理する
+                    dietTable(data);
+                    console.log(data);
+                })
+                .catch(error => {
+                    // エラーハンドリング
+                    console.error('Error:', error);
+                });
+        }
+
+
+        filterSelectedKeywords();
+        //キーワード絞り込み
+        function filterSelectedKeywords() {
+
+            var searchSelectElement = document.getElementById('search-select-image');
+            var searchSelectCheckBoxElement = document.getElementById('search-select-checkbox');
+
+            searchSelectElement.addEventListener('click', function () {
+                console.log('選択されました。');
+                searchSelectCheckBoxElement.checked = !searchSelectCheckBoxElement.checked;
+            });
+        }
+
+        // コードをここに記述する
+        filterFavoKeywords();
+        function filterFavoKeywords() {
+            var sarchFavoElement = document.getElementById("search-favo-image");
+            var searchFavoCheckBoxElement = document.getElementById('search-favo-checkbox');
+
+            sarchFavoElement.addEventListener('click', function () {
+                console.log('お気に入り並び替えがクリックされました。');
+                searchFavoCheckBoxElement.checked = !searchFavoCheckBoxElement.checked;
+            });
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        function filterForm() {
+            // 送信するデータを準備する
+            const formData = {
+                favoriteSearch: document.querySelector('#search-favo-checkbox').checked,
+                selectSearch: document.querySelector('#search-select-checkbox').checked,
+                categoryName: document.querySelector('select[name="category"]').value,
+                difficultName: document.querySelector('select[name="difficulty"]').value,
+                keywordSearch: document.querySelector('input[type="text"]').value
+            };
+
+            // fetchを使ってデータを送信する
+            fetch('/api-filter', {
+                method: 'POST', // リクエストメソッドを指定 (POST)
+                headers: {
+                    'Content-Type': 'application/json' // リクエストヘッダーのContent-TypeをJSON形式に指定
+                },
+                body: JSON.stringify(formData) // 送信するデータをJSON形式に変換
+            })
+                .then(response => response.json()) // レスポンスをJSON形式で取得
+                .then(data => {
+                    // レスポンスデータを処理する
+                    console.log(data);
+                    dietTable(data);
+                })
+                .catch(error => {
+                    // エラーハンドリング
+                    console.error('Error:', error);
+                });
+        }
+
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+        function dietTable(data) {
+            var tableBodyElement = document.getElementById('table-body');
+            console.log(tableBodyElement);
+
+            tableBodyElement.innerHTML = '';
+
+            for (let i = 0; i < data.length; i++) {
+                var tr = document.createElement("tr");
+                tableBodyElement.appendChild(tr);
+
+                var favo = document.createElement("td");
+                var favoImage = document.createElement("img");
+                data[i].favorite;
+                favo.classList.add("star-img");
+                console.log(data[i].favorite);
+                if (data[i].favorite) {
+                    favoImage.setAttribute("src", "/images/star_on.png");
+                } else {
+                    favoImage.setAttribute("src", "/images/star_off.png");
+                }
+                favo.appendChild(favoImage);
+
+                var select = document.createElement("td");
+                var selectImage = document.createElement("img");
+                var selectinput = document.createElement("input");
+                selectinput.type = "hidden";
+                selectinput.value = data[i].select;
+
+                if (data[i].select !== null) {
+                    selectImage.setAttribute("src", "/images/update.png");
+                    selectImage.setAttribute('onclick', 'editOpenModal(this)');       //編集Modal
+                } else {
+                    selectImage.setAttribute("src", "/images/add.png");
+                    selectImage.setAttribute('onclick', 'insertOpenModal(this)');       //登録Modal
+                }
+                selectImage.setAttribute("class", "pointer");
+                select.appendChild(selectImage);
+                select.appendChild(selectinput);
+
+                var dietName = document.createElement("td");
+                dietName.setAttribute("class", "diet-list");
+                dietName.classList.add("background-"+(i+1));
+                dietName.textContent = data[i].dietName;
+
+                var period = document.createElement("td");
+                period.textContent = data[i].period;
+
+                var categoryName = document.createElement("td");
+                categoryName.textContent = data[i].categoryName;
+
+                var difficultName = document.createElement("td");
+                difficultName.textContent = data[i].difficultName;
+
+
+                tr.appendChild(favo);
+                tr.appendChild(select);
+                tr.appendChild(dietName);
+                tr.appendChild(period);
+                tr.appendChild(categoryName);
+                tr.appendChild(difficultName);
+            }
+
+            getStarImages(); //星の画像取得
+
+            var dietLists = document.getElementsByClassName('diet-list');
+            console.log('dietList', dietLists);
+
+            Array.from(dietLists).forEach(function (dietList) {
+
+                dietList.addEventListener('click', function () {
+                    var dietName = dietList.textContent;
+                    dietDetail(dietName);
+                });
+            });
+        }
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        function openModal() {
+            let gray_out = document.getElementById("fadeLayer");
+            gray_out.style.visibility = "visible";
+            setTimeout(addClass, 200);
+        }
+
+        function closeModal() {
+            let modal = document.getElementById('modal');
+            let gray_out = document.getElementById("fadeLayer");
+            modal.classList.remove('is-show');
+            gray_out.style.visibility = "hidden";
+            currentIndex = 0; // 現在表示しているデータのインデックス
+        }
+
+        function addClass() {
+            let modal = document.getElementById('modal');
+            modal.classList.add('is-show');
+        }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        var imagePaths = ["/images/star_off.png", "/images/star_on.png"]; // 切り替える画像のパスを配列で用意
+        function getStarImages() {
+            var starImages = document.getElementsByClassName('star-img');
+            console.log('starImages', starImages);
+            Array.from(starImages).forEach(function (starImage) { //クリックされたら
+                //表示されている画像によって初期化を変える
+                var currentImagePath = starImage.children[0].src;//画像要素を取得
+                var relativeImagePath = currentImagePath.replace("http://localhost:8080", "");
+                var currentIndex = imagePaths.indexOf(relativeImagePath);
+
+                starImage.addEventListener('click', function () {
+                    console.log('クリックされました', starImage);
+                    var row = starImage.closest('tr');
+
+                    // 行内の各セル（td要素）からダイエット情報を取得
+                    var dietName = row.querySelector('td:nth-child(3)').textContent;
+
+                    currentIndex === 0 ? addToFavorites(dietName) : removeFromFavorites(dietName);//実行を切り替える
+
+                    currentIndex = (currentIndex + 1) % imagePaths.length; // 次の画像のインデックスを計算
+                    starImage.getElementsByTagName('img')[0].src = imagePaths[currentIndex]; // 画像を切り替える
+
+                });
+            });
+        }
+
+
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        function addToFavorites(dietName) {
+            const url = '/api-diet-favorite'; // RESTコントローラーのエンドポイントURL
+
+            const requestData = {
+                dietName: dietName
+            };
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('お気に入りが追加されました');
+                    } else {
+                        console.error('お気に入りの追加に失敗しました');
+                    }
+                })
+                .catch(error => {
+                    console.error('エラー:', error);
+                });
+        }
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        function removeFromFavorites(dietName) {
+            const url = '/api-diet-favorite'; // RESTコントローラーのエンドポイントURL
+
+            const requestData = {
+                dietName: dietName
+            };
+
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('お気に入りが削除されました');
+                    } else {
+                        console.error('お気に入りの削除に失敗しました');
+                    }
+                })
+                .catch(error => {
+                    console.error('エラー:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>

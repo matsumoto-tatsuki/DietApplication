@@ -37,9 +37,6 @@ public class UserServiceKura  {
         return userDao.userDate(adminDateSearch);
     }
 
-    public List<User>userDateResult() {
-        return userDao.userDateResult();
-    }
 
 
 }

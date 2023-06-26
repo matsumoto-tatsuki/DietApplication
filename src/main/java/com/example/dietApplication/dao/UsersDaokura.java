@@ -9,16 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public  class UserDaokura implements UsersDao {
-//
-//    private String userId;
-//
-//    private String userName;
+public class UsersDaokura implements UsersDao {
+
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -31,6 +26,11 @@ public  class UserDaokura implements UsersDao {
     @Override
     public int insertUser(InsertUserForm insertUserFrom) {
         return 0;
+    }
+
+    @Override
+    public UserLogin getUserIdCheck(InsertUserForm insertUserForm) {
+        return null;
     }
 
     @Override
@@ -57,23 +57,17 @@ public  class UserDaokura implements UsersDao {
     @Override
     public List<User> getAllUser() {
         return jdbcTemplate.query("SELECT * FROM users  ORDER BY id", new DataClassRowMapper<>(User.class));
-
     }
 
     @Override
     public List<User> userDate(AdminDateSearch adminDateSearch) {
-        var calender = new Calender(adminDateSearch.getStart_date());
-        var endcalender = new Calender(adminDateSearch.getEnd_date());
+        var calender = new Calendar(adminDateSearch.getStart_date());
+        var endcalender = new Calendar(adminDateSearch.getEnd_date());
         var param = new MapSqlParameterSource();
-        param.addValue("start_date", calender.getCalender());
-        param.addValue("end_date", endcalender.getCalender());
+        param.addValue("start_date", calender.getCalendar());
+        param.addValue("end_date", endcalender.getCalendar());
         var list = jdbcTemplate.query("SELECT * FROM users WHERE  insert_date between :start_date and :end_date ;\n",param ,new DataClassRowMapper<>(User.class));
         return list;
-    }
-
-    @Override
-    public List<User> userDateResult() {
-        return jdbcTemplate.query("select end_date from users", new DataClassRowMapper<>());
     }
 
 
@@ -86,6 +80,7 @@ public  class UserDaokura implements UsersDao {
     public int updateAdminPass(AdminPassForm adminPassForm) {
         return 0;
     }
+
 
 
 }
