@@ -31,6 +31,10 @@
     border-radius:10px;
   }
 
+  #insert-modal .button button:hover{
+    background-color:#00FF45;
+  }
+
    #edit-modal h1 {
     text-align: center;
      margin:20px 0;
@@ -61,6 +65,9 @@
     padding: 10px 40px;
     margin: 0px 10px;
     border-radius: 10px;
+  }
+  #edit-modal .button button:hover{
+    background-color:#00FF45;
   }
 
    .between {
