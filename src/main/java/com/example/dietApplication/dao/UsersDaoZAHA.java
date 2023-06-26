@@ -104,11 +104,6 @@ public class UsersDaoZAHA implements UsersDao {
         return null;
     }
 
-    @Override
-    public List<User> userDateResult() {
-        return null;
-    }
-
 }
 
 //    public int InsertUser(UserInsertForm userInsertForm) {

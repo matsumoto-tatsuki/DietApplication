@@ -78,9 +78,5 @@ public class UsersDaoAtsumi implements UsersDao {
         return null;
     }
 
-    @Override
-    public List<User> userDateResult() {
-        return null;
-    }
 
 }
