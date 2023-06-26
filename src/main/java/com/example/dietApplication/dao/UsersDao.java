@@ -22,6 +22,11 @@ public interface UsersDao {
     //ユーザ情報
     UserInfo getUserInfo(String userId);
 
+    int update (String userName,String userId);
+
+    int upIcon (String Icon, String userId);
+
+    int deleteInfo (String userid);
 
     /* 管理者 */
     //全ユーザ数取得

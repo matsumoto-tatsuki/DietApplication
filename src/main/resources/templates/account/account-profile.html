@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+
+<head>
+  <title>account profile display</title>
+  <link rel="stylesheet" href="/css/account.css">
+</head>
+
+
+    <body>
+        <th:block th:insert="/common/header"></th:block>
+
+        <!-- ユーザーのidに応じて変更　-->
+        <div class="cen">userID:
+
+            <span th:text="${account1}"> </span>
+            <a id = "edit" href = http://localhost:8080/account-edit# class="button"> 編集 </a>
+
+        </div>
+        <br>
+        <!-- シンボルに応じて変更　-->
+        <a href ="account-icon">
+            <img th:src ="${imagePath}" alt="画像が設定されていません；；">
+        </a>
+        <br>
+
+        <div class="box_a">
+            <p> ユーザー名 &nbsp</p>
+        <!--  ユーザー名に応じて変更  -->
+            <span th:text="${account2}"> </span>
+        </div>
+        <br>
+
+        <div class="box_a">
+        <!--  体重に応じて変更予定  -->
+            <p>体重 &nbsp </p>
+
+            <p th:text="${account3}"> </p>
+
+            <p> &nbsp kg </p>
+        </div>
+        <br>
+
+        <th:block th:insert="/common/footer"></th:block>
+
+    </body>
+</html>
