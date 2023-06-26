@@ -1,9 +1,7 @@
 package com.example.dietApplication.dao;
 
 
-import com.example.dietApplication.entity.User;
-import com.example.dietApplication.entity.UserInfo;
-import com.example.dietApplication.entity.UserLogin;
+import com.example.dietApplication.entity.*;
 import com.example.dietApplication.form.AdminIdForm;
 import com.example.dietApplication.form.AdminPassForm;
 import com.example.dietApplication.form.InsertUserForm;
@@ -81,6 +79,16 @@ public class UsersDaoZAHA implements UsersDao {
         return null;
     }
 
+    @Override
+    public List<AdminDietInfo> getAllDiet() {
+        return null;
+    }
+
+    @Override
+    public int getAllDietNum() {
+        return 0;
+    }
+
     //管理者ID変更
     public int updateAdminId(AdminIdForm adminIdFrom){
         return 0;
@@ -89,6 +97,16 @@ public class UsersDaoZAHA implements UsersDao {
     //管理者パスワード変更
     public int updateAdminPass(AdminPassForm adminPassForm){
         return 0;
+    }
+
+    @Override
+    public List<User> userDate(AdminDateSearch adminDateSearch) {
+        return null;
+    }
+
+    @Override
+    public List<User> userDateResult() {
+        return null;
     }
 
 }

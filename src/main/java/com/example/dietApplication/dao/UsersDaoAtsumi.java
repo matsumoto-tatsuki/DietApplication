@@ -1,8 +1,6 @@
 package com.example.dietApplication.dao;
 
-import com.example.dietApplication.entity.User;
-import com.example.dietApplication.entity.UserInfo;
-import com.example.dietApplication.entity.UserLogin;
+import com.example.dietApplication.entity.*;
 import com.example.dietApplication.form.AdminIdForm;
 import com.example.dietApplication.form.AdminPassForm;
 import com.example.dietApplication.form.InsertUserForm;
@@ -49,6 +47,16 @@ public class UsersDaoAtsumi implements UsersDao {
         return null;
     }
 
+    @Override
+    public List<AdminDietInfo> getAllDiet() {
+        return null;
+    }
+
+    @Override
+    public int getAllDietNum() {
+        return 0;
+    }
+
     //管理者ID変更
     @Override
     public int updateAdminId(AdminIdForm adminIdFrom) {
@@ -63,6 +71,16 @@ public class UsersDaoAtsumi implements UsersDao {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("password",adminPassForm.getAdminPassword());
         return jdbcTemplate.update("UPDATE users SET password = :password WHERE permission = 1",param);
+    }
+
+    @Override
+    public List<User> userDate(AdminDateSearch adminDateSearch) {
+        return null;
+    }
+
+    @Override
+    public List<User> userDateResult() {
+        return null;
     }
 
 }

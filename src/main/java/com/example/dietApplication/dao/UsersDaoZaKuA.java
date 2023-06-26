@@ -1,8 +1,6 @@
 package com.example.dietApplication.dao;
 
-import com.example.dietApplication.entity.User;
-import com.example.dietApplication.entity.UserInfo;
-import com.example.dietApplication.entity.UserLogin;
+import com.example.dietApplication.entity.*;
 import com.example.dietApplication.form.AdminIdForm;
 import com.example.dietApplication.form.AdminPassForm;
 import com.example.dietApplication.form.InsertUserForm;
@@ -71,13 +69,25 @@ public class UsersDaoZaKuA implements UsersDao{
 
     /* 管理者 */
     //全ユーザ数取得
-    public int getAllUserNum(){
-        return 0;
+    @Override
+    public int getAllUserNum() {
+        List<User> dataList = getAllUser();
+        return dataList.size();
+    }
+    @Override
+    public int getAllDietNum() {
+        List<AdminDietInfo> DietList = getAllDiet();
+        return  DietList.size();
     }
 
-    //全ユーザ情報取得
+    @Override
+    public List<AdminDietInfo> getAllDiet() {
+        return jdbcTemplate.query("SELECT * FROM diet_info ORDER BY id",new DataClassRowMapper<>(AdminDietInfo.class));
+    }
+
+    @Override
     public List<User> getAllUser() {
-        return jdbcTemplate.query("SELECT id ,name FROM diet ORDER BY id", new DataClassRowMapper<>(User.class));
+        return jdbcTemplate.query("SELECT * FROM users  ORDER BY id", new DataClassRowMapper<>(User.class));
     }
 
     //管理者ID変更
@@ -94,5 +104,16 @@ public class UsersDaoZaKuA implements UsersDao{
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("password",adminPassForm.getAdminPassword());
         return jdbcTemplate.update("UPDATE users SET password = :password WHERE permission = 1",param);
+    }
+
+    @Override
+    public List<User> userDate(AdminDateSearch adminDateSearch) {
+        var calender = new Calendar(adminDateSearch.getStart_date());
+        var endcalender = new Calendar(adminDateSearch.getEnd_date());
+        var param = new MapSqlParameterSource();
+        param.addValue("start_date", calender.getCalendar());
+        param.addValue("end_date", endcalender.getCalendar());
+        var list = jdbcTemplate.query("SELECT * FROM users WHERE  insert_date between :start_date and :end_date ;\n",param ,new DataClassRowMapper<>(User.class));
+        return list;
     }
 }
