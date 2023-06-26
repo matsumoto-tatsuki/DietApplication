@@ -93,12 +93,21 @@ public class DietDaoZAHA implements DietDao{
     }
 
     //ダイエットの詳細確認
-    public DietDetail getDietDetail(String dietName){
+    public List<DietDetail> getDietDetail(String dietName){
         var param = new MapSqlParameterSource();
         param.addValue("dietName",dietName);
-        var detailSql = "SELECT id,detail,img FROM diet_info WHERE diet_name = :dietName";
-        var dietData = jdbcTemplate.query(detailSql,param,new DataClassRowMapper<>(DietDetail.class));
-        return dietData.isEmpty() ? null : dietData.get(0);
+        String detailSql = "SELECT " +
+                "diet_detail.id AS id, " +
+                "diet_detail.detail_title AS detailTitle, " +
+                "diet_detail.detail_text AS detail, " +
+                "diet_detail_img.img_path AS img " +
+                "FROM " +
+                "diet_info " +
+                "JOIN diet_detail ON diet_info.id = diet_detail.diet_id " +
+                "LEFT JOIN diet_detail_img ON diet_detail_img.detail_id = diet_detail.id " +
+                "WHERE diet_info.diet_name = :dietName";
+
+          return jdbcTemplate.query(detailSql,param,new DataClassRowMapper<>(DietDetail.class));
     }
 
     //絞り込み

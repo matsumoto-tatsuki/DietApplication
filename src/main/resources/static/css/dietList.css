@@ -1,17 +1,12 @@
+body {
+    background-color: cornsilk;
+}
+
+
+
 img {
     width: 32px;
     height: 32px;
-}
-
-table {
-    border-collapse: collapse;
-    background-color: white;
-}
-
-td {
-    border: 1px solid #000000;
-    text-align: center;
-    padding: 20px;
 }
 
 .center {
@@ -28,45 +23,267 @@ td {
     align-items: center;
 }
 
+/*item1*/
 
-.form input {
-    padding: 5px;
-    margin: 10px;
+.background {
+    border: 2px solid;
+    width: 1200px;
+    background-color: rgb(189, 139, 239);
+    padding: 15px;
+
+    background-image: url('images/walking/walking.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.background{
-    background-color: rebeccapurple;
+.form {
+    background-color: rgb(189, 139, 239);
+    border: 2px solid;
+    border-radius: 2px;
+    margin: 15px;
+    padding: 15px;
+}
+
+/* テーブル本体*/
+table {
+    border-collapse: collapse;
+    background-color: white;
+    width: 100%;
+}
+
+td {
+    border: 2px solid #000000;
+    text-align: center;
     padding: 20px;
+
 }
 
-body{
-    background-color: cornsilk;
+.star-img{
+    width: 100px;
 }
 
-.title{
+.diet-list {
+    width: 317.53px;
+    cursor: pointer;
+    box-shadow: 2px 3px 3px #000000;
+    position: relative;
+    z-index: 1;
+    padding: 5px;
+}
+
+.diet-list:hover {
+    box-shadow: none;
+
+}
+
+
+th {
+    border: 2px solid #000000;
+    text-align: center;
+    padding: 10px;
+}
+
+/*DietList*/
+
+.diet-list::after {
+    background: #95fbff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    transform: scale(0, 1);
+    transform-origin: left top;
+    transition: .5s cubic-bezier(0.45, 0, 0.55, 1);
+    z-index: -1;
+}
+
+
+.diet-list:hover::after {
+    transform: scale(1, 1);
+}
+
+/*****************************************星の画像***************************************/
+.star-img img {
+    cursor: pointer;
+}
+
+/****************************************************************************************/
+/* <div id="modal">
+            <div class="detail-center">
+                <div class="page-switch">&larr;</div>
+                <div class="page-switch">&rarr;</div>
+                <div id="detail-title">
+                </div>
+                <div id="detail-text">
+                </div>
+                <img id="detail-img" src="">
+                <button id="detail-button" type="button" onclick="closeModal()" class="cancel-btn">閉じる</button>
+            </div>
+        </div> */
+
+.detail-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-center #detail-title {
     margin: 20px;
 }
+
+.detail-center #detail-text {
+    margin: 20px;
+    font-size: 24px;
+}
+
+.detail-center #detail-button {
+    margin: 20px;
+    padding: 15px;
+}
+
+/****************************************************************************************
+詳細画面
+****************************************************************************************/
+.page-button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.page-switch {
+    /* rightクラスが追加された要素に適用されるスタイル */
+    width: 64px;
+    height: 64px;
+    font-size: 64px;
+    cursor: pointer;
+}
+
+.page-switch.left:hover,
+.page-switch.right:hover {
+    color: blue;
+    /* ホバー時の色に変更 */
+}
+
+/****************************************************************************************
+タイトル
+****************************************************************************************/
+.title h1 {
+    border: 2px solid;
+    border-radius: 5px;
+    background-color: white;
+    padding: 20px 20px 20px 30px;
+}
+
+.title {
+    width: 100%;
+}
+
+/*****************************************************************************************
+TableCss
+*****************************************************************************************/
+
 
 /* --------------------------------------------------------------------------------------------------------------------------- */
 /* 絞り込み */
 
-.form-item1{
-    width: 800px;
+.form-item1 {
+    width: 1200px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 
+.search-category select {
+    border: 2px solid;
+    font-size: 18px;
+    width: 150px;
+    margin: 10px;
+    padding: 15px
+}
 
+
+.search-favo {
+    display: flex;
+    align-items: center;
+}
+
+.favo-item {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.favo-item img {
+    border: 2px solid;
+    border-radius: 5px;
+    background-color: white;
+    padding: 10px;
+
+}
+
+.favo-item input {
+    margin-left: 5px;
+}
+
+.select-item {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin: 10px;
+}
+
+.select-item img {
+    border: 2px solid;
+    border-radius: 5px;
+    background-color: white;
+    padding: 10px;
+}
+
+.select-item input {
+    margin-left: 5px;
+}
+
+/**絞り込み 検索***************************************************************/
+.search-keyword {
+    display: flex;
+    border: 2px solid;
+}
+
+.search-input {
+    width: 233.52px;
+    height: 53.2px;
+
+}
+
+.search-button {
+    width: 233.52px;
+    height: 53.2px;
+}
+
+/*検索入力*/
+.search-input input {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: 15px;
+}
+
+.search-button button {
+    width: 100%;
+    height: 100%;
+}
 
 /* -------------------------------------------------------------------------------------------------------------------------- */
 
 #modal {
     width: 800px;
-    height:600px;
-    border: solid 1px;
-    border-radius: 5px;
-    text-align: center;
+    border: solid 2px;
+    border-radius: 10px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s;
@@ -77,15 +294,15 @@ body{
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     background-color: #fff;
-  }
-  
-  #modal.is-show {
+}
+
+#modal.is-show {
     opacity: 1;
     visibility: visible;
     z-index: 10;
-  }
-  
-  .modal-message::before {
+}
+
+.modal-message::before {
     content: '';
     display: inline-block;
     width: 20px;
@@ -94,25 +311,129 @@ body{
     background-size: contain;
     vertical-align: middle;
     margin: 10px;
-  }
-  
-  #fadeLayer {
-    position:fixed;
-    top:0px;
-    left:0px;
-  
-    width:100%;
-    height:100%;
-  
-    background-color:#000000;
-    opacity:0.5;
-    visibility:hidden;
-    z-index:1;
-  }
+}
+
+#fadeLayer {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #000000;
+    opacity: 0.5;
+    visibility: hidden;
+    z-index: 1;
+}
 
 
-  #detail-img{
+#detail-img {
     width: 300px;
     height: 300px;
-  }
+}
+
+
+.background-1 {
+    background-image: url("/images/diet_background/walkingbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-2 {
+    background-image: url("/images/diet_background/swimmingbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.background-3 {
+    background-image: url("/images/diet_background/stretchbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-4 {
+    background-image: url("/images/diet_background/aerobicsbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-5 {
+    background-image: url("/images/diet_background/yogabackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-6 {
+    background-image: url("/images/diet_background/pilatesbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-7 {
+    background-image: url("/images/diet_background/dead_weightbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-8 {
+    background-image: url("/images/diet_background/low_carbbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-9 {
+    background-image: url("/images/diet_background/low_fatbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-10 {
+    background-image: url("/images/diet_background/proteinbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-11 {
+    background-image: url("/images/diet_background/vegetarianbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-12 {
+    background-image: url("/images/diet_background/fruitbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-13 {
+    background-image: url("/images/diet_background/yoghourtbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-14 {
+    background-image: url("/images/diet_background/touhubackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-15 {
+    background-image: url("/images/diet_background/konjacbackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-16 {
+    background-image: url("/images/diet_background/nattobackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-17 {
+    background-image: url("/images/diet_background/brown_rice_background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 

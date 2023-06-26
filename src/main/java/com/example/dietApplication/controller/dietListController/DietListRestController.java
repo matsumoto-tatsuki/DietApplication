@@ -28,14 +28,20 @@ public class DietListRestController {
     }
 
     @PostMapping("/api-diet-detail")
-    public DietDetail postDietDetail(@RequestBody DietForm dietForm){
+    public List<DietDetail> postDietDetail(@RequestBody DietForm dietForm){
 
 
-        var dietDetail =  dietListService.getDietDetail(dietForm.getDietName());
+        var dietDetails =  dietListService.getDietDetail(dietForm.getDietName());
 
-        System.out.println("png "+dietDetail.getImg());
+        for(var dietDetail : dietDetails){
+            System.out.println("png "+dietDetail.getId());
+            System.out.println("png "+dietDetail.getDetailTitle());
+            System.out.println("png "+dietDetail.getDetail());
+            System.out.println("png "+dietDetail.getImg());
+        }
+
 //        System.out.println("id"+dietDetail.getId() +"詳細"+dietDetail.getDetail());
-        return dietDetail;
+        return dietDetails;
         //ダイエット名前から詳細を取得する
 //        return DietDetail;
     }
