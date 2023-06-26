@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <th align="center">ダイエット数</th>
-                <th align="left">○○○○</th>
+                <td th:text="${diet_count}"></td>
             </tr>
         </table>
         </div>
@@ -33,12 +33,65 @@
 
 
     <div class ="text">
-    <input type="text" id="checkbox1">
 
-    <span>～</span>
+        <p id = "my-text">※yyyy-MM-ddで入力してください</p>
+        <form th:action="@{/admin_date}" method="post" th:object="${adminDate}">
+            <label for="start_date">登録日:</label>
 
-    <input type="text" id="checkbox2">
+            <div class="error-message">
+            <input type="text" id="start_date" th:field="*{start_date}" name="start_date">
+            <div class="error" th:each="error : ${#fields.errors('start_date')}">
+                [[ ${error} ]]
+
+            </div>
+            </div>
+
+            <p>～</p>
+
+            <div class="error-message">
+
+            <input type="text" id="end_date" th:field="*{end_date}" name="end_date">
+            <div class="error" th:each="error : ${#fields.errors('end_date')}">
+                [[ ${error} ]]
+            </div>
+            </div>
+
+
+            <button type="submit">検索</button>
+        </form>
+
+
     </div>
+
+
+
+    <div class = "search">
+        <div th:if="${admin_date}">
+
+        <h2>検索結果</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>名前</th>
+                <th>登録日</th>
+                <th>お問い合わせ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <tr th:each="diet_info :${admin_date}">
+                <td th:text = "${diet_info.userId}"> </td>
+                <td th:text = "${diet_info.userName}"> </td>
+                <td th:text = "${diet_info.insertDate}"> </td>
+                <td><a th:href="@{/admin-top}">チャットへ</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+
 <div class="pos2">
 <div class = "box_a">
 
@@ -55,7 +108,7 @@
                 <td th:text = "${users.userId}"></td>
                 <td th:text = "${users.userName}"></td>
                 <td th:text = "${users.insertDate}"></td>
-                <td><a href ="チャットへ"></a>チャットへ</td>
+                <td><a th:href="@{/admin-top}">チャットへ</a></td>
             </tr>
     </table>
 

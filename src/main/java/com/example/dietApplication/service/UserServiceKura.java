@@ -1,11 +1,10 @@
 package com.example.dietApplication.service;
 
-import com.example.dietApplication.dao.UserDaokura;
 import com.example.dietApplication.dao.UsersDao;
+import com.example.dietApplication.entity.AdminDateSearch;
+import com.example.dietApplication.entity.AdminDietInfo;
 import com.example.dietApplication.entity.User;
-import com.example.dietApplication.entity.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,14 +15,31 @@ public class UserServiceKura  {
     private UsersDao userDao;
 
     public List<User> getAllUser() {
+
         return userDao.getAllUser();
     }
 
+    public List<AdminDietInfo> getAllDiet() {
+
+        return userDao.getAllDiet();
+    }
+
     public int getAllUserNum() {
+
         return userDao.getAllUserNum();
     }
 
-    public List<User> userDateId(UserInfo userInfo) {
-        return userDao.userDateId(userInfo);
+    public int getAllDietNum() {
+        return userDao.getAllDietNum();
     }
+
+    public List<User> userDate(AdminDateSearch adminDateSearch) {
+        return userDao.userDate(adminDateSearch);
+    }
+
+    public List<User>userDateResult() {
+        return userDao.userDateResult();
+    }
+
+
 }
