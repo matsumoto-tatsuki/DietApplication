@@ -7,7 +7,10 @@
 }
 
 body{
-  background-color:rgba(156, 145, 145, 0.5)
+  background-color:rgba(156, 145, 145, 0.5); 
+  /*background-image: url("/images/gori_diet_dance.gif");
+  background-size: 100px; 
+  background-repeat: repeat;/*no-repeat;*/
 }
 
 .flex-head img{

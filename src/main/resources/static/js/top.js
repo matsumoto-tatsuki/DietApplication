@@ -40,6 +40,13 @@
                 <th class="weekday"><h2>金</h2></th>
                 <th class="weekday"><h2>土</h2></th>
             </tr>`;
+
+            const today = new Date();
+            const todayYear = today.getFullYear();      // 年を取得
+            const todayMonth = today.getMonth() + 1;    // 月を取得（0-11で表現されるため、+1する）
+            const todayDay = today.getDate(); 
+            console.log(`${todayYear}/${todayMonth}/${todayDay}`);
+
             for (const week of days) {
                 cal += '<tr>';
                 for (const day of week) {
