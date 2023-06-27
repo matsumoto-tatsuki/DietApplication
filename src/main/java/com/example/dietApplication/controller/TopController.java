@@ -20,13 +20,14 @@ public class TopController {
     private DietSelectDao dietSelectDao;
     @Autowired
     private MessageSource messageSource;
+  
     @GetMapping("/top")
     public String getTop(Model model){
-//        UserLogin userInfo = (UserLogin)session.getAttribute("user");
-//        var userId = "testuser";
-//        var list = dietSelectDao.getDietSelect(userInfo.getUserId());
-//        model.addAttribute("selectDiet",list);
-//        model.addAttribute("userId",userInfo.getUserId());
+       UserLogin userInfo = (UserLogin)session.getAttribute("user");
+       var userId = "testuser";
+       var list = dietSelectDao.getDietSelect(userInfo.getUserId());
+       model.addAttribute("selectDiet",list);
+       model.addAttribute("userId",userInfo.getUserId());
 
         var message = getRandomLine();
         System.out.println(message);

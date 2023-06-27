@@ -3,10 +3,12 @@ package com.example.dietApplication.controller.calendar;
 import com.example.dietApplication.entity.Calendar;
 import com.example.dietApplication.entity.DietResult;
 import com.example.dietApplication.entity.Memo;
+import com.example.dietApplication.entity.UserLogin;
 import com.example.dietApplication.form.MemoForm;
 import com.example.dietApplication.form.ResultForm;
 import com.example.dietApplication.service.CalenderService;
 import com.example.dietApplication.service.DietResultService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,8 @@ import java.util.List;
 @Controller
 public class CalendarController {
     @Autowired
+    private HttpSession session;
+    @Autowired
     private CalenderService calenderService;
     @Autowired
     private DietResultService dietResultService;
@@ -30,20 +34,20 @@ public class CalendarController {
     @GetMapping("/calendar/{date}")
     public String calendarDate(Model model, @PathVariable("date") String date){
         System.out.println(date);
-        String userId = "testuser";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
 
         model.addAttribute("date",date);
 
-        var result = dietResultService.getDietResult(new Calendar(date),userId);
+        var result = dietResultService.getDietResult(new Calendar(date),userInfo.getUserId());
         System.out.println(result);
         model.addAttribute("dietResult",result);
 
 
-        var memo = dietResultService.getMemo(new Calendar(date),userId);
+        var memo = dietResultService.getMemo(new Calendar(date),userInfo.getUserId());
         var memoText = memo == null ? "" : memo.getMemo();
         model.addAttribute("memo",memoText);
 
-        var weight = dietResultService.getWeight(new Calendar(date),userId);
+        var weight = dietResultService.getWeight(new Calendar(date),userInfo.getUserId());
         var weightText = weight == null ? "" : weight.getWeight();
         model.addAttribute("weight",weightText);
 
@@ -52,11 +56,11 @@ public class CalendarController {
 
     @GetMapping("/dietResultUpdate/{date}")
     public String resultUpdate(@ModelAttribute("dietResultForm")ResultForm resultForm,Model model,@PathVariable("date") String date){
-        String userId = "testuser";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
 
         model.addAttribute("date",date);
 
-        var result = dietResultService.getDietResult(new Calendar(date),userId);
+        var result = dietResultService.getDietResult(new Calendar(date),userInfo.getUserId());
         System.out.println(result);
         //model.addAttribute("dietResult",result);
         resultForm.setDietResults(result);
@@ -69,12 +73,12 @@ public class CalendarController {
         model.addAttribute("id",strId);
 
 
-        var memo = dietResultService.getMemo(new Calendar(date),userId);
+        var memo = dietResultService.getMemo(new Calendar(date),userInfo.getUserId());
         var memoText = memo == null ? "" : memo.getMemo();
         //model.addAttribute("memo",memoText);
         resultForm.setMemo(memoText);
 
-        var weight = dietResultService.getWeight(new Calendar(date),userId);
+        var weight = dietResultService.getWeight(new Calendar(date),userInfo.getUserId());
         int weightText = weight == null ? 0 : weight.getWeight();
 //        model.addAttribute("weight",weightText);
         resultForm.setWeight(weightText);
@@ -84,13 +88,13 @@ public class CalendarController {
 
     @PostMapping("/dietResultUpdate/{id}/{date}")
     public String resultUpdate2(@ModelAttribute("dietResultForm")ResultForm resultForm, @PathVariable("id") String id, @PathVariable("date") String date){
-        String userId = "testuser";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
 
         System.out.println(resultForm);
         System.out.println(id);
         System.out.println(date);
 
-        var diet = dietResultService.updateDietResult(new Calendar(date),userId,resultForm,id);
+        var diet = dietResultService.updateDietResult(new Calendar(date),userInfo.getUserId(),resultForm,id);
         System.out.println(diet);
 
         return "redirect:/update-conf";
@@ -98,23 +102,23 @@ public class CalendarController {
 
     @GetMapping("/dietResultInsert")
     public String resultInsertIndex(@ModelAttribute("dietResultForm")ResultForm resultForm,Model model){
-        String userId = "testuser";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
 
         LocalDate currentDate = LocalDate.now();
         String date = String.valueOf(currentDate);
 //        String date = "2023-06-19";
         model.addAttribute("date",date);
 
-        var resultSelect = dietResultService.getDietSelect(userId);
-        var result = dietResultService.getDietResult(new Calendar(date),userId);
+        var resultSelect = dietResultService.getDietSelect(userInfo.getUserId());
+        var result = dietResultService.getDietResult(new Calendar(date),userInfo.getUserId());
 
         if(result.size() != resultSelect.size()){
             List<DietResult> dietResultList = new ArrayList<>();
             for(var i = 0;i < resultSelect.size();i++){
                 dietResultList.add(new DietResult(0,resultSelect.get(i).getDietName(),resultSelect.get(i).getAction(),false));
             }
-            var num = dietResultService.insertDietResult(userId,dietResultList);
-            result = dietResultService.getDietResult(new Calendar(date),userId);
+            var num = dietResultService.insertDietResult(userInfo.getUserId(),dietResultList);
+            result = dietResultService.getDietResult(new Calendar(date),userInfo.getUserId());
         }
         System.out.println(result);
 
@@ -126,18 +130,18 @@ public class CalendarController {
         resultForm.setDietResults(result);
 
 
-        var memo = dietResultService.getMemo(new Calendar(date),userId);
+        var memo = dietResultService.getMemo(new Calendar(date),userInfo.getUserId());
         if(memo == null){
-            var num = dietResultService.insertMemo(userId,new MemoForm("初期値だよ"));
-            memo = dietResultService.getMemo(new Calendar(date),userId);
+            var num = dietResultService.insertMemo(userInfo.getUserId(),new MemoForm("初期値だよ"));
+            memo = dietResultService.getMemo(new Calendar(date),userInfo.getUserId());
         }
         resultForm.setMemo(memo.getMemo());
 
 
-        var weight = dietResultService.getWeight(new Calendar(date),userId);
+        var weight = dietResultService.getWeight(new Calendar(date),userInfo.getUserId());
         if(weight == null){
-            var num = dietResultService.insertUserWeight(0,userId);
-            weight = dietResultService.getWeight(new Calendar(date),userId);
+            var num = dietResultService.insertUserWeight(0,userInfo.getUserId());
+            weight = dietResultService.getWeight(new Calendar(date),userInfo.getUserId());
         }
         resultForm.setWeight(weight.getWeight());
 
@@ -146,7 +150,7 @@ public class CalendarController {
 
     @PostMapping("/dietResultInsert")
     public String resultInsert(@ModelAttribute("dietResultForm")ResultForm resultForm,Model model){
-        String userId = "testuser";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
 
         LocalDate currentDate = LocalDate.now();
         String date = String.valueOf(currentDate);
@@ -158,7 +162,7 @@ public class CalendarController {
 
         System.out.println("Insert:" + resultForm);
 
-        dietResultService.updateDietResult(new Calendar(date),userId,resultForm,strId);
+        dietResultService.updateDietResult(new Calendar(date),userInfo.getUserId(),resultForm,strId);
 
         return "redirect:/register-conf";
     }
