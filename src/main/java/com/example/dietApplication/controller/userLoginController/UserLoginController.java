@@ -21,6 +21,7 @@ public class UserLoginController {
     private HttpSession session;
     @Autowired
     UserLoginService userLoginService;
+
     @GetMapping("/user-login")
     public String getLogin(@ModelAttribute UserForm userForm){
         return "/login";
@@ -47,6 +48,7 @@ public class UserLoginController {
                     //var loginUser = userLoginService.getUserInfo(userData.getUserId());
                     session.setAttribute("user", loginUser);
                     session.setAttribute("userId",loginUser.getUserId());
+                    System.out.println("session登録");
                     if(loginUser.getPermission() == 1){
                         return "redirect:/管理者top";
                     }
