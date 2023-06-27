@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <title>css header</title>
@@ -10,14 +10,14 @@
 <header>
   <div class="item1">
     <h1><a href="/admin-top">Do-It-Diet</a></h1>
-    <img src="/images/signout.png" alt="キャー、観られちゃった///" onclick="logout()">
+    <img src="/images/signout.png" alt="キャー、観られちゃった///" style="cursor:pointer" onclick="openModalLogout()">
   </div>
-  <p>ようこそ！〇〇さん！</p>
+  <h2 class="userId">ようこそ！<span th:text="${session['userId']}" id="getUserId"></span>さん！</h2>
   <div class="nav">
     <div class="dropdown">
       <button class="dropbtn">アカウント管理</button>
       <div class="dropdown-content">
-        <a href="#">アカウント管理</a>
+        <a href="/admin_select">アカウント管理</a>
       </div>
     </div>
     <div class="dropdown">
@@ -40,6 +40,9 @@
     </div>
   </div>
 </header>
+
+<th:block th:insert="/popup/logout-popup"></th:block>
+<script src="/js/logout-popup.js"></script>
 </body>
 
 </html>

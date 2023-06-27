@@ -9,7 +9,7 @@
 
 <th:block th:insert="/admin/admin_header"></th:block>
 
-<div class = "scroll">
+<!--<div class = "scroll">-->
 
 <div class="pos">
     <div class = "box">
@@ -28,13 +28,13 @@
         </table>
         </div>
     </div>
-</div>
+<!--</div>-->
 
 
     <div class ="text">
 
         <p id = "my-text">※yyyy-MM-ddで入力してください</p>
-        <form th:action="@{/admin_date}" method="post" th:object="${adminDate}">
+        <form th:action="@{/admin_date}" method="post" th:object="${adminDate}" id = "date-input">
             <label for="start_date">登録日:</label>
 
             <div class="error-message">
@@ -67,7 +67,7 @@
     <div class = "search">
         <div th:if="${admin_date}">
 
-        <h2>検索結果</h2>
+<!--        <h2>検索結果</h2>-->
 
         <table>
             <thead>

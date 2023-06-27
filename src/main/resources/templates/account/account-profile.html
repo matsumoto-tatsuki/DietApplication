@@ -12,7 +12,7 @@
         <th:block th:insert="/common/header"></th:block>
 
         <!-- ユーザーのidに応じて変更　-->
-        <div class="cen">userID:
+        <div class="cen">username:
 
             <span th:text="${account1}"> </span>
             <a id = "edit" href = http://localhost:8080/account-edit# class="button"> 編集 </a>
@@ -26,9 +26,9 @@
         <br>
 
         <div class="box_a">
-            <p> ユーザー名 &nbsp</p>
+            <p> ユーザー名 &nbsp</p><br>
         <!--  ユーザー名に応じて変更  -->
-            <span th:text="${account2}"> </span>
+            <p th:text="${account2}"> </p>
         </div>
         <br>
 
