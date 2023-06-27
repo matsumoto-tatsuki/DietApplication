@@ -29,7 +29,7 @@ public class DietResultDaoMatsumoto implements DietResultDao{
         return jdbcTemplate.update("INSERT INTO diet_result(user_select_id,result,date)\n" +
                                         "VALUES\n" +
                                         "((SELECT s.id\n" +
-                                        " FROM diet_selects s\n" +
+                                        " FROM diet_select s\n" +
                                         " JOIN diet_info i\n" +
                                         " ON i.id = s.diet_id\n" +
                                         " WHERE CURRENT_DATE\n" +
@@ -51,7 +51,7 @@ public class DietResultDaoMatsumoto implements DietResultDao{
                         "       ,i.diet_name dietName\n" +
                         "       ,s.action action\n" +
                         "       ,r.result result\n" +
-                        " FROM diet_selects s\n" +
+                        " FROM diet_select s\n" +
                         " JOIN diet_result r \n" +
                         " ON r.user_select_id = s.id\n" +
                         " JOIN diet_info i\n" +
@@ -73,7 +73,7 @@ public class DietResultDaoMatsumoto implements DietResultDao{
         var num1 = jdbcTemplate.update("UPDATE diet_result\n" +
                                             "SET result = :flag\n" +
                                             "WHERE id = :resultId;",param);
-        var num2 = jdbcTemplate.update("UPDATE diet_selects\n" +
+        var num2 = jdbcTemplate.update("UPDATE diet_select\n" +
                                             "SET action = :selectAction\n" +
                                             "WHERE id = (SELECT user_select_id\n" +
                                             "            FROM diet_result\n" +
@@ -95,7 +95,7 @@ public class DietResultDaoMatsumoto implements DietResultDao{
         param.addValue("userId",userId);
         return jdbcTemplate.query("SELECT date,result\n" +
                         " FROM diet_result r\n" +
-                        " JOIN diet_selects s\n" +
+                        " JOIN diet_select s\n" +
                         " ON r.user_select_id = s.id \n" +
                         " WHERE EXTRACT(YEAR FROM date) = :year AND EXTRACT(MONTH FROM date) = :month\n" +
                         " AND s.user_id = :userId",param,

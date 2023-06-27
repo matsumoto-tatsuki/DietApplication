@@ -1,4 +1,4 @@
-package com.example.dietApplication.Service;
+package com.example.dietApplication.service;
 
 import com.example.dietApplication.entity.UserInfo;
 import com.example.dietApplication.dao.UsersDao;

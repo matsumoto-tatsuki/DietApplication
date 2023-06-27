@@ -93,6 +93,8 @@ public class UserLoginController {
 
     @GetMapping("/user-logout")
     public String getOut(){
-        return "/logout";
+        session.removeAttribute("user");
+        session.removeAttribute("userId");
+        return "redirect:/user-login";
     }
 }

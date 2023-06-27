@@ -1,16 +1,19 @@
 package com.example.dietApplication.controller.test;
 
 import com.example.dietApplication.dao.DietSelectDao;
+import com.example.dietApplication.entity.UserLogin;
 import com.example.dietApplication.form.UserDietForm;
 import com.example.dietApplication.form.UserEditDietForm;
 import com.example.dietApplication.form.UserSelectForm;
 import com.example.dietApplication.service.DietDbService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RestDietDbController {
-
+    @Autowired
+    private HttpSession session;
     @Autowired
     private DietDbService dietDbService;
 
@@ -27,9 +30,9 @@ public class RestDietDbController {
 
     @PostMapping("/api/db-register")
     public int apiDbRegister(@ModelAttribute("dietDb")UserDietForm userDietForm){
-        String userId = "testuser";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
         System.out.println("登録：" + userDietForm);
-        return dietDbService.insertUserSelect(userDietForm,userId);
+        return dietDbService.insertUserSelect(userDietForm,userInfo.getUserId());
     }
     @PutMapping("/api/db-edit")
     public int apiDbEdit(@ModelAttribute("editDietDb") UserEditDietForm userEditDietForm){

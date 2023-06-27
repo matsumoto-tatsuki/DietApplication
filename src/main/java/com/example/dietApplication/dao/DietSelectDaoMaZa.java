@@ -56,7 +56,7 @@ public class DietSelectDaoMaZa implements DietSelectDao{
         var list = jdbcTemplate.query("SELECT i.diet_name as dietName\n" +
                         "       ,s.action    as action\n" +
                         "       ,start_date || '～' || end_date as date\n" +
-                        " FROM diet_selects s\n" +
+                        " FROM diet_select s\n" +
                         " JOIN diet_info i\n" +
                         " ON i.id = s.diet_id\n" +
                         " WHERE diet_id =  (SELECT id FROM diet_info WHERE diet_name = '豆腐ダイエット')\n" +
@@ -75,7 +75,7 @@ public class DietSelectDaoMaZa implements DietSelectDao{
         var list = jdbcTemplate.query("SELECT i.diet_name as dietName\n" +
                         "       ,s.action    as action\n" +
                         "       ,start_date || '～' || end_date as date\n" +
-                        " FROM diet_selects s\n" +
+                        " FROM diet_select s\n" +
                         " JOIN diet_info i\n" +
                         " ON i.id = s.diet_id\n" +
                         " WHERE s.id = :id",param,
@@ -91,7 +91,7 @@ public class DietSelectDaoMaZa implements DietSelectDao{
         return jdbcTemplate.query("SELECT i.diet_name as dietName\n" +
                         "       ,s.action    as action\n" +
                         " ,start_date || '～' || end_date as date\n" +
-                        " FROM diet_selects s\n" +
+                        " FROM diet_select s\n" +
                         " JOIN diet_info i\n" +
                         " ON i.id = s.diet_id\n" +
                         " WHERE CURRENT_DATE\n" +
@@ -113,7 +113,7 @@ public class DietSelectDaoMaZa implements DietSelectDao{
         param.addValue("startDate",startDate.getCalendar());
         param.addValue("finishDate",finishDate.getCalendar());
 
-        return jdbcTemplate.update("INSERT INTO diet_selects(user_id,diet_id,action,start_date,end_date)\n" +
+        return jdbcTemplate.update("INSERT INTO diet_select(user_id,diet_id,action,start_date,end_date)\n" +
                 "VALUES\n" +
                 "(:userId,(SELECT id\n" +
                 "  FROM diet_info\n" +
@@ -132,7 +132,7 @@ public class DietSelectDaoMaZa implements DietSelectDao{
         param.addValue("startDate",startDate.getCalendar());
         param.addValue("finishDate",finishDate.getCalendar());
 
-        return jdbcTemplate.update("UPDATE diet_selects\n" +
+        return jdbcTemplate.update("UPDATE diet_select\n" +
                 "SET action = :action\n" +
                 "    ,start_date = :startDate\n" +
                 "    ,end_date = :finishDate\n" +
@@ -144,6 +144,6 @@ public class DietSelectDaoMaZa implements DietSelectDao{
         System.out.println("DietSelectDaoMatsumotoCheck(updateDiet)");
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("id",id);
-        return jdbcTemplate.update("DELETE FROM diet_selects WHERE id = :id",param);
+        return jdbcTemplate.update("DELETE FROM diet_select WHERE id = :id",param);
     }
 }
