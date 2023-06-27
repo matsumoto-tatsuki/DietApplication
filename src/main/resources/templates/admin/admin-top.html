@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>管理者TOP</title>
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
 
@@ -38,7 +39,7 @@
             <label for="start_date">登録日:</label>
 
             <div class="error-message">
-            <input type="text" id="start_date" th:field="*{start_date}" name="start_date">
+            <input type="text" id="start_date" th:field="*{start_date}" name="start_date" class="dateText">
             <div class="error" th:each="error : ${#fields.errors('start_date')}">
                 [[ ${error} ]]
 
@@ -49,7 +50,7 @@
 
             <div class="error-message">
 
-            <input type="text" id="end_date" th:field="*{end_date}" name="end_date">
+            <input type="text" id="end_date" th:field="*{end_date}" name="end_date" class="dateText">
             <div class="error" th:each="error : ${#fields.errors('end_date')}">
                 [[ ${error} ]]
             </div>
@@ -115,6 +116,11 @@
 
     <th:block th:insert="/admin/admin_footer"></th:block>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr(".dateText", {
+        dateFormat: "Y/m/d" // 日付の表示形式
+    });
+</script>
 </body>
 </html>

@@ -72,7 +72,7 @@ flex-grow: 3;
 }
 
 progress{
-width:70%;
+width:90%;
 -webkit-appearance:none;
 }
 ::-webkit-progress-value {
