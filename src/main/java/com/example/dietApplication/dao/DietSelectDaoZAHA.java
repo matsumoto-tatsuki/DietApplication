@@ -60,7 +60,7 @@ public class DietSelectDaoZAHA implements DietSelectDao{
 
     //お気に入り登録
     @Override
-    public int insertDietFavorite(UserFavoriteForm userFavoriteForm){
+    public int insertDietFavorite(UserFavoriteForm userFavoriteForm,String userId){
         var param = new MapSqlParameterSource();
         param.addValue("dietName", userFavoriteForm.getDietName());
         //名前からidを取得する

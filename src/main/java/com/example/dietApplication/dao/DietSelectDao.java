@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface DietSelectDao {
     //お気に入り登録
-    int insertDietFavorite(UserFavoriteForm userFavoriteForm);
+    int insertDietFavorite(UserFavoriteForm userFavoriteForm,String userId);
 
     int deleteDietFavorite(UserFavoriteForm userFavoriteForm);
 

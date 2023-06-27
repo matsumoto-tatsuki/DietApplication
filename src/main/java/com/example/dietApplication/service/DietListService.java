@@ -23,8 +23,8 @@ public class DietListService {
         return dietDao.getDietList();
     }
 
-    public int insertDietFavorite(UserFavoriteForm userFavoriteForm){
-        return dietSelectDao.insertDietFavorite(userFavoriteForm);
+    public int insertDietFavorite(UserFavoriteForm userFavoriteForm,String userId){
+        return dietSelectDao.insertDietFavorite(userFavoriteForm,userId);
     }
 
     public int deleteDietFavorite(UserFavoriteForm userFavoriteForm){

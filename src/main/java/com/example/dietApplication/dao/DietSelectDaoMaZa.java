@@ -20,14 +20,15 @@ public class DietSelectDaoMaZa implements DietSelectDao{
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
     @Override
-    public int insertDietFavorite(UserFavoriteForm userFavoriteForm){
+    public int insertDietFavorite(UserFavoriteForm userFavoriteForm,String userId){
         var param = new MapSqlParameterSource();
         param.addValue("dietName", userFavoriteForm.getDietName());
+        param.addValue("userId", userId);
         //名前からidを取得する
         String addDietFavoriteSql = "INSERT " +
                 "INTO users_favorite_diet (user_id,diet_id) " +
                 "VALUES (" +
-                "(SELECT users.user_id FROM users WHERE users.user_id = 'testuser')," +
+                ":userId,"+
                 "(SELECT diet_info.id FROM diet_info WHERE diet_info.diet_name = :dietName));";
         var dietInfoData = jdbcTemplate.update(addDietFavoriteSql, param);
         return dietInfoData;
