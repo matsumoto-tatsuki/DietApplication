@@ -45,6 +45,7 @@
                         <option value="hard">hard</option>
                     </select>
                 </div>
+                
                 <div class="search-keyword">
                     <div class="search-input">
                         <input type="text" placeholder="🔍 ※項目名がヒットします。">
@@ -318,7 +319,7 @@
 
                 var dietName = document.createElement("td");
                 dietName.setAttribute("class", "diet-list");
-                dietName.classList.add("background-"+(i+1));
+                dietName.classList.add("background-"+(data[i].id));
                 dietName.textContent = data[i].dietName;
 
                 var period = document.createElement("td");

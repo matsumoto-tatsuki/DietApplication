@@ -25,71 +25,50 @@ public class DietDaoZAHA implements DietDao{
 //    private String communityName; コミュニティ
 //    private String categoryName;  カテゴリ
 //    private String difficultName; 難易度名
-    public List<DietInfo> getDietList(){
+    public List<DietInfo> getDietList(String userId){
+        var param = new MapSqlParameterSource();
+        param.addValue("userId",userId);
 
-        String query = "SELECT " +
-                "CASE " +
-                "    WHEN subquery.diet_id IS NOT NULL " +
-                "        THEN true " +
-                "    ELSE false " +
-                "END AS favorite, " +
-                "diet_selects.id AS \"select\", " +
-                "diet_info.diet_name AS dietName, " +
-                "diet_selects.start_date || '～' || diet_selects.end_date AS period, " +
-                "category_tags.type AS categoryName, " +
-                "diet_info.difficulty AS difficultName " +
-                "FROM " +
-                "diet_info " +
-                "LEFT JOIN diet_selects " +
-                "ON diet_info.id = diet_selects.diet_id " +
-                "INNER JOIN category_tags " +
-                "ON diet_info.category_id = category_tags.category_id " +
-                "LEFT JOIN ( " +
-                "SELECT "+
-                "users_favorite_diet.diet_id "+
-                "FROM "+
-                "users_favorite_diet "+
-                ") AS subquery " +
-                "ON subquery.diet_id = diet_info.id " +
-                "ORDER BY diet_info.id ASC;";
+        String query = "SELECT "
+                + "diet_info.id AS id, "
+                + "CASE "
+                + "    WHEN favo.diet_id IS NOT NULL "
+                + "        THEN true "
+                + "    ELSE false "
+                + "    END AS favorite, "
+                + "diet_selects.diet_id AS select, "
+                + "diet_info.diet_name AS dietName, "
+                + "diet_selects.start_date || '～' || diet_selects.end_date AS period, "
+                + "category.type AS categoryName, "
+                + "diet_info.difficulty AS difficultName "
+                + "FROM "
+                + "diet_info "
+                + "LEFT JOIN ( "
+                + "    SELECT "
+                + "        diet_select.start_date, "
+                + "        diet_select.end_date, "
+                + "        diet_select.diet_id "
+                + "    FROM "
+                + "        diet_select "
+                + "    WHERE "
+                + "        diet_select.user_id = :userId "
+                + ") AS diet_selects "
+                + "    ON diet_info.id = diet_selects.diet_id "
+                + "INNER JOIN category "
+                + "    ON diet_info.category_id = category.id "
+                + "LEFT JOIN ( "
+                + "    SELECT "
+                + "        users_favorite_diet.diet_id "
+                + "    FROM "
+                + "        users_favorite_diet "
+                + "    WHERE "
+                + "        users_favorite_diet.user_id = :userId "
+                + ") AS favo "
+                + "    ON favo.diet_id = diet_info.id "
+                + "ORDER BY "
+                + "diet_info.id ASC;";
 
-//        String query = "SELECT " +
-//                "diet_selects.user_id, " +
-//                "CASE " +
-//                "   WHEN subquery.diet_id IS NOT NULL " +
-//                "       THEN true " +
-//                "   ELSE false " +
-//                "END AS \"favorite\", " +
-//                "CASE " +
-//                "   WHEN diet_selects.start_date IS NOT NULL AND diet_selects.end_date IS NOT NULL " +
-//                "       THEN true " +
-//                "   ELSE false " +
-//                "END AS \"select\", " +
-//                "diet_info.diet_name AS dietName, " +
-//                "diet_selects.start_date || '～' || diet_selects.end_date AS period, " +
-//                "category_tags.type AS categoryName, " +
-//                "diet_info.difficulty AS difficultName, " +
-//                "diet_channel.channel_name AS communityName " +
-//                "FROM " +
-//                "diet_selects " +
-//                "LEFT JOIN diet_info " +
-//                "   ON diet_selects.diet_id = diet_info.id " +
-//                "LEFT JOIN category_tags " +
-//                "   ON diet_info.category_id = category_tags.category_id " +
-//                "LEFT JOIN diet_channel " +
-//                "   ON diet_channel.diet_id = diet_selects.diet_id " +
-//                "LEFT JOIN ( " +
-//                "   SELECT " +
-//                "       favorite_diet.diet_id " +
-//                "   FROM " +
-//                "       diet_selects selects " +
-//                "       LEFT JOIN users_favorite_diet favorite_diet " +
-//                "           ON favorite_diet.diet_id = selects.diet_id " +
-//                ") AS subquery " +
-//                "   ON subquery.diet_id = diet_selects.diet_id " +
-//                "ORDER BY diet_selects.diet_id ASC;";
-
-        return jdbcTemplate.query(query, new DataClassRowMapper<>(DietInfo.class));
+        return jdbcTemplate.query(query,param, new DataClassRowMapper<>(DietInfo.class));
     }
 
 
@@ -98,54 +77,105 @@ public class DietDaoZAHA implements DietDao{
     public List<DietDetail> getDietDetail(String dietName){
         var param = new MapSqlParameterSource();
         param.addValue("dietName",dietName);
+//        String detailSql = "SELECT " +
+//                "diet_detail.id AS id, " +
+//                "diet_detail.detail_title AS detailTitle, " +
+//                "diet_detail.detail_text AS detail, " +
+//                "diet_detail_img.img_path AS img " +
+//                "FROM " +
+//                "diet_info " +
+//                "JOIN diet_detail ON diet_info.id = diet_detail.diet_id " +
+//                "LEFT JOIN diet_detail_img ON diet_detail_img.detail_id = diet_detail.id " +
+//                "WHERE diet_info.diet_name = :dietName";
+
         String detailSql = "SELECT " +
                 "diet_detail.id AS id, " +
-                "diet_detail.detail_title AS detailTitle, " +
-                "diet_detail.detail_text AS detail, " +
-                "diet_detail_img.img_path AS img " +
+                "diet_detail.title AS detailTitle, " +
+                "diet_detail.detail AS detail, " +
+                "diet_detail.img_path AS img " +
                 "FROM " +
-                "diet_info " +
-                "JOIN diet_detail ON diet_info.id = diet_detail.diet_id " +
-                "LEFT JOIN diet_detail_img ON diet_detail_img.detail_id = diet_detail.id " +
-                "WHERE diet_info.diet_name = :dietName";
+                "diet_info JOIN diet_detail " +
+                "ON diet_info.id = diet_detail.diet_id " +
+                "WHERE " +
+                "diet_info.diet_name = :dietName;";
 
-          return jdbcTemplate.query(detailSql,param,new DataClassRowMapper<>(DietDetail.class));
+        return jdbcTemplate.query(detailSql,param,new DataClassRowMapper<>(DietDetail.class));
     }
 
     //絞り込み
-    public List<DietInfo> getSearchDiet(DietSearchForm dietSearchForm){
+    public List<DietInfo> getSearchDiet(DietSearchForm dietSearchForm,String userId){
 
-        String query = "SELECT " +
-                "CASE " +
-                "WHEN subquery.diet_id IS NOT NULL " +
-                "THEN true " +
-                "ELSE false " +
-                "END AS favorite, " +
-                "diet_selects.id AS \"select\", " +
-                "diet_info.diet_name AS dietName, " +
-                "diet_selects.start_date || '～' || diet_selects.end_date AS period, " +
-                "category_tags.type AS categoryName, " +
-                "diet_info.difficulty AS difficultName " +
-                "FROM " +
-                "diet_info " +
-                "LEFT JOIN diet_selects " +
-                "ON diet_info.id = diet_selects.diet_id " +
-                "INNER JOIN category_tags " +
-                "ON diet_info.category_id = category_tags.category_id " +
-                "LEFT JOIN ( " +
-                "SELECT "+
-                "users_favorite_diet.diet_id "+
-                "FROM "+
-                "users_favorite_diet "+
-                ") AS subquery " +
-                "ON subquery.diet_id = diet_info.id ";
+//        String query = "SELECT "
+//                + "CASE "
+//                + "    WHEN subquery.diet_id IS NOT NULL "
+//                + "    THEN true "
+//                + "    ELSE false "
+//                + "END AS favorite, "
+//                + "diet_select.id AS \"select\", "
+//                + "diet_info.diet_name AS dietName, "
+//                + "diet_select.start_date || '～' || diet_select.end_date AS period, "
+//                + "category.type AS categoryName, "
+//                + "diet_info.difficulty AS difficultName "
+//                + "FROM "
+//                + "diet_info "
+//                + "LEFT JOIN diet_select "
+//                + "    ON diet_info.id = diet_select.diet_id "
+//                + "INNER JOIN category "
+//                + "    ON diet_info.category_id = category.id "
+//                + "LEFT JOIN ( "
+//                + "    SELECT "
+//                + "        users_favorite_diet.diet_id "
+//                + "    FROM "
+//                + "        users_favorite_diet "
+//                + "    ) AS subquery "
+//                + "    ON subquery.diet_id = diet_info.id ";
 
         var param = new MapSqlParameterSource();
+        param.addValue("userId",userId);
+
+        String query = "SELECT "
+                + "diet_info.id AS id, "
+                + "CASE "
+                + "    WHEN favo.diet_id IS NOT NULL "
+                + "        THEN true "
+                + "    ELSE false "
+                + "    END AS favorite, "
+                + "diet_selects.diet_id AS select, "
+                + "diet_info.diet_name AS dietName, "
+                + "diet_selects.start_date || '～' || diet_selects.end_date AS period, "
+                + "category.type AS categoryName, "
+                + "diet_info.difficulty AS difficultName "
+                + "FROM "
+                + "diet_info "
+                + "LEFT JOIN ( "
+                + "    SELECT "
+                + "        diet_select.id, "
+                + "        diet_select.start_date, "
+                + "        diet_select.end_date, "
+                + "        diet_select.diet_id "
+                + "    FROM "
+                + "        diet_select "
+                + "    WHERE "
+                + "        diet_select.user_id = :userId "
+                + ") AS diet_selects "
+                + "    ON diet_info.id = diet_selects.diet_id "
+                + "INNER JOIN category "
+                + "    ON diet_info.category_id = category.id "
+                + "LEFT JOIN ( "
+                + "    SELECT "
+                + "        users_favorite_diet.diet_id "
+                + "    FROM "
+                + "        users_favorite_diet "
+                + "    WHERE "
+                + "        users_favorite_diet.user_id = :userId "
+                + ") AS favo "
+                + "    ON favo.diet_id = diet_info.id ";
+
         StringBuilder whereClause = new StringBuilder();
 
         if (dietSearchForm.isFavoriteSearch()) {
             System.out.println("お気に入り 絞り込み適用");
-            whereClause.append("(CASE WHEN subquery.diet_id IS NOT NULL THEN true ELSE false END = true) ");
+            whereClause.append("(CASE WHEN favo.diet_id IS NOT NULL THEN true ELSE false END = true) ");
         }
 
         if (dietSearchForm.isSelectSearch()) {
@@ -162,7 +192,7 @@ public class DietDaoZAHA implements DietDao{
                 whereClause.append("AND ");
             }
             param.addValue("categoryName", dietSearchForm.getCategoryName());
-            whereClause.append("category_tags.type = :categoryName ");
+            whereClause.append("category.type = :categoryName ");
         }
 
 

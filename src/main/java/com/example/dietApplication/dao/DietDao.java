@@ -9,13 +9,13 @@ import java.util.List;
 
 public interface DietDao {
     //ダイエットの一覧表示
-    List<DietInfo> getDietList();
+    List<DietInfo> getDietList(String userId);
 
     //ダイエットの詳細確認
     List<DietDetail> getDietDetail(String dietName);
 
     //絞り込み
-    List<DietInfo> getSearchDiet(DietSearchForm dietSearchForm);
+    List<DietInfo> getSearchDiet(DietSearchForm dietSearchForm,String userId);
 
 
 

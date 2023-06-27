@@ -19,12 +19,12 @@ public class DietSelectDaoMatsumoto implements  DietSelectDao{
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
-    public int insertDietFavorite(UserFavoriteForm userFavoriteForm) {
+    public int insertDietFavorite(UserFavoriteForm userFavoriteForm,String userId) {
         return 0;
     }
 
     @Override
-    public int deleteDietFavorite(UserFavoriteForm userFavoriteForm) {
+    public int deleteDietFavorite(UserFavoriteForm userFavoriteForm,String userId) {
         return 0;
     }
 

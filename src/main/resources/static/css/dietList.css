@@ -81,7 +81,7 @@ th {
 
 /*DietList*/
 
-.diet-list::after {
+/* .diet-list::after {
     background: #95fbff;
     position: absolute;
     top: 0;
@@ -98,7 +98,7 @@ th {
 
 .diet-list:hover::after {
     transform: scale(1, 1);
-}
+} */
 
 /*****************************************星の画像***************************************/
 .star-img img {
