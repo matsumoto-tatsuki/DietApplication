@@ -1,15 +1,13 @@
 package com.example.dietApplication.controller.accountManagement;
 
-import com.example.dietApplication.Service.AccountService;
 import com.example.dietApplication.dao.UsersDaoKinjo;
 import com.example.dietApplication.entity.UserLogin;
 import com.example.dietApplication.form.UserForm;
 import jakarta.servlet.http.HttpSession;
+import com.example.dietApplication.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
