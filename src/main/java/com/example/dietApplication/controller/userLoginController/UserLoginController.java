@@ -48,7 +48,7 @@ public class UserLoginController {
                     session.setAttribute("user", loginUser);
                     session.setAttribute("userId",loginUser.getUserId());
                     if(loginUser.getPermission() == 1){
-                        return "redirect:/管理者top";
+                        return "redirect:/admin-top";
                     }
                     return "redirect:/top";
                 }else{
