@@ -1,7 +1,10 @@
+
+
 package com.example.dietApplication.controller.memo;
 
 import com.example.dietApplication.entity.Calendar;
 import com.example.dietApplication.entity.Memo;
+import com.example.dietApplication.entity.UserLogin;
 import com.example.dietApplication.form.MemoForm;
 import com.example.dietApplication.service.MemoService;
 import jakarta.servlet.http.HttpSession;
@@ -20,11 +23,14 @@ public class MemoController {
     @Autowired
     MemoService memoService;
 
+    @Autowired
+    private HttpSession session;
 
     @GetMapping("/memo/select")
     public String memo_select() {
         // メモ取得メソッド起動
-        var userId = "testuser";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        var userId = userInfo.getUserId();
         LocalDate currentDate = LocalDate.now();
         String date = String.valueOf(currentDate);
 
@@ -46,8 +52,9 @@ public class MemoController {
     @PostMapping("/memo_register")
     public String memo_insert(@ModelAttribute("memo") MemoForm insert_memo) {
 
-        // 疑似的にuser_idを作成
-        String user_id = "testuser";
+        // user_idを取得
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        String user_id = userInfo.getUserId();
         // メモを挿入
         memoService.insertMemo(user_id,insert_memo);
 
@@ -66,7 +73,8 @@ public class MemoController {
     public String memo_update(Model model) {
 
         // メモ取得メソッド起動
-        var userId = "testuser";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        var userId = userInfo.getUserId();
         LocalDate currentDate = LocalDate.now();
         String date = String.valueOf(currentDate);
 
@@ -83,7 +91,8 @@ public class MemoController {
     public String memo_update(MemoForm update_memo) {
 
         // メモの更新
-        var userId = "testuser";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        var userId = userInfo.getUserId();
         LocalDate currentDate = LocalDate.now();
         String date = String.valueOf(currentDate);
 
