@@ -88,10 +88,10 @@ public class AccountController {
         return "/account/account-update";
     }
 
-    @PostMapping("/account-delete")
+    @GetMapping("/account-delete")
     public String deleteAccount(){
-    String userId = "masaratoen621";
-            accountService.deleteUserInfo(userId);
-        return "top";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        //var num = accountService.deleteUserInfo(userInfo.getUserId());
+        return "redirect:/user-logout";
     }
 }

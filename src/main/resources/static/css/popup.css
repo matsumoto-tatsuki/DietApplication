@@ -98,3 +98,36 @@
           visibility: visible;
           z-index: 10;
         }
+
+
+
+
+
+        #delete-popup h2{
+          margin:15% auto;
+          text-align:center;
+        }
+  
+        #delete-popup {
+            width: 500px;
+            height: 300px;
+            border: solid 1px;
+            border-radius: 20px;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color:#CC99FF;
+          }
+  
+          #delete-popup.is-show {
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+          }

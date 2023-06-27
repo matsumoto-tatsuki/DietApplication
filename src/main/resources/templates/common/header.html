@@ -31,7 +31,7 @@
                 <button class="dropbtn">アカウント</button>
                 <div class="dropdown-content">
                     <a href="http://localhost:8080/account-profile">プロフィール</a>
-                    <a href="#">削除</a>
+                    <a href="#" onclick="openModalDelete()">削除</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -45,7 +45,7 @@
         </div>
     </header>
     <th:block th:insert="/popup/logout-popup"></th:block>
-    <script src="/js/logout-popup.js"></script>
+    <th:block th:insert="/popup/delete-popup"></th:block>
 </body>
 
 </html>
