@@ -24,7 +24,7 @@ public class DietSelectDaoMatsumoto implements  DietSelectDao{
     }
 
     @Override
-    public int deleteDietFavorite(UserFavoriteForm userFavoriteForm) {
+    public int deleteDietFavorite(UserFavoriteForm userFavoriteForm,String userId) {
         return 0;
     }
 

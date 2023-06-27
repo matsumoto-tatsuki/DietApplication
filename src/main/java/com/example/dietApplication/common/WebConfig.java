@@ -15,7 +15,12 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(sessionInterceptor)
                 .addPathPatterns("/**") // すべてのリクエストに対してインターセプタを適用する
-                .excludePathPatterns("/user-login"); // ログイン画面へのアクセスは除外する場合
+                .excludePathPatterns("/user-login")
+                .excludePathPatterns("/css/*")
+                .excludePathPatterns("/images/*")
+                .excludePathPatterns("/js/*")
+                .excludePathPatterns("/insert-user"); // ログイン画面へのアクセスは除外する場合
+        ; // ログイン画面へのアクセスは除外する場合
     }
 }
 

@@ -18,7 +18,7 @@ public class DietSelectDaoZAHA implements DietSelectDao{
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
-    public int deleteDietFavorite(UserFavoriteForm userFavoriteForm){
+    public int deleteDietFavorite(UserFavoriteForm userFavoriteForm,String userId){
         var param = new MapSqlParameterSource();
         param.addValue("dietName", userFavoriteForm.getDietName());
         //名前からidを取得する

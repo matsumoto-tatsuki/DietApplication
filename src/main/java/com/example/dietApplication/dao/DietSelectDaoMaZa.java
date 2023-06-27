@@ -35,11 +35,12 @@ public class DietSelectDaoMaZa implements DietSelectDao{
     }
 
     @Override
-    public int deleteDietFavorite(UserFavoriteForm userFavoriteForm){
+    public int deleteDietFavorite(UserFavoriteForm userFavoriteForm,String userId){
         var param = new MapSqlParameterSource();
         param.addValue("dietName", userFavoriteForm.getDietName());
+        param.addValue("userId", userId);
         //名前からidを取得する
-        String deleteDietFavoriteSql = "DELETE FROM users_favorite_diet WHERE diet_id = (SELECT diet_info.id FROM diet_info WHERE diet_info.diet_name = :dietName)";
+        String deleteDietFavoriteSql = "DELETE FROM users_favorite_diet WHERE diet_id = (SELECT diet_info.id FROM diet_info WHERE diet_info.diet_name = :dietName) AND users_favorite_diet.user_id = :userId";
 
         var dietInfoData = jdbcTemplate.update(deleteDietFavoriteSql, param);
         return dietInfoData;

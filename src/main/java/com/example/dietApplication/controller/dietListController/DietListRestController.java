@@ -31,7 +31,9 @@ public class DietListRestController {
     @DeleteMapping("/api-diet-favorite")
     public void deleteDietFavorite(@RequestBody UserFavoriteForm userFavoriteForm){
         System.out.println(userFavoriteForm.getDietName());
-        dietListService.deleteDietFavorite(userFavoriteForm);
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        var userId = userInfo.getUserId();
+        dietListService.deleteDietFavorite(userFavoriteForm,userId);
     }
 
     @PostMapping("/api-diet-detail")
@@ -56,13 +58,18 @@ public class DietListRestController {
     @PostMapping("/api-filter")
     public List<DietInfo> postFilter(@RequestBody DietSearchForm dietSearchForm){
         System.out.println("フォーム成功");
-        var dietList = dietListService.getSearchDiet(dietSearchForm);
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        var userId = userInfo.getUserId();
+        var dietList = dietListService.getSearchDiet(dietSearchForm,userId);
         return dietList;
     }
 
     @GetMapping("/get-diet-list")
     List<DietInfo> getDietList(){
-        var dietLists = dietListService.getDietList();
+        //セッション
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        var userId = userInfo.getUserId();
+        var dietLists = dietListService.getDietList(userId);
         System.out.println(dietLists);
         return dietLists;
     }
