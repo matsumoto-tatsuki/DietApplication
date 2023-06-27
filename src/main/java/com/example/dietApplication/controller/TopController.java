@@ -20,6 +20,7 @@ public class TopController {
     private DietSelectDao dietSelectDao;
     @Autowired
     private MessageSource messageSource;
+  
     @GetMapping("/top")
     public String getTop(Model model){
         UserLogin userInfo = (UserLogin)session.getAttribute("user");

@@ -50,7 +50,7 @@ public class UserLoginController {
                     session.setAttribute("userId",loginUser.getUserId());
                     System.out.println("session登録");
                     if(loginUser.getPermission() == 1){
-                        return "redirect:/管理者top";
+                        return "redirect:/admin-top";
                     }
                     return "redirect:/top";
                 }else{

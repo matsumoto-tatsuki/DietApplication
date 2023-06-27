@@ -3,7 +3,7 @@ package com.example.dietApplication.controller.admin;
 
 import com.example.dietApplication.entity.AdminDateSearch;
 import com.example.dietApplication.entity.User;
-import com.example.dietApplication.service.UserServiceKura;
+import com.example.dietApplication.Service.UserServiceKura;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

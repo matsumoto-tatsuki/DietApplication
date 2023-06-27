@@ -1,6 +1,6 @@
-package com.example.dietApplication.service;
+package com.example.dietApplication.Service;
 
-import com.example.dietApplication.dao.UsersDao;
+import com.example.dietApplication.dao.UsersDaoZaKuAKi;
 import com.example.dietApplication.entity.AdminDateSearch;
 import com.example.dietApplication.entity.AdminDietInfo;
 import com.example.dietApplication.entity.User;
@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class UserServiceKura  {
     @Autowired
-    private UsersDao userDao;
+    private UsersDaoZaKuAKi userDao;
 
     public List<User> getAllUser() {
 
