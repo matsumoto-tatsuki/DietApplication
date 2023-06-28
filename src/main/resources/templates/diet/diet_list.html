@@ -45,7 +45,7 @@
                         <option value="hard">hard</option>
                     </select>
                 </div>
-                
+
                 <div class="search-keyword">
                     <div class="search-input">
                         <input type="text" placeholder="🔍 ※項目名がヒットします。">
@@ -292,15 +292,19 @@
                 var favoImage = document.createElement("img");
                 data[i].favorite;
                 favo.classList.add("star-img");
+                favo.classList.add("td-favo");
                 console.log(data[i].favorite);
+
                 if (data[i].favorite) {
                     favoImage.setAttribute("src", "/images/star_on.png");
                 } else {
                     favoImage.setAttribute("src", "/images/star_off.png");
                 }
+
                 favo.appendChild(favoImage);
 
                 var select = document.createElement("td");
+                select.setAttribute("class","td-select");
                 var selectImage = document.createElement("img");
                 var selectinput = document.createElement("input");
                 selectinput.type = "hidden";
@@ -319,17 +323,21 @@
 
                 var dietName = document.createElement("td");
                 dietName.setAttribute("class", "diet-list");
+                dietName.classList.add("td-dietName");
                 dietName.classList.add("background-"+(data[i].id));
                 dietName.textContent = data[i].dietName;
 
                 var period = document.createElement("td");
                 period.textContent = data[i].period;
+                period.setAttribute("class","td-period");
 
                 var categoryName = document.createElement("td");
                 categoryName.textContent = data[i].categoryName;
+                categoryName.setAttribute("class","td-categoryName");
 
                 var difficultName = document.createElement("td");
                 difficultName.textContent = data[i].difficultName;
+                difficultName.setAttribute("class","td-difficultName");
 
 
                 tr.appendChild(favo);
