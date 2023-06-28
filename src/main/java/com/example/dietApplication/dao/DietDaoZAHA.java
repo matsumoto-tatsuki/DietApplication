@@ -141,7 +141,7 @@ public class DietDaoZAHA implements DietDao{
                 + "        THEN true "
                 + "    ELSE false "
                 + "    END AS favorite, "
-                + "diet_selects.diet_id AS select, "
+                + "diet_selects.id AS select, "
                 + "diet_info.diet_name AS dietName, "
                 + "diet_selects.start_date || '～' || diet_selects.end_date AS period, "
                 + "category.type AS categoryName, "
