@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class AdminTopController {
@@ -27,9 +28,23 @@ public class AdminTopController {
         int count = userService.getAllUserNum();
         int AdminDietNum = userService.getAllDietNum();
 
-        model.addAttribute("notice", "お知らせなし");
+
+        var users = userService.getAllUser();
+
+        Random random = new Random();
+
+        for(var user : users){
+            int lineNumber = random.nextInt(2) + 1; // ランダムな行番号を生成
+            if(lineNumber == 1) {
+                user.setUserSymbol("通知なし");
+            }else{
+                user.setUserSymbol("通知あり");
+            }
+        }
+        //ランダム関数
+
         model.addAttribute("adminCount", count);
-        model.addAttribute("adminTop", userService.getAllUser());
+        model.addAttribute("adminTop",users);
         model.addAttribute("admin_Alldiet", userService.getAllDiet());
         model.addAttribute("diet_count", AdminDietNum);
 
@@ -42,9 +57,13 @@ public class AdminTopController {
         int count = userService.userDate(adminDate).size();
         int AdminDietNum = userService.getAllDietNum();
 
-        model.addAttribute("notice", "お知らせなし");
+
+
+
+
+//        model.addAttribute("notice", "お知らせなし");
         model.addAttribute("adminCount", count);
-        model.addAttribute("adminTop", userService.getAllUser());
+//        model.addAttribute("adminTop", userService.getAllUser());
 //        model.addAttribute("adminTop", userService.getAllDiet());
         model.addAttribute("diet_count", AdminDietNum);
 //        model.addAttribute("admindate",userService.userDateResult());
@@ -53,8 +72,20 @@ public class AdminTopController {
             model.addAttribute("adminTop", userService.getAllUser());
             return "/admin/admin-top";
         }
+
         List<User> admin = userService.userDate(adminDate);
         model.addAttribute("adminTop",admin);
+
+        Random random = new Random();
+
+        for(var user : admin){
+            int lineNumber = random.nextInt(2) + 1; // ランダムな行番号を生成
+            if(lineNumber == 1) {
+                user.setUserSymbol("通知なし");
+            }else{
+                user.setUserSymbol("通知あり");
+            }
+        }
         return "/admin/admin-top";
 
     }

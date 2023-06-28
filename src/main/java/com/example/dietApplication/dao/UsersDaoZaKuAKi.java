@@ -115,7 +115,7 @@ public class UsersDaoZaKuAKi implements UsersDao{
 
     @Override
     public List<User> getAllUser() {
-        return jdbcTemplate.query("SELECT user_id, user_name,insert_date  FROM users WHERE permission = 2  ORDER BY id", new DataClassRowMapper<>(User.class));
+        return jdbcTemplate.query("SELECT user_id, user_name,insert_date,user_symbol FROM users WHERE permission = 2  ORDER BY id", new DataClassRowMapper<>(User.class));
     }
 
     //管理者ID変更
