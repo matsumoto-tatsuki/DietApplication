@@ -2,6 +2,7 @@ package com.example.dietApplication.controller;
 
 import com.example.dietApplication.dao.DietSelectDao;
 import com.example.dietApplication.entity.UserLogin;
+import com.example.dietApplication.service.AccountService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -17,6 +18,8 @@ public class TopController {
     @Autowired
     private HttpSession session;
     @Autowired
+    private AccountService accountService;
+    @Autowired
     private DietSelectDao dietSelectDao;
     @Autowired
     private MessageSource messageSource;
@@ -28,6 +31,13 @@ public class TopController {
         var list = dietSelectDao.getDietSelect(userInfo.getUserId());
         model.addAttribute("selectDiet",list);
         model.addAttribute("userId",userInfo.getUserId());
+
+        var accountInfo = accountService.getUserInfo(userInfo.getUserId());
+        if(accountInfo.getUserSymbol() == null) {
+            model.addAttribute("imagePath", "/images/top.png");
+        }else{
+            model.addAttribute("imagePath", "/images/" + accountInfo.getUserSymbol());
+        }
 
         var message = getRandomLine();
         System.out.println(message);
