@@ -160,12 +160,17 @@ footer {
 
 footer h1 {
   color: #ffffff;
+  text-align: left;
+
+
 }
 
 footer p {
   margin: 0px;
   color: #ffffff;
   font-size: 14px;
+  text-align: left;
+
 }
 
 footer a {

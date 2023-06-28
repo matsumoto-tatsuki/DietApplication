@@ -5,25 +5,27 @@
 <head>
   <title>account edit display</title>
   <link rel="stylesheet" href="/css/account.css">
+  <link rel="stylesheet" href="/css/commons.css">
 </head>
 <body>
   <th:block th:insert="/common/header"></th:block>
 
   <div class="cen">
 
-    <form action="account-update" method="POST">
+    <form action="/account-update" method="POST" id="updateForm">
       <p>新しい名前を入力して下さい</p>
 
       <div th:if="${errorMessage}"></div>
       <p class="error-message" th:text= "${errorMessage}" ></p>
       <input type="text" name="userName">
-
-      <button type="submit">　 更　新 　</button>
+      <br>
+      <button type="button" class="button" onclick="openModal()">　 更　新 　</button>
     </form> <br>
 
   </div>
 
   <th:block th:insert="/common/footer"></th:block>
-
+  <th:block th:insert="/popup/update-popup"></th:block>
+  <script src="/js/popup.js"></script>
 </body>
 </html>

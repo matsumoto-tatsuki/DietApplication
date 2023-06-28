@@ -12,7 +12,7 @@
             <h1><a href="/top">Do-It-Diet</a></h1>
             <img src="/images/signout.png" alt="キャー、観られちゃった///" style="cursor:pointer" onclick="openModalLogout()">
         </div>
-        <h2 class="userId">ようこそ！<span th:text="${session['userId']}" id="getUserId"></span>さん！</h2>
+        <h2 class="userId">ようこそ！<span th:text="${session['userName']}" id="getUserId"></span>さん！</h2>
         <div class="nav">
             <div class="dropdown">
                 <button class="dropbtn">ダイエット</button>
@@ -31,7 +31,7 @@
                 <button class="dropbtn">アカウント</button>
                 <div class="dropdown-content">
                     <a href="http://localhost:8080/account-profile">プロフィール</a>
-                    <a href="#">削除</a>
+                    <a href="#" onclick="openModalDelete()">削除</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -45,7 +45,7 @@
         </div>
     </header>
     <th:block th:insert="/popup/logout-popup"></th:block>
-    <script src="/js/logout-popup.js"></script>
+    <th:block th:insert="/popup/delete-popup"></th:block>
 </body>
 
 </html>

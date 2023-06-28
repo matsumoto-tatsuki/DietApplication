@@ -4,6 +4,7 @@
 
 <head>
   <title>account profile display</title>
+    <link rel="stylesheet" href="/css/commons.css">
   <link rel="stylesheet" href="/css/account.css">
 </head>
 
@@ -12,23 +13,23 @@
         <th:block th:insert="/common/header"></th:block>
 
         <!-- ユーザーのidに応じて変更　-->
-        <div class="cen">userID:
+        <div class="cen">ユーザ名:
 
-            <span th:text="${account1}"> </span>
-            <a id = "edit" href = http://localhost:8080/account-edit# class="button"> 編集 </a>
+            <span th:text="${account2}"> </span>
+            <a id = "edit" href ="/account-edit" class="button"> 編集 </a>
 
         </div>
         <br>
         <!-- シンボルに応じて変更　-->
         <a href ="account-icon">
-            <img th:src ="${imagePath}" alt="画像が設定されていません；；">
+            <img th:src ="${imagePath}" alt="画像が設定されていません">
         </a>
         <br>
 
         <div class="box_a">
-            <p> ユーザー名 &nbsp</p>
+            <p> ユーザーID &nbsp</p><br>
         <!--  ユーザー名に応じて変更  -->
-            <span th:text="${account2}"> </span>
+            <p th:text="${account1}"> </p>
         </div>
         <br>
 
@@ -43,6 +44,8 @@
         <br>
 
         <th:block th:insert="/common/footer"></th:block>
+
+
 
     </body>
 </html>

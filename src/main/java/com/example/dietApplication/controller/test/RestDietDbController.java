@@ -19,10 +19,10 @@ public class RestDietDbController {
 
     @PostMapping("/api/userSelect/{id}")
     public UserDietForm userSelect(@ModelAttribute("userSelectForm")UserSelectForm userSelectForm,@PathVariable("id") int id){
-
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
         System.out.println(userSelectForm);
        // var select = dietDbService.getDietSelect(userSelectForm);
-        var select = dietDbService.getDietSelect(id);
+        var select = dietDbService.getDietSelect(id,userInfo.getUserId());
         System.out.println(select);
 
         return select;

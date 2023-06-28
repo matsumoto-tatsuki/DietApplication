@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
-
+//@Repository
 public class UsersDaoKinjo implements UsersDao{
 //DBと連携するところ
     @Autowired
@@ -37,7 +37,7 @@ public class UsersDaoKinjo implements UsersDao{
 
     @Override
     public UserInfo getUserInfo(String userId) {
-        var list = jdbcTemplate.query("SELECT id,user_id as userId ,user_symbol as userSymbol,user_name as userName,weight FROM users WHERE user_id = :userId",
+        var list = jdbcTemplate.query("SELECT id,user_id as userId ,user_symbol as userSymbol,user_name as userName ,COALESCE(weight, 0) as weight FROM users WHERE user_id = :userId",
                 new MapSqlParameterSource("userId",userId),
                 new DataClassRowMapper<>(UserInfo.class));
         return list.isEmpty()? null: list.get(0);

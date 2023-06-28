@@ -10,12 +10,12 @@
 <th:block th:insert="/admin/admin_header"></th:block>
 <div class="content">
   <div class="position_c" style="margin:200px 0px;"> <!--ポジションを真ん中にしている-->
-    <form action="/#">　<!--POST形式でデータ送信-->
+<!--    <form action="/#">　&lt;!&ndash;POST形式でデータ送信&ndash;&gt;-->
       <p><span class="bold">更新しました！</span></p>
       <div>
-        <button class="button_memo button" type="submit">Top画面へ</button>
+        <button class="button_memo button" onclick="window.location.href='/admin-top'">Top画面へ</button>
       </div>
-    </form>
+<!--    </form>-->
   </div>
 </div>
 <th:block th:insert="/admin/admin_footer"></th:block>
