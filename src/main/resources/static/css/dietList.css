@@ -28,7 +28,7 @@ img {
 .background {
     border: 2px solid;
     width: 1200px;
-    background-color: rgb(189, 139, 239);
+    background-color: rgb(125, 125, 125);
     padding: 15px;
 }
 
@@ -59,17 +59,18 @@ td {
 }
 
 .diet-list {
-    width: 317.53px;
+    background-color: #bdbdbd;
     cursor: pointer;
-    box-shadow: 2px 3px 3px #000000;
+    /* box-shadow: 2px 3px 3px #000000;
     position: relative;
-    z-index: 1;
+    z-index: 1; */
     padding: 5px;
 }
 
 .diet-list:hover {
     box-shadow: none;
-
+    background-color: white;
+    
 }
 
 
@@ -79,6 +80,30 @@ th {
     padding: 10px;
 }
 
+
+.td-favo{
+    width: 100px;
+}
+
+.td-select{
+    width: 100px;
+}
+
+.td-dietName{
+    width: 330px;
+}
+
+.td-period{
+    width: 330px;
+}
+
+.td-categoryName{
+    width: 100px;
+}
+
+.td-difficultName{
+    width: 100px;
+}
 /*DietList*/
 
 /* .diet-list::after {
