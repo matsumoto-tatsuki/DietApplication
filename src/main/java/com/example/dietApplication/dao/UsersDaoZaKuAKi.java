@@ -115,7 +115,7 @@ public class UsersDaoZaKuAKi implements UsersDao{
 
     @Override
     public List<User> getAllUser() {
-        return jdbcTemplate.query("SELECT user_id, user_name,insert_date  FROM users  ORDER BY id", new DataClassRowMapper<>(User.class));
+        return jdbcTemplate.query("SELECT user_id, user_name,insert_date  FROM users WHERE permission = 2  ORDER BY id", new DataClassRowMapper<>(User.class));
     }
 
     //管理者ID変更
@@ -141,7 +141,7 @@ public class UsersDaoZaKuAKi implements UsersDao{
         var param = new MapSqlParameterSource();
         param.addValue("start_date", calender.getCalendar());
         param.addValue("end_date", endcalender.getCalendar());
-        var list = jdbcTemplate.query("SELECT user_id, user_name,insert_date FROM users WHERE  insert_date between :start_date and :end_date ;\n",param ,new DataClassRowMapper<>(User.class));
+        var list = jdbcTemplate.query("SELECT user_id, user_name,insert_date FROM users WHERE  insert_date between :start_date and :end_date AND permission = 2;\n",param ,new DataClassRowMapper<>(User.class));
         return list;
     }
 }

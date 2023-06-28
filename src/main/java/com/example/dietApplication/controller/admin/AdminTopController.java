@@ -27,6 +27,7 @@ public class AdminTopController {
         int count = userService.getAllUserNum();
         int AdminDietNum = userService.getAllDietNum();
 
+        model.addAttribute("notice", "お知らせなし");
         model.addAttribute("adminCount", count);
         model.addAttribute("adminTop", userService.getAllUser());
         model.addAttribute("admin_Alldiet", userService.getAllDiet());
@@ -37,9 +38,11 @@ public class AdminTopController {
 
     @PostMapping("/admin_date")
     public String admin(@Validated @ModelAttribute("adminDate") AdminDateSearch adminDate, BindingResult bindingResult,  Model model) {
-        int count = userService.getAllUserNum();
+//        int count = userService.getAllUserNum();
+        int count = userService.userDate(adminDate).size();
         int AdminDietNum = userService.getAllDietNum();
 
+        model.addAttribute("notice", "お知らせなし");
         model.addAttribute("adminCount", count);
         model.addAttribute("adminTop", userService.getAllUser());
 //        model.addAttribute("adminTop", userService.getAllDiet());
