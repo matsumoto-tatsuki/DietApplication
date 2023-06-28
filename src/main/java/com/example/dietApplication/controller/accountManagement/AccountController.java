@@ -44,8 +44,13 @@ public class AccountController {
             model.addAttribute("account3", 0); // 体重がnullの場合は空文字列を表示
         }
 
-        model.addAttribute("imagePath","/images/"+
-                userList.getUserSymbol());
+        if(userList.getUserSymbol() == null){
+            model.addAttribute("imagePath","/images/defaultIcon.png");
+        }else{
+            model.addAttribute("imagePath","/images/"+
+                    userList.getUserSymbol());
+        }
+
 
         return "/account/account-profile";
     }
@@ -64,9 +69,11 @@ public class AccountController {
             redirectAttributes.addFlashAttribute("errorMessage", "ユーザー名は1文字以上50文字以下で入力してください。");
             return "redirect:account-edit";
         }
-        String UserId = (String) session.getAttribute("userId");
-        accountService.userUp(username,UserId);
-        return "/account/account-update";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        accountService.userUp(username,userInfo.getUserId());
+        session.removeAttribute("userName");
+        session.setAttribute("userName",username);
+        return "redirect:/account-profile";
     }
 
     //アイコン更新画面遷移
@@ -82,10 +89,10 @@ public class AccountController {
             return "redirect:account-icon";
         }
         System.out.println("ただの文字");
-        String userId = (String) session.getAttribute("userId");
-        var newIcon = accountService.iconUp(icon,userId);
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        var newIcon = accountService.iconUp(icon,userInfo.getUserId());
         System.out.println("ただの文字");
-        return "/account/account-update";
+        return "redirect:/account-profile";
     }
 
     @GetMapping("/account-delete")

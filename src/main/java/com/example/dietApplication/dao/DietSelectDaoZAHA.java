@@ -34,7 +34,7 @@ public class DietSelectDaoZAHA implements DietSelectDao{
     }
 
     @Override
-    public DietSelect getDietSelect(int id) {
+    public DietSelect getDietSelect(int id,String userId) {
         return null;
     }
 

@@ -18,7 +18,7 @@ public interface DietSelectDao {
 
     //実施しているダイエットの情報取得
     DietSelect getDietSelect(UserSelectForm userSelectForm);
-    DietSelect getDietSelect(int id);
+    DietSelect getDietSelect(int id,String userId);
 
     //今日の実施ダイエットの取得
     List<DietSelect> getDietSelect(String userId);
