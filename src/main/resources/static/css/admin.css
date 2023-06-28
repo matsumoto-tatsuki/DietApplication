@@ -1,8 +1,6 @@
 
 body {
   background-color: rgb(255 208 102);
-  overflow-x: hidden;
-
 
 }
 
@@ -95,13 +93,13 @@ img {
   margin: 0 auto;
 }
 
-#my-text {
+/* #my-text {
   text-align: center;
   color: red;
   margin-right: 10px;
   font-size: 37px;
 
-}
+} */
 
 
 .tableclass {
@@ -134,13 +132,9 @@ img {
     height: 69px;
   }
 
-  form {
-        display: flex;
-        justify-content: center;
-        /*margin-top :20px;*/
-        margin-bottom : 20px;
-        height: 50px;
-  }
+
+
+
 
   input[type="text"],
   textarea {
@@ -167,9 +161,9 @@ submit {
   color: #7a7676;
 }
 
-.search h2 {
+./*search h2 {
     text-align: center;
-}
+}*/
 
 /*.search thead  {
     text-align: center;
@@ -205,12 +199,21 @@ submit {
       margin-top: 5px;
 }
 
-form div {
+.text form {
+        display: flex;
+        justify-content: center;
+        /*margin-top :20px;*/
+        margin-bottom : 20px;
+        height: 50px;
+
+}
+
+form#input-date div {
   display: flex;
   align-items: center;
 }
 
-form div .error {
+form#input-date .error {
   margin-left: 10px;
 }
 
@@ -219,5 +222,7 @@ input:invalid::after {
   display: block;
   margin-top: 5px;
 }
+
+
 
 

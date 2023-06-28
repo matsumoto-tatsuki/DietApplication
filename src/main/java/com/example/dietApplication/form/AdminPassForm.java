@@ -13,5 +13,7 @@ public class AdminPassForm {
     private String adminPassword;
 
     @NotBlank
+    @Length(min = 8, max = 30)
+    @Pattern(regexp = "[A-Za-z0-9]+", message = "英数字のみ使用できます")
     private String adminPassword2;
 }

@@ -1,7 +1,7 @@
 /*all account css*/
-body {
+/*body {
   background-color: gray;
-}
+}*/
 
 /*account-profile*/
 #edit{
@@ -10,7 +10,7 @@ body {
   width: 150px;
   height: 20px;
 }
-
+/*
 .box_a {
     background-color: white;
     border-radius: 5%;
@@ -22,11 +22,28 @@ body {
     justify-content: center;
     font-size: 30px;
 }
+*/
+
+a img{
+  width:300px;
+  width:300px;
+}
+
+.box_a {
+  background-color: white;
+  border-radius: 5%;
+  margin: auto;
+  max-width: 500px; /* æœ€å¤§å¹…ã‚’æŒ‡å®š */
+  width: 100%; /* å¹…ã‚’è¦ªè¦ç´ ã«åˆã‚ã›ã¦100%ã«è¨­å®š */
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
 
 .box_a p {
-
   text-align: center;
-  line-height: 1.5;
 }
 
 /*ac-edit ac-icon use*/
@@ -54,14 +71,15 @@ img {
     font-size:50px;
 }
 
-/*　icon　画像関連*/
+/*ã€€iconã€€ç”»åƒé–¢é€£*/
 .background {
-    background-color:rgba(80, 235, 255, 0.8);
+    background-color:rgb(210, 130, 234);
     border-radius: 5%;
     margin: auto;
     margin-top: 100px;
+    padding: 50px 0px;
     width: 700px;
-    height: 500px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,15 +104,16 @@ img {
   height: auto;
 }
 
-form{
+
+.background form{
     text-align: center;
 }
-
+/*
 button{
     width: 200px;
     height: 50px;
 }
-
+*/
 input[type = text] {
     height: 100px;
     font-size: 50px;

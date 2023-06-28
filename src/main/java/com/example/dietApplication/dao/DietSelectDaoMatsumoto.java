@@ -50,8 +50,9 @@ public class DietSelectDaoMatsumoto implements  DietSelectDao{
         return list.isEmpty() ? null : list.get(0);
     }
 
+
     @Override
-    public DietSelect getDietSelect(int id) {
+    public DietSelect getDietSelect(int id,String userId) {
         System.out.println("DietSelectDaoMatsumotoCheck(getDietSelect)");
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("id",id);

@@ -20,7 +20,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/images/*")
                 .excludePathPatterns("/js/*")
                 .excludePathPatterns("/insert-user"); // ログイン画面へのアクセスは除外する場合
-        ; // ログイン画面へのアクセスは除外する場合
     }
 }
 

@@ -4,13 +4,14 @@
 <head>
     <title>icon edit display</title>
     <link rel="stylesheet" href="/css/account.css">
+    <link rel="stylesheet" href="/css/commons.css">
 </head>
     <body>
 
     <th:block th:insert="/common/header"></th:block>
 
     <div class="background">
-        <form action="/icon-update" method="POST">
+        <form action="/icon-update" method="POST" id="updateForm">
             <div class="image-list">
                 <label>
                     <img src="/images/きつねさん.png" alt="画像">
@@ -32,17 +33,27 @@
                     <input type="radio" name="icon" value="/鴨さんとネギ.png">
                 </label>
             </div>
+            <div class="image-list">
+                <label>
+                    <img src="/images/top.png" alt="画像">
+                    <input type="radio" name="icon" value="/top.png">
+                </label>
+                <label>
+                    <img src="/images/defaultIcon.png" alt="画像">
+                    <input type="radio" name="icon" value="/defaultIcon.png">
+                </label>
+            </div>
             <br>
 
             <div th:if="${errorMessage}" ></div>
             <p class="error-message" th:text="${errorMessage}"></p>
 
-            <button type="submit">変更する</button>
+            <button type="button" class="button" onclick="openModal()">変更</button>
         </form>
-
     </div> <br>
 
     <th:block th:insert="/common/footer"></th:block>
-
+    <th:block th:insert="/popup/update-popup"></th:block>
+    <script src="/js/popup.js"></script>
     </body>
 </html>
