@@ -27,14 +27,15 @@ public class TopController {
     @GetMapping("/top")
     public String getTop(Model model){
         UserLogin userInfo = (UserLogin)session.getAttribute("user");
-        var userId = "testuser";
+        String userName = (String)session.getAttribute("userName");
+
         var list = dietSelectDao.getDietSelect(userInfo.getUserId());
         model.addAttribute("selectDiet",list);
-        model.addAttribute("userId",userInfo.getUserId());
+        model.addAttribute("userName",userName);
 
         var accountInfo = accountService.getUserInfo(userInfo.getUserId());
         if(accountInfo.getUserSymbol() == null) {
-            model.addAttribute("imagePath", "/images/top.png");
+            model.addAttribute("imagePath", "/images/defaultIcon.png");
         }else{
             model.addAttribute("imagePath", "/images/" + accountInfo.getUserSymbol());
         }

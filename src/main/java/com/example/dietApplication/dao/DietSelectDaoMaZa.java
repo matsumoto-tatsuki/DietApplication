@@ -69,17 +69,20 @@ public class DietSelectDaoMaZa implements DietSelectDao{
     }
 
     @Override
-    public DietSelect getDietSelect(int id) {
+    public DietSelect getDietSelect(int id,String userId) {
         System.out.println("DietSelectDaoMatsumotoCheck(getDietSelect)");
+        System.out.println("id:" + id);
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("id",id);
-        var list = jdbcTemplate.query("SELECT i.diet_name as dietName\n" +
-                        "       ,s.action    as action\n" +
-                        "       ,start_date || '～' || end_date as date\n" +
-                        " FROM diet_select s\n" +
-                        " JOIN diet_info i\n" +
-                        " ON i.id = s.diet_id\n" +
-                        " WHERE s.id = :id",param,
+        param.addValue("userId",userId);
+        var list = jdbcTemplate.query("SELECT i.diet_name as dietName  \n" +
+                        ",s.action    as action       \n" +
+                        ",start_date || '～' || end_date as date \n" +
+                        "FROM diet_select s \n" +
+                        "JOIN diet_info i \n" +
+                        "ON i.id = s.diet_id \n" +
+                        "WHERE s.diet_id = 7\n" +
+                        "AND s.user_id = :userId",param,
                 new DataClassRowMapper<>(DietSelect.class));
         return list.isEmpty() ? null : list.get(0);
     }

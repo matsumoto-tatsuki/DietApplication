@@ -101,9 +101,10 @@
     }
 
 
-    const deleteBtn = document.getElementById('deleteBtn');
+    const deleteBtn = document.getElementById('editDeleteBtn');
 
     deleteBtn.addEventListener('click', () => {
+        console.log(`deleteBtn:Event`);
         deleteDietSelect();
         
         editCloseModal();
@@ -232,6 +233,7 @@
     async function deleteDietSelect() {
       try {
         const id = document.getElementById('primaryId').value;
+        console.log(`DELETEID:${id}`);
 
         const res = await fetch(`api/db-delete/${id}`,{
           method:'DELETE',
