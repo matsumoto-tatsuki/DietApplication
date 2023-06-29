@@ -4,10 +4,10 @@
 
 
 
-img {
+/* img {
     width: 32px;
     height: 32px;
-}
+} */
 
 .center {
     display: flex;
@@ -28,12 +28,15 @@ img {
 .background {
     border: 2px solid;
     width: 1200px;
-    background-color: rgb(189, 139, 239);
+    background-color: rgb(125, 125, 125);
     padding: 15px;
 }
 
 .form {
-    background-color: rgb(189, 139, 239);
+    /* background-color: rgb(189, 139, 239); */
+    background-image: url(/images/header.png);
+    background-repeat: no-repeat;
+    background-size: cover;
     border: 2px solid;
     border-radius: 2px;
     margin: 15px;
@@ -43,7 +46,7 @@ img {
 /* テーブル本体*/
 table {
     border-collapse: collapse;
-    background-color: white;
+    background-color: whitesmoke;
     width: 100%;
 }
 
@@ -59,29 +62,62 @@ td {
 }
 
 .diet-list {
-    width: 317.53px;
+    background-color:whitesmoke;
     cursor: pointer;
-    box-shadow: 2px 3px 3px #000000;
+    /* box-shadow: 2px 3px 3px #000000;
     position: relative;
-    z-index: 1;
+    z-index: 1; */
     padding: 5px;
 }
 
 .diet-list:hover {
     box-shadow: none;
-
+    background-color: white;
+    
 }
 
 
 th {
+    background-color: aqua;
     border: 2px solid #000000;
     text-align: center;
     padding: 10px;
+    font-size: 20px;
 }
 
+
+.td-favo{
+    width: 100px;
+}
+
+.td-select{
+    width: 100px;
+}
+
+.td-dietName{
+    width: 330px;
+}
+
+.td-period{
+    width: 330px;
+}
+
+.td-categoryName{
+    width: 100px;
+}
+
+.td-difficultName{
+    width: 100px;
+}
+
+
+.td-select img{
+    width: 32px;
+    height: 32px;
+}
 /*DietList*/
 
-.diet-list::after {
+/* .diet-list::after {
     background: #95fbff;
     position: absolute;
     top: 0;
@@ -98,7 +134,28 @@ th {
 
 .diet-list:hover::after {
     transform: scale(1, 1);
+} */
+.select-easy{
+    background-color:aqua;
 }
+.select-normal{
+    background-color: #00FF45;
+}
+.select-hard{
+    background-color: red;
+}
+
+
+/*****************************************td テーブル系***************************************/
+/* .td-categoryName{
+    transform: scale(1.5);
+}
+
+.td-difficultName{
+    transform: scale(2);
+} */
+
+/****************************************************************************************/
 
 /*****************************************星の画像***************************************/
 .star-img img {
@@ -238,6 +295,7 @@ TableCss
     border-radius: 5px;
     background-color: white;
     padding: 10px;
+    width: 32px;
 }
 
 .select-item input {
@@ -336,103 +394,103 @@ TableCss
 .background-1 {
     background-image: url("/images/diet_background/walkingbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-2 {
     background-image: url("/images/diet_background/swimmingbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 
 .background-3 {
     background-image: url("/images/diet_background/stretchbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-4 {
     background-image: url("/images/diet_background/aerobicsbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-5 {
     background-image: url("/images/diet_background/yogabackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-6 {
     background-image: url("/images/diet_background/pilatesbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-7 {
     background-image: url("/images/diet_background/dead_weightbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-8 {
     background-image: url("/images/diet_background/low_carbbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-9 {
     background-image: url("/images/diet_background/low_fatbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-10 {
     background-image: url("/images/diet_background/proteinbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-11 {
     background-image: url("/images/diet_background/vegetarianbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-12 {
     background-image: url("/images/diet_background/fruitbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-13 {
     background-image: url("/images/diet_background/yoghourtbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-14 {
     background-image: url("/images/diet_background/touhubackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-15 {
     background-image: url("/images/diet_background/konjacbackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-16 {
     background-image: url("/images/diet_background/nattobackground.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .background-17 {
     background-image: url("/images/diet_background/brown_rice_background.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
 

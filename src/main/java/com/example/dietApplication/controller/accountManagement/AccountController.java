@@ -1,14 +1,13 @@
 package com.example.dietApplication.controller.accountManagement;
 
-import com.example.dietApplication.Service.AccountService;
 import com.example.dietApplication.dao.UsersDaoKinjo;
-import com.example.dietApplication.entity.UserInfo;
+import com.example.dietApplication.entity.UserLogin;
 import com.example.dietApplication.form.UserForm;
+import jakarta.servlet.http.HttpSession;
+import com.example.dietApplication.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,18 +19,38 @@ public class AccountController {
     @Autowired
     AccountService accountService;
 
+    @Autowired
+    private HttpSession session;
+
     //プロフィル画面表示
     @GetMapping("/account-profile")
     public String getAccount(Model model) {
-        var userList = accountService.getUserInfo("masaratown621");
+
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");//userの情報があるセッション(userId,password,permission)をuserInfoに情報を入れる
+
+        var userList = accountService.getUserInfo(userInfo.getUserId());//サービスに送り、データ(userId,password,permission)の内、UserIdを抜粋して代入。
+        System.out.println(userList);
         model.addAttribute("account1",
                 userList.getUserId());
         model.addAttribute("account2",
                 userList.getUserName());
-        model.addAttribute("account3",
-                userList.getWeight());
-        model.addAttribute("imagePath","/images/"+
-                userList.getUserSymbol());
+//        model.addAttribute("account3",
+//                userList.getWeight());
+
+        Integer weight = userList.getWeight(); // 体重を取得
+        if (weight != null) {
+            model.addAttribute("account3", weight);
+        } else {
+            model.addAttribute("account3", 0); // 体重がnullの場合は空文字列を表示
+        }
+
+        if(userList.getUserSymbol() == null){
+            model.addAttribute("imagePath","/images/defaultIcon.png");
+        }else{
+            model.addAttribute("imagePath","/images/"+
+                    userList.getUserSymbol());
+        }
+
 
         return "/account/account-profile";
     }
@@ -39,20 +58,23 @@ public class AccountController {
     //ユーザー名編集画面遷移
     @GetMapping("/account-edit")
     public String editAccount(){
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
         return "/account/account-edit";
     }
 
     //更新画面遷移
     @PostMapping("/account-update")
     public String postAccount(@ModelAttribute("userName") String username ,RedirectAttributes redirectAttributes) {
-        if (username.length() == 0 || username.length() > 50) {
+        if (username.trim().isEmpty() || username.length() > 50) {
             redirectAttributes.addFlashAttribute("errorMessage", "ユーザー名は1文字以上50文字以下で入力してください。");
             return "redirect:account-edit";
         }
-        accountService.userUp(username,"masaratown621");
-        return "/account/account-update";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        accountService.userUp(username,userInfo.getUserId());
+        session.removeAttribute("userName");
+        session.setAttribute("userName",username);
+        return "redirect:/account-profile";
     }
-
 
     //アイコン更新画面遷移
     @GetMapping("/account-icon")
@@ -62,19 +84,21 @@ public class AccountController {
 
     @PostMapping("/icon-update")
     public String postIcon(@ModelAttribute("icon") String icon , RedirectAttributes redirectAttributes){
-        if (icon == null || icon.isEmpty()){
+        if (icon.trim().isEmpty() || icon.isEmpty()){
             redirectAttributes.addFlashAttribute("errorMessage","アイコンを選択してください");
             return "redirect:account-icon";
         }
-        accountService.iconUp(icon,"masaratown621");
-        return "/account/account-update";
+        System.out.println("ただの文字");
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        var newIcon = accountService.iconUp(icon,userInfo.getUserId());
+        System.out.println("ただの文字");
+        return "redirect:/account-profile";
     }
 
-    @PostMapping("/account-delete")
+    @GetMapping("/account-delete")
     public String deleteAccount(){
-    String userId = "masaratoen621";
-            accountService.deleteUserInfo(userId);
-        return "top";
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        //var num = accountService.deleteUserInfo(userInfo.getUserId());
+        return "redirect:/user-logout";
     }
-
 }

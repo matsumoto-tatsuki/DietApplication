@@ -2,6 +2,7 @@ package com.example.dietApplication.controller;
 
 import com.example.dietApplication.dao.DietSelectDao;
 import com.example.dietApplication.entity.UserLogin;
+import com.example.dietApplication.service.AccountService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -17,16 +18,27 @@ public class TopController {
     @Autowired
     private HttpSession session;
     @Autowired
+    private AccountService accountService;
+    @Autowired
     private DietSelectDao dietSelectDao;
     @Autowired
     private MessageSource messageSource;
+  
     @GetMapping("/top")
     public String getTop(Model model){
-//        UserLogin userInfo = (UserLogin)session.getAttribute("user");
-//        var userId = "testuser";
-//        var list = dietSelectDao.getDietSelect(userInfo.getUserId());
-//        model.addAttribute("selectDiet",list);
-//        model.addAttribute("userId",userInfo.getUserId());
+        UserLogin userInfo = (UserLogin)session.getAttribute("user");
+        String userName = (String)session.getAttribute("userName");
+
+        var list = dietSelectDao.getDietSelect(userInfo.getUserId());
+        model.addAttribute("selectDiet",list);
+        model.addAttribute("userName",userName);
+
+        var accountInfo = accountService.getUserInfo(userInfo.getUserId());
+        if(accountInfo.getUserSymbol() == null) {
+            model.addAttribute("imagePath", "/images/defaultIcon.png");
+        }else{
+            model.addAttribute("imagePath", "/images/" + accountInfo.getUserSymbol());
+        }
 
         var message = getRandomLine();
         System.out.println(message);

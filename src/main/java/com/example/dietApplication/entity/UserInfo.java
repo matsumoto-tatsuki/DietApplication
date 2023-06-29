@@ -8,5 +8,5 @@ public class UserInfo {
     private String userId;
     private String userSymbol;
     private String userName;
-    private int weight;
+    private Integer weight;
 }

@@ -2,6 +2,7 @@ package com.example.dietApplication.controller.userLoginController;
 
 import com.example.dietApplication.form.InsertUserForm;
 import com.example.dietApplication.form.UserForm;
+import com.example.dietApplication.service.AccountService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,10 @@ public class UserLoginController {
     private HttpSession session;
     @Autowired
     UserLoginService userLoginService;
+
+    @Autowired
+    private AccountService accountService;
+
     @GetMapping("/user-login")
     public String getLogin(@ModelAttribute UserForm userForm){
         return "/login";
@@ -46,7 +51,9 @@ public class UserLoginController {
                     var loginUser =  userLoginService.getUserLogin(userForm);
                     //var loginUser = userLoginService.getUserInfo(userData.getUserId());
                     session.setAttribute("user", loginUser);
-                    session.setAttribute("userId",loginUser.getUserId());
+                    var userInfo = accountService.getUserInfo(loginUser.getUserId());
+                    session.setAttribute("userName",userInfo.getUserName());
+                    System.out.println("session登録");
                     if(loginUser.getPermission() == 1){
                         return "redirect:/admin-top";
                     }
@@ -93,6 +100,8 @@ public class UserLoginController {
 
     @GetMapping("/user-logout")
     public String getOut(){
-        return "/logout";
+        session.removeAttribute("user");
+        session.removeAttribute("userName");
+        return "redirect:/user-login";
     }
 }

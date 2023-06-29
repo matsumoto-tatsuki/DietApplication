@@ -18,7 +18,7 @@ public class DietSelectDaoZAHA implements DietSelectDao{
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
-    public int deleteDietFavorite(UserFavoriteForm userFavoriteForm){
+    public int deleteDietFavorite(UserFavoriteForm userFavoriteForm,String userId){
         var param = new MapSqlParameterSource();
         param.addValue("dietName", userFavoriteForm.getDietName());
         //名前からidを取得する
@@ -34,7 +34,7 @@ public class DietSelectDaoZAHA implements DietSelectDao{
     }
 
     @Override
-    public DietSelect getDietSelect(int id) {
+    public DietSelect getDietSelect(int id,String userId) {
         return null;
     }
 
@@ -60,7 +60,7 @@ public class DietSelectDaoZAHA implements DietSelectDao{
 
     //お気に入り登録
     @Override
-    public int insertDietFavorite(UserFavoriteForm userFavoriteForm){
+    public int insertDietFavorite(UserFavoriteForm userFavoriteForm,String userId){
         var param = new MapSqlParameterSource();
         param.addValue("dietName", userFavoriteForm.getDietName());
         //名前からidを取得する

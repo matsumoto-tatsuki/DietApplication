@@ -1,17 +1,21 @@
 .form{
     border:1px solid black;
+    border-radius:30px;
     margin:5% 20%;
     text-align:center;
-    background-color:rgb(210, 130, 234,0.5);
+    font-size:20px;
+    background-color:rgb(210, 130, 234);
 }
 
 .form h2{
     text-align:left;
     margin-left:10%;
+    margin-bottom:1%;
+   
 }
 
 .form input{
-    font-size:20px;
+    font-size:30px;
 }
 
 .form h2 input{
@@ -23,7 +27,7 @@
 }
 
 textarea{
-    font-size: 20px;
+    font-size: 30px;
     width:70%;
     height:200px;
 }
@@ -35,9 +39,9 @@ textarea{
 }
 
 .set-result img {
-    width:40px;
-    height:40px;
-    margin-left: 10px;
+    width:80px;
+    height:80px;
+    margin-left: 30px;
 }
 
 form button.button {

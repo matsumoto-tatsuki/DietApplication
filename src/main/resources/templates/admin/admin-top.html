@@ -1,93 +1,135 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>管理者TOP</title>
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
+
 <body>
 
-<th:block th:insert="/admin/admin_header"></th:block>
+    <th:block th:insert="/admin/admin_header"></th:block>
 
-<!--<div class = "scroll">-->
+    <!--<div class = "scroll">-->
 
-<div class="pos">
-    <div class = "box">
-        <img src="/css/img/teamProject.jpg" alt="画像">
+    <div class="pos">
+        <div class="box">
+            <img src="/css/img/teamProject.jpg" alt="画像">
 
-        <div class = "tableclass">
-        <table border = "1">
-            <tr>
-                <th align="center">ユーザー数</th>
-                <td th:text = "${adminCount}"></td>
-            </tr>
-            <tr>
-                <th align="center">ダイエット数</th>
-                <td th:text="${diet_count}"></td>
-            </tr>
-        </table>
+            <div class="tableclass">
+                <table border="1">
+                    <tr>
+                        <th align="center">ユーザー数</th>
+                        <td th:text="${adminCount}"></td>
+                    </tr>
+                    <tr>
+                        <th align="center">ダイエット数</th>
+                        <td th:text="${diet_count}"></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-    </div>
-<!--</div>-->
+        <!--</div>-->
 
 
-    <div class ="text">
+        <div class="text">
 
-        <p id = "my-text">※yyyy-MM-ddで入力してください</p>
-        <form th:action="@{/admin_date}" method="post" th:object="${adminDate}" id = "date-input">
-            <label for="start_date">登録日:</label>
+            <!-- <p id = "my-text">※yyyy-MM-ddで入力してください</p> -->
+            <form th:action="@{/admin_date}" method="post" th:object="${adminDate}" id="date-input">
+                <label for="start_date">登録日:</label>
 
-            <div class="error-message">
-            <input type="text" id="start_date" th:field="*{start_date}" name="start_date">
-            <div class="error" th:each="error : ${#fields.errors('start_date')}">
-                [[ ${error} ]]
+                <div class="error-message">
+                    <input type="text" id="start_date" th:field="*{start_date}" name="start_date" class="dateText">
+                    <div class="error" th:each="error : ${#fields.errors('start_date')}">
+                        [[ ${error} ]]
 
-            </div>
-            </div>
+                    </div>
+                </div>
 
-            <p>～</p>
+                <p>～</p>
 
-            <div class="error-message">
+                <div class="error-message">
 
-            <input type="text" id="end_date" th:field="*{end_date}" name="end_date">
-            <div class="error" th:each="error : ${#fields.errors('end_date')}">
-                [[ ${error} ]]
-            </div>
-            </div>
-
+                    <input type="text" id="end_date" th:field="*{end_date}" name="end_date" class="dateText">
+                    <div class="error" th:each="error : ${#fields.errors('end_date')}">
+                        [[ ${error} ]]
+                    </div>
+                </div>
 
             <button type="submit">🔍</button>
         </form>
 
+                <button type="submit">検索</button>
+            </form>
 
-    </div>
 
-
+        </div>
 
 <div class="pos2">
 <div class = "box_a">
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>名前</th>
-            <th>登録日</th>
-            <th>お問い合わせ</th>
-        </tr>
 
-        <tr th:each ="users : ${adminTop}">
-                <td th:text = "${users.userId}"></td>
-                <td th:text = "${users.userName}"></td>
-                <td th:text = "${users.insertDate}"></td>
-                <td><a th:href="@{/admin-top}">チャットへ</a></td>
-            </tr>
-    </table>
+        <div class="search">
+            <div th:if="${admin_date}">
 
-</div>
-</div>
+                <!--        <h2>検索結果</h2>-->
 
-    <th:block th:insert="/admin/admin_footer"></th:block>
-</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>名前</th>
+                            <th>登録日</th>
+                            <th>お問い合わせ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <tr th:each="diet_info :${admin_date}">
+                            <td th:text="${diet_info.userId}"> </td>
+                            <td th:text="${diet_info.userName}"> </td>
+                            <td th:text="${diet_info.insertDate}"> </td>
+                            <td><a th:href="@{/admin-top}">チャットへ</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
+        <div class="pos2">
+            <div class="box_a">
+
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>名前</th>
+                        <th>登録日</th>
+                        <th>お問い合わせ</th>
+                        <th>通知</th>
+                    </tr>
+
+                    <tr th:each="users : ${adminTop}">
+                        <td th:text="${users.userId}"></td>
+                        <td th:text="${users.userName}"></td>
+                        <td th:text="${users.insertDate}"></td>
+                        <td><a th:href="@{/admin-top}">チャットへ</a></td>
+                        <td th:text="${users.userSymbol}"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <th:block th:insert="/admin/admin_footer"></th:block>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr(".dateText", {
+            dateFormat: "Y/m/d" // 日付の表示形式
+        });
+    </script>
 </body>
+
 </html>

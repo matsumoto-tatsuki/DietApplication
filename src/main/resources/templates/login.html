@@ -1,39 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="/css/Login.css">
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 
-<body>
+<body class="body">
     <div class="form">
         <h1>ログイン</h1>
+        <h1 class="title">Do It Diet</h1>
         <div class="error" th:if="${idNotFoundError}" th:text="${idNotFoundError}"> </div>
-        <img class="image" src="/images/character.png" alt="豆腐のキャラ画像">
-        <form action="/user-login" method="POST" th:object="${userForm}">
-            <div>
-                <input type="text" placeholder="ユーザーID" th:field="*{userId}">
+        <!-- <img class="image" src="/images/character.png" alt="豆腐のキャラ画像"> -->
+        <div class="form-background">
+            <form action="/user-login" method="POST" th:object="${userForm}">
+                <div>
+                    <input type="text" placeholder="ユーザーID" th:field="*{userId}">
 
-            </div>
-            <div class="error" th:each="error: ${#fields.errors('userId')}">
-                [[ ${error} ]]
-            </div>
+                </div>
+                <div class="error" th:each="error: ${#fields.errors('userId')}">
+                    [[ ${error} ]]
+                </div>
 
-            <div>
-                <input type="password" id="passwordInput" placeholder="パスワード" th:field="*{password}">
-                <span id="togglePassword"><img src="/images/display1.png" alt="閉じた目"></span>
-            </div>
-            <div class="error" th:each="error: ${#fields.errors('password')}">
-                [[ ${error} ]]
-            </div>
+                <div>
+                    <input type="password" id="passwordInput" placeholder="パスワード" th:field="*{password}">
+                    <span id="togglePassword"><img src="/images/display1.png" alt="閉じた目"></span>
+                </div>
+                <div class="error" th:each="error: ${#fields.errors('password')}">
+                    [[ ${error} ]]
+                </div>
 
-            <div class="button">
-                <button type="submit">ログイン</button>
-                <button type="button" onclick="window.location.href='/insert-user'">新規登録</button>
-            </div>
-        </form>
+                <div class="button">
+                    <button type="submit">ログイン</button>
+                    <button type="button" onclick="window.location.href='/insert-user'">新規登録</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
@@ -50,7 +53,7 @@
                 console.log("テキストに変更");
                 passwordInput.type = "text";
                 togglePassword.innerHTML = `<img src="${closedEye}" alt="閉じた目">`;
-                
+
             } else {
                 console.log("パスワードに変更");
                 passwordInput.type = "password";

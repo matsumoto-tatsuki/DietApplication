@@ -1,25 +1,39 @@
 .flex {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 5%; /* å·¦å³ã®ä½™ç™½ã‚’æŒ‡å®š */
+  padding: 0 5%; /* ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â·Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚ÂÃƒâ€šÃ‚Â³ÃƒÆ’Ã‚Â£Ãƒâ€šÃ‚ÂÃƒâ€šÃ‚Â®ÃƒÆ’Ã‚Â¤Ãƒâ€šÃ‚Â½ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã‚Â§ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢Ãƒâ€šÃ‚Â½ÃƒÆ’Ã‚Â£ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã‚Â¦Ãƒâ€¦Ã¢â‚¬â„¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡ÃƒÆ’Ã‚Â¥Ãƒâ€šÃ‚Â®Ãƒâ€¦Ã‚Â¡ */
 }
+
+
+
 
 #memo{
   max-width:100%;
   width:100px;
   height:100px;
+  border-radius:200px;
+  padding:5px;
+  background-color:white;
+  margin-left:10px;
 }
 #memo:hover{
   content: url(/images/memo2.png);
 }
 
-
+.calendar table{
+  max-width:100%;
+  background-color:white;
+}
+.calendar{
+  background-color:orange;
+  border-radius:5%;
+  padding:5%;
+}
 
 #main{
   max-width:100%;
-  width:300px;
-  height:300px;
+  width:80%;
+  height:80%;
 }
 .speak{
   border: 1px solid #000000;
@@ -27,7 +41,7 @@
   font-size:30px;
   padding: 10px;
   border-radius:30px;
-margin-bottom:30px;
+  margin-bottom:30px;
 }
 
 .character{
@@ -38,24 +52,37 @@ margin-bottom:30px;
 flex-grow: 3;
 }
 .child{
-  flex-basis:40%;   
+  flex-basis:40%;
 }
 
+
 .user-info{
-  text-align:center;
+  display:flex;
+  align-items:center;
+
   border: 1px solid orange;
   background-color:darkorange;
   border-radius:10px;
 }
+#icon img{
+  max-width:100%;
+  width:100px;
+
+}
+#icon {
+  flex-basis:20%;
+  margin-left:5%;
+  margin-right:5%;
+}
 
 progress{
-width:70%;
+width:90%;
 -webkit-appearance:none;
 }
 ::-webkit-progress-value {
     background-color: green;
-}   
-  /* è¦ç´ ãªã—éƒ¨åˆ†ã®è‰² */
+}
+  /* ÃƒÆ’Ã‚Â¨Ãƒâ€šÃ‚Â¦Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â´Ãƒâ€šÃ‚Â ÃƒÆ’Ã‚Â£Ãƒâ€šÃ‚ÂÃƒâ€šÃ‚ÂªÃƒÆ’Ã‚Â£Ãƒâ€šÃ‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÆ’Ã‚Â©Ãƒâ€ Ã¢â‚¬â„¢Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã‚Â¥Ãƒâ€¹Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â£Ãƒâ€šÃ‚ÂÃƒâ€šÃ‚Â®ÃƒÆ’Ã‚Â¨ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°Ãƒâ€šÃ‚Â² */
 ::-webkit-progress-bar {
 background-color: white;
 }

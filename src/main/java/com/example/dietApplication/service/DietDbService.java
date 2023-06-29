@@ -16,17 +16,19 @@ public class DietDbService {
 
     public UserDietForm getDietSelect(UserSelectForm userSelectForm){
 
-        var userSelect = dietSelectDao.getDietSelect(userSelectForm);
-        var date = userSelect.getDate().split("～");
-        var startDate = new Calendar(date[0]);
-        var finishDate = new Calendar(date[1]);
-
-        var userDietForm =new UserDietForm(userSelect.getDietName(),userSelect.getAction(),String.valueOf(startDate.getCalendar()),String.valueOf(finishDate.getCalendar()));
-
-        return userDietForm;
+//        var userSelect = dietSelectDao.getDietSelect(userSelectForm);
+//        var date = userSelect.getDate().split("～");
+//        var startDate = new Calendar(date[0]);
+//        var finishDate = new Calendar(date[1]);
+//
+//        var userDietForm =new UserDietForm(userSelect.getDietName(),userSelect.getAction(),String.valueOf(startDate.getCalendar()),String.valueOf(finishDate.getCalendar()));
+//
+//        return userDietForm;
+        return null;
     }
-    public UserDietForm getDietSelect(int id){
-        var userSelect = dietSelectDao.getDietSelect(id);
+    public UserDietForm getDietSelect(int id,String userId){
+        var userSelect = dietSelectDao.getDietSelect(id,userId);
+        System.out.println(userSelect);
         var date = userSelect.getDate().split("～");
         return new UserDietForm(userSelect.getDietName(),userSelect.getAction(),date[0],date[1]);
     }

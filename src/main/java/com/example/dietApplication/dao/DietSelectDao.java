@@ -12,13 +12,13 @@ import java.util.List;
 
 public interface DietSelectDao {
     //お気に入り登録
-    int insertDietFavorite(UserFavoriteForm userFavoriteForm);
+    int insertDietFavorite(UserFavoriteForm userFavoriteForm,String userId);
 
-    int deleteDietFavorite(UserFavoriteForm userFavoriteForm);
+    int deleteDietFavorite(UserFavoriteForm userFavoriteForm,String userId);
 
     //実施しているダイエットの情報取得
     DietSelect getDietSelect(UserSelectForm userSelectForm);
-    DietSelect getDietSelect(int id);
+    DietSelect getDietSelect(int id,String userId);
 
     //今日の実施ダイエットの取得
     List<DietSelect> getDietSelect(String userId);
