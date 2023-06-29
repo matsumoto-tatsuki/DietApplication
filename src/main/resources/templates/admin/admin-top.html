@@ -56,40 +56,13 @@
             </div>
 
 
-            <button type="submit">検索</button>
+            <button type="submit">🔍</button>
         </form>
 
 
     </div>
 
 
-
-    <div class = "search">
-        <div th:if="${admin_date}">
-
-<!--        <h2>検索結果</h2>-->
-
-        <table>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>名前</th>
-                <th>登録日</th>
-                <th>お問い合わせ</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <tr th:each="diet_info :${admin_date}">
-                <td th:text = "${diet_info.userId}"> </td>
-                <td th:text = "${diet_info.userName}"> </td>
-                <td th:text = "${diet_info.insertDate}"> </td>
-                <td><a th:href="@{/admin-top}">チャットへ</a></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    </div>
 
 <div class="pos2">
 <div class = "box_a">
