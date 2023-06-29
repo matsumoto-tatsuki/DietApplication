@@ -8,9 +8,9 @@ wait: å‡¦ç†ãŒé€²è¡Œä¸­ã§ã‚ã‚‹ã“ã¨�
 not-allowed: æ“ä½œãŒè¨±å¯ã•ã‚Œã¦ã„ãªã„ã“ã¨ã‚’ç¤ºã—ã¾ã™ã€‚é€šå¸¸ã¯æ–œç·šã®å½¢çŠ¶ã§ã™ã€‚ */
 
 .body{
-display: flex;
-flex-direction: column;
-min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 * {
@@ -90,6 +90,7 @@ header a {
   color: #333;
   padding: 10px;
   font-size: 18px;
+  width: 182px;
   cursor: pointer;
 }
 
@@ -97,7 +98,7 @@ header a {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 182px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
