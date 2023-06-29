@@ -81,7 +81,7 @@ public class DietSelectDaoMaZa implements DietSelectDao{
                         "FROM diet_select s \n" +
                         "JOIN diet_info i \n" +
                         "ON i.id = s.diet_id \n" +
-                        "WHERE s.diet_id = 7\n" +
+                        "WHERE s.diet_id = :id\n" +
                         "AND s.user_id = :userId",param,
                 new DataClassRowMapper<>(DietSelect.class));
         return list.isEmpty() ? null : list.get(0);
