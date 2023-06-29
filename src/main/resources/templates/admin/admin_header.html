@@ -3,46 +3,46 @@
 
 <head>
   <title>css header</title>
-  <link rel="stylesheet" href="/css/headfoot.css">
+  <link rel="stylesheet" href="/css/admin-headfoot.css">
 </head>
 
 <body>
-<header>
-  <div class="item1">
-    <h1><a href="/admin-top">Do-It-Diet</a></h1>
-    <img src="/images/signout.png" alt="キャー、観られちゃった///" style="cursor:pointer" onclick="openModalLogout()">
-  </div>
-  <h2 class="userId">ようこそ！<span th:text="${session['userName']}" id="getUserId"></span>さん！</h2>
-  <div class="nav">
-    <div class="dropdown">
-      <button class="dropbtn">アカウント管理</button>
-      <div class="dropdown-content">
-        <a href="/admin_select">アカウント管理</a>
+  <header>
+    <div class="item1">
+      <h1><a href="/admin-top">Do-It-Diet</a></h1>
+      <img src="/images/signout.png" alt="キャー、観られちゃった///" style="cursor:pointer" onclick="openModalLogout()">
+    </div>
+    <h2 class="userId">ようこそ！<span th:text="${session['userName']}" id="getUserId"></span>さん！</h2>
+    <div class="nav">
+      <div class="dropdown">
+        <button class="dropbtn">アカウント管理</button>
+        <div class="dropdown-content">
+          <a href="/admin_select">アカウント管理</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">ダイエット方法編集</button>
+        <div class="dropdown-content">
+          <a href="#">ダイエット方法編集</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">スタンプ・壁紙表示</button>
+        <div class="dropdown-content">
+          <a href="#">スタンプ・壁紙表示</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">お問い合わせ</button>
+        <div class="dropdown-content">
+          <a href="#">お問い合わせ</a>
+        </div>
       </div>
     </div>
-    <div class="dropdown">
-      <button class="dropbtn">ダイエット方法編集</button>
-      <div class="dropdown-content">
-        <a href="#">ダイエット方法編集</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="dropbtn">スタンプ・壁紙表示</button>
-      <div class="dropdown-content">
-        <a href="#">スタンプ・壁紙表示</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="dropbtn">お問い合わせ</button>
-      <div class="dropdown-content">
-        <a href="#">お問い合わせ</a>
-      </div>
-    </div>
-  </div>
-</header>
+  </header>
 
-<th:block th:insert="/popup/logout-popup"></th:block>
-<script src="/js/logout-popup.js"></script>
+  <th:block th:insert="/popup/logout-popup"></th:block>
+  <script src="/js/logout-popup.js"></script>
 </body>
 
 </html>
