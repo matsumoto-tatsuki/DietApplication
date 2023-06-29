@@ -7,8 +7,8 @@ body {
 .pos2 {
         display: flex;
         justify-content: center;
-        margin-top: 38px;
-
+        margin-top: 104px;
+        margin-bottom: 29px;
 }
 
   table {
@@ -17,6 +17,8 @@ body {
     background-color: #f8f2eb;
     margin-right: auto;
     margin-left: auto;
+    border: #7a7676 5px solid;
+
   }
 
 th {
@@ -136,24 +138,27 @@ img {
 
 
 
-  input[type="text"],
-  textarea {
+  input[type="text"] {
     font-size: 41px;
+    border: 3px solid;
+    width: 259px;
+    padding: 7px;
   }
 
   label {
-    text-align :center;
-    margin-top: auto;
-    margin-bottom: auto;
-    font-size: 27px;
+        text-align: center;
+        margin-top: 6px;
+        margin-bottom: 24px;
+        font-size: 40px;
+    }
 
-  }
+
 
   p {
     color: black;
     margin-top: auto;
     margin-bottom: auto;
-    font-size: 25px;
+    font-size: 47px;
   }
 
 
@@ -202,11 +207,27 @@ submit {
 .text form {
         display: flex;
         justify-content: center;
-        /*margin-top :20px;*/
-        margin-bottom : 20px;
+        /* margin-top: 20px; */
+        margin-bottom: 20px;
         height: 50px;
+        margin-right: 77px;
+}
+
+.text button {
+      background-color: rgba(34, 236, 16, 0.959);
+      color: black;
+      border: 3px solid;
+      height: 66px;
+      width: 58px;
+      font-size: 30px;
+      margin-left: 6px;
+}
+
+.text button:hover {
+  background-color: #e07a19;
 
 }
+
 
 form#input-date div {
   display: flex;
