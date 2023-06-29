@@ -2,6 +2,8 @@ package com.example.dietApplication.entity;
 
 import lombok.Data;
 
+import java.util.Objects;
+
 @Data
 public class DietResult {
     private int dietResultId;
@@ -17,4 +19,18 @@ public class DietResult {
     }
 
     public DietResult(){}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        DietResult that = (DietResult) o;
+        return Objects.equals(dietName, that.dietName) &&
+                Objects.equals(action, that.action);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dietResultId, dietName, action, result);
+    }
 }

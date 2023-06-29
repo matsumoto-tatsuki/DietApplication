@@ -115,7 +115,11 @@ public class CalendarController {
         if(result.size() != resultSelect.size()){
             List<DietResult> dietResultList = new ArrayList<>();
             for(var i = 0;i < resultSelect.size();i++){
-                dietResultList.add(new DietResult(0,resultSelect.get(i).getDietName(),resultSelect.get(i).getAction(),false));
+                int finalI = i;
+                if(result.stream()
+                        .noneMatch(e -> e.getDietName().equals(resultSelect.get(finalI).getDietName()))){
+                    dietResultList.add(new DietResult(0,resultSelect.get(i).getDietName(),resultSelect.get(i).getAction(),false));
+                }
             }
             var num = dietResultService.insertDietResult(userInfo.getUserId(),dietResultList);
             result = dietResultService.getDietResult(new Calendar(date),userInfo.getUserId());
