@@ -38,11 +38,11 @@
                         <option value="運動">運動</option>
                         <option value="食事">食事</option>
                     </select>
-                    <select name="difficulty">
+                    <select name="difficulty" id="difficulty-select">
                         <option selected>難易度</option>
-                        <option value="easy">easy</option>
-                        <option value="normal">normal</option>
-                        <option value="hard">hard</option>
+                        <option value="easy" class="select-easy">★</option>
+                        <option value="normal" class="select-normal">★★</option>
+                        <option value="hard" class="select-hard">★★★</option>
                     </select>
                 </div>
 
@@ -304,7 +304,7 @@
                 favo.appendChild(favoImage);
 
                 var select = document.createElement("td");
-                select.setAttribute("class","td-select");
+                select.setAttribute("class", "td-select");
                 var selectImage = document.createElement("img");
                 var selectinput = document.createElement("input");
                 selectinput.type = "hidden";
@@ -324,21 +324,39 @@
                 var dietName = document.createElement("td");
                 dietName.setAttribute("class", "diet-list");
                 dietName.classList.add("td-dietName");
-                dietName.classList.add("background-"+(data[i].id));
+                dietName.classList.add("background-" + (data[i].id));
                 dietName.textContent = data[i].dietName;
 
                 var period = document.createElement("td");
                 period.textContent = data[i].period;
-                period.setAttribute("class","td-period");
+                period.setAttribute("class", "td-period");
 
                 var categoryName = document.createElement("td");
-                categoryName.textContent = data[i].categoryName;
-                categoryName.setAttribute("class","td-categoryName");
+                var categoryImage = document.createElement("img");
+                // categoryName.textContent = data[i].categoryName;
+                switch (data[i].categoryName) {
+                    case '運動': categoryImage.setAttribute("src", "/images/category/motion.png");
+                        break;
+                    case '食事': categoryImage.setAttribute("src", "/images/category/meal.png");
+                        break;
+                }
+
+                categoryName.setAttribute("class", "td-categoryName");
+                categoryName.appendChild(categoryImage);
 
                 var difficultName = document.createElement("td");
-                difficultName.textContent = data[i].difficultName;
-                difficultName.setAttribute("class","td-difficultName");
-
+                var difficultImage = document.createElement("img");
+                // difficultName.textContent = data[i].difficultName;
+                switch (data[i].difficultName) {
+                    case 'easy': difficultImage.setAttribute("src", "/images/difficulty_/easy.png");
+                        break;
+                    case 'normal': difficultImage.setAttribute("src", "/images/difficulty_/normal.png");
+                        break;
+                    case 'hard': difficultImage.setAttribute("src", "/images/difficulty_/hard.png");
+                        break;
+                }
+                difficultName.setAttribute("class", "td-difficultName");
+                difficultName.appendChild(difficultImage);
 
                 tr.appendChild(favo);
                 tr.appendChild(select);
@@ -469,6 +487,20 @@
                     console.error('エラー:', error);
                 });
         }
+        const selectElement = document.getElementById('difficulty-select');
+
+        selectElement.addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+            const className = selectedOption.getAttribute('class');
+
+            // クラスをリセット
+            selectElement.classList.remove('select-easy');
+            selectElement.classList.remove('select-normal');
+            selectElement.classList.remove('select-hard');
+
+            // 選択されたオプションに対応するクラスを追加
+            selectElement.classList.add(className);
+        });
     </script>
 </body>
 

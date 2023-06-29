@@ -1,6 +1,10 @@
+.body{
+    background-image: url("/images/signupbackground.png");
+    background-size: cover;
+}
 
 .error{
-    color: red;
+    color: rgb(0, 0, 0);
     margin-bottom: 5px;
 }
 
