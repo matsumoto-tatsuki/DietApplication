@@ -71,16 +71,26 @@ CREATE TABLE weight (
 
 
 INSERT INTO users (user_id, password, user_name, permission, insert_date,weight)
-VALUES ('admin', 'admin', 'admin', 1, current_date,0);
+VALUES
+       ('matsumoto', 'matsumoto', 'matsumoto', 2, '2023-06-01',80),
+       ('banana', 'banana', 'banana', 2, '2023-06-05',80),
+       ('atumi', 'atumi', 'atumi', 2, '2023-06-07',80),
+       ('kinnikun', 'kinnikun', 'kinnikun', 2, '2023-06-10',80),
+       ('kinjo', 'kinjo', 'kinjo', 2, '2023-06-15',80),
+        ('tohu', 'tohu', 'tohu', 2, '2023-06-20',80),
+       ('zaha', 'zaha', 'zaha', 2, '2023-06-22',80),
+       ('gorila', 'gorila', 'gorila', 2, '2023-06-28',80),
+       ('user', 'user', 'user', 2, current_date-1,80),
+       ('admin', 'admin', 'admin', 1, current_date,0);
 
-INSERT INTO users (user_id, password, user_name, permission, insert_date,weight)
-VALUES ('user', 'user', 'user', 2, current_date-1,80);
+
 
 -- user_selectテーブルにレコードを挿入
 INSERT INTO diet_select (user_id, diet_id, action, start_date, end_date)
 VALUES
   ('user', 1, '30分歩く', '2023-06-19', '2023-06-30'),
-  ('user', 2, '25m泳ぐ', '2023-06-19', '2023-06-30');
+  ('user', 2, '25m泳ぐ', '2023-06-19', '2023-06-30'),
+  ('user', 1, '30分歩く', '2023-05-01', '2023-05-31');
 
 -- 運動カテゴリのデータ
 INSERT INTO diet_info (diet_name, category_id, difficulty)
@@ -135,7 +145,39 @@ INSERT INTO diet_result (user_select_id, result, date) VALUES
 (1,true,'2023-06-22'),
 (2,true,'2023-06-22'),
 (1,false,'2023-06-23'),
-(2,false,'2023-06-23');
+(2,false,'2023-06-23'),
+
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-01'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-02'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-03'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-04'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-05'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-06'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-07'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-08'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-09'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-10'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-11'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-12'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-13'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-14'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-15'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-16'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-17'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-18'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-19'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-20'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-21'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-22'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-23'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-24'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-25'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-26'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-27'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-28'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-29'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-30'),
+(3, CASE WHEN ROUND(RANDOM()) = 1 THEN true ELSE false END, '2023-05-31');
 
 INSERT INTO category(type)
 VALUES('運動'),('食事');

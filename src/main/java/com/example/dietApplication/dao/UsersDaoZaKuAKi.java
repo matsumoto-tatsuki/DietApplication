@@ -53,14 +53,12 @@ public class UsersDaoZaKuAKi implements UsersDao{
         List<UserInfo> usersData = new ArrayList<>();
         var param = new MapSqlParameterSource();
         param.addValue("userId", userId);
-        String sql = "SELECT u.id,u.user_id,user_symbol,user_name,w.weight \n" +
+        String sql = "SELECT u.id,u.user_id,user_symbol,user_name,weight \n" +
                 "FROM users u\n" +
-                "JOIN weight w\n" +
-                "ON u.user_id = w.user_id\n" +
-                "WHERE u.user_id = :userId\n" +
-                "AND w.weight <> 0\n" +
-                "ORDER BY w.id DESC\n" +
-                "LIMIT 1";
+                "WHERE u.user_id = :userId\n";
+//                "AND w.weight <> 0\n" +
+//                "ORDER BY w.id DESC\n" +
+//                "LIMIT 1";
         usersData = jdbcTemplate.query(sql, param, new DataClassRowMapper<>(UserInfo.class));
         return usersData.isEmpty() ? null : usersData.get(0);
     }

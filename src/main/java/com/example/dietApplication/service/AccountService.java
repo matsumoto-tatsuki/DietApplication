@@ -12,7 +12,7 @@ public class AccountService {
     private UsersDao usersDao;
 
     public UserInfo getUserInfo(String userId){
-        return usersDao.getUserInfo (userId);
+        return usersDao.getUserInfo(userId);
     }
 
     public int userUp(String userName,String userId){
