@@ -70,11 +70,11 @@ CREATE TABLE weight (
 );
 
 
-INSERT INTO users (user_id, password, user_name, permission, insert_date)
-VALUES ('admin', 'admin', 'admin', 1, current_date);
+INSERT INTO users (user_id, password, user_name, permission, insert_date,weight)
+VALUES ('admin', 'admin', 'admin', 1, current_date,0);
 
-INSERT INTO users (user_id, password, user_name, permission, insert_date)
-VALUES ('user', 'user', 'user', 2, current_date-1);
+INSERT INTO users (user_id, password, user_name, permission, insert_date,weight)
+VALUES ('user', 'user', 'user', 2, current_date-1,80);
 
 -- user_selectテーブルにレコードを挿入
 INSERT INTO diet_select (user_id, diet_id, action, start_date, end_date)
@@ -148,8 +148,8 @@ INSERT INTO memo (user_id, memo, date) VALUES
 ('user','ちょっと瘦せてきたかも。','2023-06-23');
 
 INSERT INTO weight (user_id, weight, date) VALUES
-('user',0,'2023-06-19'),
-('user',0,'2023-06-20'),
-('user',0,'2023-06-21'),
-('user',0,'2023-06-22'),
-('user',0,'2023-06-23');
+('user',100,'2023-06-19'),
+('user',90,'2023-06-20'),
+('user',80,'2023-06-21'),
+('user',90,'2023-06-22'),
+('user',88,'2023-06-23');
